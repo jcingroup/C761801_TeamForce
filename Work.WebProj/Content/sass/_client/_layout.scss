@@ -1,0 +1,240 @@
+﻿@charset "UTF-8";
+$max-width : 1200px;
+$mobile-menu-bk: 'wide';
+/*      layout
+-----------------------------------------------------------------------*/
+// 置中(有最大寬度限制,非滿版才需要)
+.wrap {
+    @extend .center;
+
+    @include clearfix;
+    max-width: $max-width;
+
+    @include mq(desktop, $max-width) {
+        max-width: $min-width;
+    }
+
+    @if $enable-RWD {
+        @include mq-max(break($min-width, -1)) {
+            @include rem('padding-left', 16px);
+            @include rem('padding-right', 16px);
+        }
+    }
+    @else {
+        min-width: $min-width;
+    }
+}
+
+#wrapper {
+    @if $wrapper-bg     { background: $wrapper-bg; }
+    @if not $enable-RWD { min-width: $min-width; }
+
+    @if $lte7           { _height: 100%; }
+    min-height: 100%;
+    padding-bottom: $footer-height + $wrapper-b-spacing;
+
+    
+}
+
+// 此案header內容
+// ----------------------------------------------------------------------
+.headLogo {
+    @include mq(wide,wider) {
+        margin-left: 1.5em;
+    }
+}
+.headNote {
+    @include mq(wide,wider) {
+        margin-right: 1.5em;
+    }
+
+    @include mq-max(break($mobile-menu-bk, -1)) {
+        position: fixed;
+        white-space: nowrap;
+        right: 10px;
+    }
+
+    letter-spacing: 0.3em;
+    color: #B2B5BF;
+    opacity: 0.7;
+    text-shadow: 0.3px 0.3px 0;
+}
+.navMenu {
+    @include mq(wide,wider) {
+        margin-right: 1.5em;
+    }
+
+    @include mq-max(break($mobile-menu-bk, -1)) {
+        display: none;
+    }
+
+    margin-top: 2.5em;
+
+    a {
+        color: #49598d;
+        font-weight: 100;
+        text-shadow: 0.5px 0 0;
+
+        &:hover {
+            color: lightskyblue;
+        }
+    }
+}
+
+    .headTitle {
+        line-height: 0.9;
+        color: #2D385E;
+        letter-spacing: .05em;
+        text-shadow: 0.5px 0px 0px;
+        margin-top: 3.5rem;
+    }
+
+    .logo-sub {
+        opacity: 0.9;
+    }
+
+    .logo-en {
+        @include rem('font-size', 14);
+        letter-spacing: .14em;
+        color: #f4b238b5;
+        font-family: initial;
+    }
+
+    .logo {
+        background: url(#{$img-index}/#{$logo-img}) center 0 no-repeat;
+    }
+    // RWD button 選單
+.mobile-toggle {
+    display: none;
+    background: none;
+    cursor: pointer;
+    z-index: z(overlay) + 1;
+    color: #073964;
+    @include transition(.3s);
+
+    @include mq-max(break($mobile-menu-bk,-1)) {
+        display: block;
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+    // 本次專案
+    @extend .font-xl;
+    text-shadow: 1px 1px 0 rgba(#fff, .6);
+
+    @include fixed(right 10px top 50px);
+}
+
+.mobile-menu {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-left: -1rem;
+    //background: rgba(255, 255, 255, 0.85);
+    animation: SHW .5s;
+    animation-fill-mode: both
+}
+@keyframes SHW {
+    from {}
+
+    to {
+        background: rgba(255, 255, 255, 0.85);
+    }
+}
+.mobile-menu-body{
+    overflow-y:hidden;
+}
+
+    // footer 頁腳
+    // ----------------------------------------------------------------------
+    #footer {
+        @if $footer-bg {
+            background: $footer-bg;
+        }
+
+        @if $footer-color {
+            color: $footer-color;
+        }
+
+        min-height: $footer-height;
+        margin-top: -($footer-height);
+        position: relative;
+        z-index: z(footer);
+
+        > img {
+            position: absolute;
+            bottom: 0;
+            right: 15em;
+
+            @include mq-max(wide) {
+                right: 5em;
+            }
+        }
+
+        .foot-content {
+            min-height: 280px;
+            background: url(#{$img-path}/footBg.png) no-repeat top center;
+            padding-top: 4em;
+            padding-left: 20em;
+
+            @include mq-add-breakpoint(tvscreen, 1700px);
+
+            @include mq-max(wide) {
+                padding-top: 4em;
+                padding-left: 6em;
+            }
+
+            @include mq(wide,tvscreen) {
+                padding-top: 4em;
+                padding-left: 15em;
+            }
+
+            .col-4 {
+                text-align: left;
+                letter-spacing: 2px;
+
+                > dd:first-child {
+                    white-space: nowrap;
+                }
+
+                .footSpan {
+                    letter-spacing: 1px;
+                    background-color: #01738F;
+                    text-align: center;
+                    border-radius: 10px;
+                }
+
+                .font-sm {
+                    opacity: 0.9;
+                }
+            }
+        }
+
+        .foot-bottom {
+            min-height: 40px;
+            background: #000;
+            line-height: 40px;
+        }
+    }
+
+    .copyright {
+        position: absolute;
+
+        @include mq(desktop) {
+            right: 16px;
+            top: 72px;
+        }
+
+        @include mq(wide) {
+            right: 0;
+        }
+
+        @include mq-max(break(desktop, -1)) {
+            left: 120px;
+            top: 50px;
+            text-align: left;
+        }
+    }

@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+// == config
+// ----------------------------------------------------------------------
+$lte7:                    false !default;
+$enable-RWD:              true !default;
+$enable-flex:             false !default;
+$states:                  true !default;      // 情境文字是否輸出
+
+$isIndex:                 false !default;     // 前台首頁用
+$isPage:                  false !default;     // 前台內頁用
+$isLogin:                 false !default;     // 後台登入頁用
+$isAdmin:                 false !default;     // 後台系統用
+
+$font-path:               '../font' !default;
+
+
+// == RWD-break in mixins/mq.scss
+// ------------------------------------------------------------
+$mq-breakpoints: (
+    mobile:               375px,
+    phone:                568px,
+    phone-plus:           667px,
+    tablet:               768px,
+    desktop:              1024px,
+    wide:                 1200px,
+    wider:                1400px
+) !default;
+
+
+// == spacing
+// ------------------------------------------------------------
+$spacer:                  1rem !default;                    // for $Spacing
+$spacing: (
+    0:                    0,
+    2:                    $spacer/8,
+    4:                    $spacer/4,
+    8:                    $spacer/2,
+    12:                   $spacer*0.75,
+    16:                   $spacer,
+    24:                   $spacer*1.5,
+    32:                   $spacer*2,
+    48:                   $spacer*3,
+    64:                   $spacer*4
+) !default;
+
+
+// == element
+// ------------------------------------------------------------
+//
+// basic
+$body-bg:                        #fff !default;
+$body-color:                     #333 !default;
+
+$font-family-base:               \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default;
+
+$font-size-base:                 16px !default;                         // 1rem
+$line-height:                    1.5 !default;
+
+$border-color:                   color(muted) !default;
+$border-radius:                  spacing(4) !default;
+$prefixes:                       webkit !default;                       // all: webkit moz o ms
+
+$padding-s:                      spacing(4) !default;
+$padding-m:                      spacing(8) !default;
+$padding-l:                      spacing(16) !default;
+
+//
+// link
+$link-color:                     color() !default;                      // 連結文字色 color("primary")
+$link-color-hover:               color(secondary) !default;             // 移過後顏色
+$link-decoration:                none !default;                         // 連結底線樣式
+$link-decoration-hover:          false !default;                        // 移過後底線樣式
+$link-transition:                color .35s, background .3s !default;   // 滑鼠移過動態特效
+
+//
+// type
+$font-size-h1:                   $font-size-base * 3 !default;       // 48px old-2.5
+$font-size-h2:                   $font-size-base * 2 !default;       // 32px old-2
+$font-size-h3:                   $font-size-base * 1.6875 !default;  // 27px old-1.75
+$font-size-h4:                   $font-size-base * 1.5 !default;     // 24px old-1.5
+$font-size-h5:                   $font-size-base * 1.125 !default;   // 18px old-1.25
+$font-size-h6:                   $font-size-base * 1.0625 !default;  // 17px old-1
+
+$headings-color:                 false !default;
+$headings-font-family:           false !default;
+$headings-font-weight:           500 !default;
+$headings-line-height:           1.1 !default;
+$headings-letter-spacing:        false !default;
+$headings-margin-bottom:         $spacer*0.75 !default;
+
+$p-spacer:                       spacing(4) !default;  // <p>+<p>才有
+$hr-border:                      1px solid $border-color !default;
+$hr-sapce:                       $spacer*2 0 !default;
+$abbr-color-border:              $border-color !default;
+
+//
+// table
+// 共用樣式
+$table-color-border:             $border-color !default;
+$table-pd:                       $padding-s $padding-m !default;
+
+// 滑鼠移過變色
+$table-bg-hover:                 #fffFD7 !default;
+
+// 斑馬紋條列式表格
+$table-bg-striped:               #f8f9fa !default; // #f9f9f9
+$table-bg-active:                false !default;
+$table-striped-list:             'even' !default;   // even, odd
+
+// RWD時，表格出現卷軸
+$table-rwd:                      true !default;
+
+//
+// form
+$cursor-disabled:                not-allowed !default;             // 表單元素(停用)上的滑鼠樣式
+
+$input-font-size:                14px !default;
+$input-height:                   $input-font-size*2 !default;
+$input-pd:                       0 $padding-s !default;
+
+$input-bg:                       #fff !default;
+$input-bg-disabled:              #eee !default;
+$input-color:                    #343a40 !default;
+$input-color-border:             $border-color !default;
+$input-color-placeholder:        color(muted) !default;
+$input-border:                   1px solid $input-color-border !default;
+$input-radius:                   false !default;
+$input-shadow:                   inset 0 1px 1px rgba(0,0,0,.075) !default;
+$input-transition:               border-color ease-in-out .15s, box-shadow ease-in-out .15s !default;
+
+// focus
+$input-focus-bg:                 false !default;
+$input-focus-border-color:       color(warning) !default;
+$input-focus-color:              false !default;
+$input-focus-box-shadow:         0 0 0 2px rgba($input-focus-border-color, .35) !default;
+
+$form-label-line-height:         ($input-font-size + 4) !default;
+
+// select
+$select-caret-color:             $input-color-placeholder !default;
+$select-caret-color-checked:     $input-focus-color !default;
+
+// checkbox style
+$choice-box-has:                 false !default;
+$choice-box-color:               $input-focus-border-color !default;
+$checkbox-size:                  if($input-height, ($input-height - 7), 21px) !default;
+$checkbox-icon-size:             $checkbox-size*0.7 !default;
+$checkbox-radius:                $input-radius !default;
+
+// btn
+// 下為基本樣式(屬性固定)
+// height = btn-font-size(18) * btn-line-height(1.2) + (btn-pd-y * 2) = 34.56
+// size
+$btn-font-size:                  15px !default;
+$btn-line-height:                if($input-height, $input-height, $line-height) !default;
+$btn-pd:                         $padding-s $padding-l !default; // $spacer*0.8 $spacer*2 $spacer*.8 $spacer*2.6
+
+// color
+$btn-color:                      #fff !default;
+$btn-color-hover:                #fff !default;
+$btn-bg:                         color() !default;
+$btn-bg-hover:                   darken($btn-bg, 6) !default;
+$btn-bg-disabled:                color(muted) !default;
+
+$btn-theme: (
+    success:                     color(success),
+    info:                        color(info),
+    warning:                     color(warning),
+    danger:                      color(danger)
+) !default;
+
+// other
+$btn-radius:                     $border-radius !default;
+$btn-effect:                     'background .35s, color .5s' !default;
+
+
+// ==  modules
+// ------------------------------------------------------------
+//
+// field
+$fields-spacer:                  spacing(12) !default; //20px
+
+//
+// input-group
+$input-group-height:             $input-height !default;
+$input-group-radius:             $input-radius !default; // ($input-group-height / 2)
+$input-group-border:             1px solid $input-color-border !default;
+$input-group-margin:             false !default;
+$input-group-bg:                 false !default;
+
+$input-group-addon-width:        1% !default; // $input-group-height
+$input-group-addon-color:        color() !default;
+$input-group-addon-bg:           lighten($input-color-border, 5) !default; // $input-color-border
+
+//
+// label
+$label-color:                    #f8f9fa !default;
+$label-bg:                       desaturate(lighten(color(), 10), 25) !default;
+$label-radius:                   $border-radius !default;
+$label-pd:                       $padding-s $padding-m !default;
+$label-mg:                       0 5px!default;
+
+$label-theme: (
+    success:                     color(success),
+    info:                        color(info),
+    warning:                     color(warning),
+    danger:                      color(danger)
+) !default;
+
+//
+// alerts
+$alerts: (
+    success:                     desaturate(color(success), 6) $pale-green,
+    info:                        desaturate(color(info), 6) $pale-blue,
+    warning:                     desaturate(color(warning), 6) $pale-yellow,
+    danger:                      desaturate(color(danger), 6) $pale-red
+) !default;
+
+$alert-round:                    false !default;
+$alert-padding:                  $padding-m !default;
+
+//
+// list-group
+$list-group-link-color:          $link-color !default;
+$list-group-link-color-hover:    $link-color-hover !default;
+$list-group-bg:                  #fff !default;
+$list-group-bg-hover:            lighten(color(muted), 10) !default;
+
+$list-group-border-color:        lighten(color(muted), 10) !default;
+$list-group-border-width:        1px !default;
+
+//
+// modal
+$modal-top:                      80px !default; // 離頂端距離
+$modal-content-bg:               #fff !default;
+
+$modal-close-size:               50px !default;
+$modal-close-color:              #fff !default;
+$modal-close-color-hover:        color(warning) !default;

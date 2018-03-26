@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+// src https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6
+
+// =============================================================================
+// String Replace in function
+// =============================================================================
+
+
+// =============================================================================
+// Font Face
+// =============================================================================
+// 使用方法：
+// @include font-face(Samplino, fonts/Samplino);
+// @include font-face("Samplina Neue", fonts/SamplinaNeue, bold, italic);
+// @include font-face(Samplinoff, fonts/Samplinoff, null, null, woff);
+// @include font-face(Samplinal, fonts/Samplinal, 500, normal, eot woff2 woff);
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+    $src: null;
+
+    $extmods: (
+        eot: "?",
+        svg: "#" + str-replace($name, " ", "_")
+    );
+
+    $formats: (
+        otf: "opentype",
+        ttf: "truetype"
+    );
+
+    @each $ext in $exts {
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+        $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+    }
+
+    @font-face {
+        font-family: quote($name);
+        font-style: $style;
+        font-weight: $weight;
+        src: $src;
+    }
+}

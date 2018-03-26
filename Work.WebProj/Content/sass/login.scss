@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+$isLogin:              true;
+
+
+// import
+// ------------------------------------------------------------
+@import "core/function";   // (置頂)
+
+@import "_admin/setting"; // 後台用變數
+@import "core/variables";
+@import "core/mixins";
+
+// 由此 output css
+@import "vendor/normalize";  // 重置樣式
+
+@import "element/basic";
+@import "element/link";
+@import "element/type";
+@import "element/form";
+@import "element/btn";
+@import "element/util";
+
+@import "_admin/layout";
+@import "_admin/modules/loader";
+
+@import "_admin/custom"; // 建議放置在最後一個
+
+
+// main
+// ------------------------------------------------------------
+.sub-copyright {
+    @extend .font-sp, .text-primary, .mt-8;
+}
+form {
+    @extend .center, .pt-12;
+
+    border: 1px solid color("muted");
+    box-shadow: 0 0 10px color("muted");
+    background: $gray-100;
+    max-width: 450px;
+    margin-top: 40px;
+
+    .title, main {
+        @extend .center;
+        width: 93%;
+    }
+}
+
+label {
+    @extend .mb-4, .font-md, .text-dark;
+}
+
+.action-bar {
+    @extend .mt-32, .pt-12, .pb-16, .bg-primary;
+    border-top: 1px solid darken(color('primary'),5);
+}

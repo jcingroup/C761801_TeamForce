@@ -1,0 +1,36 @@
+﻿@charset "UTF-8";
+
+// 本頁專用變數(覆蓋)
+// ------------------------------------------------------------
+$isPage:                 true;
+$font-size-h2: 45px;
+
+// import
+// ------------------------------------------------------------
+@import "core/function";     // (置頂)
+
+@import "_client/setting";   // 前台用變數
+@import "core/variables";
+@import "core/mixins";
+
+// 由此 output css
+@import "vendor/normalize";  // 重置樣式
+@import "vendor/print";      // 列印樣式
+
+@import "element/basic";
+@import "element/link";
+@import "element/type";
+@import "element/table";
+@import "element/btn";
+@import "element/util";
+
+@import "_client/layout";
+@import "_client/modules/nav";
+// @import "_client/modules/field";
+
+@import "_client/custom";   // 本專案自定樣式
+
+
+// main
+// ------------------------------------------------------------
+

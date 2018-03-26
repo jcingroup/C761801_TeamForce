@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+//
+// nav
+// 右上方資訊選單(回首頁,登出等)
+// ------------------------------------------------------------
+.navbar {
+    @if $navbar-height { height: $navbar-height }
+
+    float: right;
+
+    #{$nav-name} {
+        $border-color: #fff;
+
+        @if $nav-bg        { background: $nav-bg; }
+        @if $nav-color     { color: $nav-color; }
+        @if $nav-font-size { @include rem('font-size', $nav-font-size); }
+
+        @extend .px-12, .font-md;
+
+        display: block;
+        float: left;
+        border-left: 1px solid $border-color;
+
+        // height full & middle
+        height: 100%;
+        line-height: $navbar-height;
+
+        &:last-child {
+            border-right: 1px solid $border-color;
+        }
+
+        @each $class, $color in $nav-item {
+            &.#{$class} {
+                background: $color;
+
+                &:hover {
+                    background: lighten($color, 10);
+                }
+                &:active, &:focus {
+                    background: draken($color, 12);
+                    box-shadow: inset 3px 3px 10px rgba(#000,.3);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/*      base
+-----------------------------------------------------------------------*/
+@-moz-viewport, @-ms-viewport, @-o-viewport, @-webkit-viewport, @viewport { width: device-width; }
+
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+    outline: none !important;
+}
+
+html, body {
+    text-align: center;
+    height: 100%;
+}
+body {
+    background: $body-bg;
+    color: $body-color;
+    font: #{$font-size-base}/#{$line-height} $font-family-base;
+    letter-spacing: .01em;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a, area, button, [role="button"], input, label, select, summary, textarea {
+    touch-action: manipulation;
+}
+
+button, [role="button"], [type="button"] {
+    background: none;
+    cursor: pointer;
+    border: none;
+
+    &:focus {
+        outline: 0;
+
+        @if $input-shadow {
+            box-shadow: $input-shadow, $input-focus-box-shadow;
+        } @else {
+            box-shadow: $input-focus-box-shadow;
+        }
+    }
+}

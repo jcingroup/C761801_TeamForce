@@ -1,0 +1,268 @@
+@charset "UTF-8";
+
+// == 主選單
+// ------------------------------------------------------------
+
+$mobile-nav-height: 48px;
+
+#menu {
+    z-index: z(menu);
+
+    // 本次專案
+    @include mq($mobile-menu-bk) {
+        @include el(all, $ext: false) {
+            width: calc(50% - 75px);
+            border-top: 1px solid color();
+
+            @include absolute(top 134px);
+        }
+        &::before { left: 0; }
+        &::after { right: 0; }
+    }
+    @include mq-max(break($mobile-menu-bk, -1)) {
+        height: $mobile-nav-height;
+    }
+
+    // #{$nav-root} {
+    // }
+
+    // 子選單
+    @if $sub-nav-has {
+        ul {
+            @extend .mb-0;
+
+            @include mq($mobile-menu-bk) {
+                letter-spacing: -0.31em;       //* Webkit: collapse white-space between units
+                *letter-spacing: normal;       //* reset IE < 8
+                *word-spacing: -0.43em;        //* IE < 8: collapse white-space between units
+                text-rendering: optimizespeed; //* Webkit: fixes text-rendering: optimizeLegibility
+            }
+            @include mq-max(break($mobile-menu-bk, -1)) {
+                padding-left: 0;
+                padding-right: 0;
+
+                // 本次專案: 行動版面
+                z-index: z(overlay);
+
+                // @include fixed(bottom 0 top $header-mobile-height); -用js取 top 高度
+                @include fixed(bottom 0);
+                @if $mobile-menu-bg    { background: $mobile-menu-bg; }
+                @if $mobile-transition { @include transition($mobile-transition); }
+                overflow-y: auto;
+                width: $mobile-menu-width;
+                left: -$mobile-menu-width;
+                text-align: left;
+
+                .js-mobile-body & {
+                    left: 0;
+                }
+                .scrolled & {
+                    top: $header-mobile-height;
+                }
+            }
+        }
+
+        li {
+            @include mq($mobile-menu-bk) {
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                z-index: 1;
+                *display: inline;
+                letter-spacing: normal;
+            }
+            // 子選單顯示
+            &:hover {
+                .sub-nav {
+
+                    @include mq($mobile-menu-bk) {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                    @include mq-max(break($mobile-menu-bk, -1)) {
+                        display: block;
+                    //     position: static;
+                    }
+                }
+            }
+        }
+        .sub-nav {
+            // visibility: hidden;
+            // opacity: 0;
+
+            // 本次專案
+            @extend .py-12, .text-left;
+
+
+            @include mq($mobile-menu-bk) {
+                opacity: 0;
+                visibility: hidden;
+
+                background-color: #fff;
+                min-width: 135px;
+
+                @include transition(.2s); // 這不能跟jquery slideToggle同時用，會有奇怪抖動
+                @include absolute(top 100% left 0 right 0);
+
+                @if $isPage {
+                    box-shadow: 0 8px 13px rgba(color(), .25);
+                }
+            }
+
+            @include mq-max(break($mobile-menu-bk, -1)) {
+                display: none;
+                padding-left: 20px;
+                background-color: darken(color(), 4);
+            }
+
+            a {
+                @extend .p-8;
+
+                line-height: 1.25;
+                display: block;
+                position: relative;
+                padding-left: 18px;
+
+                @include rem('font-size', 15px);
+                @include icon-arrow(right, 7px, color(secondary), left 8px top 14px);
+
+
+                &:hover, &:active, &.current {
+                    @extend .text-secondary;
+                    &::before {
+                        border-left-color: color(muted);
+                    }
+                }
+
+                @include mq-max(break($mobile-menu-bk,-1)) {
+                    color: rgba(#fff, .85);
+                }
+            }
+        }
+    }
+
+    // 行動版面
+    @if $mobile-menu-has {
+        @include mq-max(break($mobile-menu-bk, -1)) {
+            z-index: z(overlay);
+            @if $mobile-menu-bg    { background: $mobile-menu-bg; }
+            @if $mobile-transition { @include transition($mobile-transition); }
+
+            overflow-y: auto;
+            width: $mobile-menu-width;
+            visibility: hidden;
+            opacity: 0;
+
+            @include fixed(top 0 left 0);
+
+            // 本次專案
+            height: 100%;
+            padding: 42px 16px 16px 16px;
+
+            .js-mobile-body & {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        @include mq(phone-plus, break($mobile-menu-bk, -1)) {
+            padding-top: 180px;
+        }
+    }
+}
+
+.nav-item {
+    display: inline-block;
+    letter-spacing: .5px;
+
+    @include transition(.35s);
+
+    @include mq($mobile-menu-bk) {
+        @include rem('font-size', 17px);
+        @include absolute(top 92px);
+
+        &:nth-child(1) { left: decimal-round((91 / 1200 * 100%), 2); }
+        &:nth-child(2) { left: decimal-round((198 / 1200 * 100%), 2); }
+        &:nth-child(3) { left: decimal-round((322 / 1200 * 100%), 2); }
+        &:nth-child(4) { left: decimal-round((816 / 1200 * 100%), 2); }
+        &:nth-child(5) { left: decimal-round((929 / 1200 * 100%), 2); }
+
+        // 小圓裝飾
+        @include el(after) {
+            @include circle(13px);
+            @include transition(.5s);
+
+            border: 1px solid color();
+            position: relative;
+            left: 50%;
+            top: 28px;
+            margin-left: -6.5px;
+        }
+
+        &:hover, &:active {
+            &::after {
+                box-shadow: 0 0 0 8px rgba(color(), .3);
+            }
+        }
+
+        // 當前選單樣式
+        &.current {
+            color: $link-color;
+
+            &::after {
+                background: color();
+            }
+        }
+    }
+
+    @include mq-max(break($mobile-menu-bk, -1)) {
+        font-size: rem(25);
+        margin: 2% .5%;
+        padding: 8px 24px;
+        background: #fff;
+        border: 1px solid color();
+
+        &:hover, &:active, &.current {
+            background: color();
+            color: #fff;
+        }
+    }
+    @include mq-max(break(phone-plus, -1)) {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+
+// == mobile-toggle
+@if $mobile-menu-has {
+    // body
+    .js-mobile-body {
+        overflow-y: hidden;
+    }
+
+    // 點擊開啟主選單
+    .mobile-toggle {
+        display: none;
+        background: none;
+        cursor: pointer;
+        z-index: z(overlay) + 1;
+
+        @include transition(.3s);
+        @include mq-max(break($mobile-menu-bk,-1)) {
+            display: block;
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        // 本次專案
+        @extend .font-xl, .text-primary;
+
+        text-shadow: 1px 1px 0 rgba(#fff, .6);
+
+        @include fixed(right 10px top 10px);
+    }
+}
+

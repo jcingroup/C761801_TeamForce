@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+// gradient
+// -----------------------------------------------------------------
+//
+// @include linear-gradient(90deg, rgba(#000, 0), #000)
+@mixin linear-gradient($deg, $colors...) {
+    // Direction has been omitted and happens to be a color-stop
+    @if is-direction($deg) == false {
+        $colors: $deg, $colors;
+        $deg: 180deg;
+    }
+    background: nth(nth($colors, 1), 1);
+    @include prefix(background, linear-gradient($colors), $type:els);
+}
+
+@mixin radial-gradient($colors...) {
+    // 用最後的顏色
+    $last-color: length($colors);
+    background: nth(nth($colors, $last-color), 1);
+    @include prefix(background, radial-gradient($colors), $type:els);
+}
+
+@mixin border-image($deg, $colors...) {
+    // Direction has been omitted and happens to be a color
+    @if is-direction($deg) == false {
+        $colors: $deg, $colors;
+        $deg: 180deg;
+    }
+    @include prefix(border-image, linear-gradient($deg, $colors), $type:all);
+    border-image-slice: 1;
+}

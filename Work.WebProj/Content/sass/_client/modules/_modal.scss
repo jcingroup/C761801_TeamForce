@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+// overlay
+.modal {
+    z-index: z(overlay);
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+
+    @include fixed(left 0 top 0);
+    @include size(100%);
+
+    @include diy-animate(fadeIn, .4s) {
+        from { opacity: 0; }
+        to   { top: 0; opacity: 1; }
+    }
+
+    // padding-top: $modal-top;
+
+    padding-top: 42px;
+    padding-bottom: 42px;
+
+    @if $enable-RWD {
+        @include mq-max(break(phone,-1)) {
+            padding-top: 5%;
+            padding-bottom: 5%;
+        }
+    }
+}
+
+.modal-close {
+    background: none;
+    color: $modal-close-color;
+    font-size: em($modal-close-size);
+    line-height: 1;
+    z-index: z(overlay) + 1;
+
+    @include transition(color .35s);
+
+    &:hover, &:focus {
+        color: $modal-close-color-hover;
+        cursor: pointer;
+    }
+    .modal > & {
+        @include fixed(top 1% right 1.5%);
+    }
+    .modal-content & {
+        @include absolute(top -40px right -50px);
+    }
+}
+
+// 內容
+.modal-content {
+    margin: auto;
+    position: relative;
+
+    @if $modal-content-bg {
+        background-color: $modal-content-bg;
+    }
+
+    // 本次專案
+    max-width: 1120px;
+    padding: 32px;
+}
+
+// 特效
+.animate-top {
+    position: relative;
+
+    @include diy-animate(slide-down, .4s) {
+        from { top: -300px; opacity: 0; }
+        to   { top: 0; opacity: 1; }
+    }
+}
+.animate-zoom {
+    @include diy-animate(animatezoom, .6s) {
+        from { @include transform(scale(0)); }
+        to   { @include transform(scale(1)); }
+    }
+}

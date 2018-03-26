@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+// button
+// ----------------------------------------------
+
+.btn {
+    // common
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+
+    // color
+    @if $btn-bg            { background: $btn-bg; }
+    @if $btn-color         { color: $btn-color; }
+
+    // size
+    @if $btn-font-size     { font-size: rem($btn-font-size); }
+    @if $btn-line-height   { line-height: $btn-line-height; }
+    @if $btn-pd            { padding: $btn-pd; }
+
+    // other
+    @if $btn-radius { border-radius: $btn-radius; }
+    @if $btn-effect        { @include transition($btn-effect); }
+    letter-spacing: 1px;
+
+    &:hover, &:active, &:focus, &.active {
+        @if $btn-bg-hover     { background: $btn-bg-hover }
+        @if $btn-color-hover  { color: $btn-color-hover }
+    }
+
+    &.disabled, &[disabled], fieldset[disabled] & {
+        cursor: $cursor-disabled;
+        opacity: .65;
+        @if $btn-bg-disabled { background: $btn-bg-disabled; }
+    }
+
+    @if $btn-theme {
+        @each $type, $color in $btn-theme {
+            &.#{$type} {
+                background: #{$color};
+
+                &:hover, &:active, &.active {
+                    background: lighten($color, 8);
+                }
+            }
+        }
+    }
+    &.white {
+        @extend .bg-white, .text-primary;
+        &:hover, &:active, &.active {
+            @extend .text-white;
+            background: lighten(color(), 8);
+        }
+    }
+}

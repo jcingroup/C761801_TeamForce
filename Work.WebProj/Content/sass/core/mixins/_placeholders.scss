@@ -1,0 +1,39 @@
+﻿@charset "UTF-8";
+
+// 壓縮 mixin - 相同樣式合併(佔位符)
+// -----------------------------------------------------------------
+
+$Placeholders: () !default;
+
+@function placeholder-set($id) {
+    $unique-id: unique-id();
+    $Placeholders: map-merge($Placeholders, ($id: $unique-id)) !global;
+    @return $unique-id;
+}
+
+@function placeholder-get($id) {
+    @return map-get($Placeholders, $id);
+}
+
+@mixin dynamic-extend($id) {
+    $placeholder-id: placeholder-get($id);
+
+    @if $placeholder-id == null {
+        $placeholder-id: placeholder-set($id);
+        @at-root %#{$placeholder-id} {
+            @content;
+        }
+    }
+    @extend %#{$placeholder-id};
+}
+
+@mixin mixin-dryer($id, $extend: true) {
+    @if $extend == true {
+        @include dynamic-extend($id) {
+            @content;
+        }
+    }
+    @else {
+        @content;
+    }
+}

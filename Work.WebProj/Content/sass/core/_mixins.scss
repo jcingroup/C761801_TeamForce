@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+// utils
+@import "mixins/pseudo";         // 偽類 after,before
+@import "mixins/placeholders";   // 壓縮 mixin - 相同樣式合併(佔位符)
+@import "mixins/shape";          // 形狀類 作三角、圓形等
+@import "mixins/tab-focus";      // 聚焦 a btn
+@import "mixins/position";       // 位置 absolute,fixed
+@import "mixins/prefix";         // 前綴字 (跨瀏覽器)
+@import "mixins/rem";            // rem格式
+@import "mixins/center";         // 對齊 水平、垂直
+
+// module
+@import "mixins/grid";           // 網格系統
+@import "mixins/mq";             // RWD
+@import "mixins/font";           // 字型
+@import "mixins/text";           // 文字類
+@import "mixins/icon";           // 常用小圖標 (link-pseudo,shape)
+
+// plugin link-prefix
+@import "mixins/animation";      // 動畫
+@import "mixins/gradient";       // 背景漸層
+
+
+//
+// == extend 原本放在util.scss裡，改成 mixin @include 方法
+@mixin clearfix($ext:true) {
+    @include mixin-dryer(clearfix, $extend: $ext) {
+        @include el(after, table) { clear: both; }
+        @if $lte7 { zoom: 1 }
+    }
+}
+@mixin full {
+    @include mixin-dryer(full) {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+

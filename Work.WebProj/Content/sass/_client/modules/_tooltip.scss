@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+//
+// tooltip
+// --------------------------------------------------
+
+.tooltip {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+
+    .tips {
+        z-index: z(tooltip);
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        width: 100%;
+
+        @extend .text-white;
+        background-color: rgba(#000, .85);
+
+        @include absolute(top 90% left 0);
+        @include transition(opacity 1s, top .35s);
+
+        @include el(after) {
+            @include absolute(bottom 100% left 22%);
+            @include arrow(up, 18px, 10px, rgba(#000, .85));
+            margin-left: -5px;
+        }
+    }
+
+    &:hover {
+        .tips {
+            visibility: visible;
+            opacity: 1;
+            top: 100%;
+        }
+    }
+}

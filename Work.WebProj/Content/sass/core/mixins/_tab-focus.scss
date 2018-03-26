@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@mixin tab-focus($outline: $tab-focus-outline) {
+    // $outline: if($values != null, $values, $tab-focus-outline);
+    // Default
+    outline: nth($outline, 1) nth($outline, 2);
+    // WebKit
+    outline: $outline;
+    outline-offset: 0;
+}

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+// Sizing 只輸入一個值時是正方形
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+// 做圓形
+@mixin circle($size, $align:false, $bg-color:false) {
+    border-radius: 50%;
+    @include size($size);
+
+    @if $align {
+        text-align: center;
+        line-height: $size;
+    }
+    @if $bg-color {
+        background-color: $bg-color;
+    }
+}
+
+// 做三角形
+@mixin arrow($dir:right, $width: 11px, $height: $width/2, $color: inherit) {
+    @include size(0);
+
+    border-style: solid;
+
+    @if ($dir == "top" or $dir =="up") {
+        border-width: 0 $width $height $width;
+        border-color: transparent transparent $color transparent;
+    }
+    @else if ($dir == "bottom" or $dir == "down") {
+        border-width: $height $width 0 $width;
+        border-color: $color transparent transparent transparent;
+    }
+    @else if ($dir == "right") {
+        border-width: $height 0 $height $width;
+        border-color: transparent transparent transparent $color;
+    }
+    @else if ($dir == "left") {
+        border-width: $height $width $height 0;
+        border-color: transparent $color transparent transparent;
+    }
+}

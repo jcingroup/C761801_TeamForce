@@ -1,0 +1,183 @@
+﻿@charset "UTF-8";
+
+// 本頁專用變數(把下面的setting,variables蓋掉)
+$isIndex:                        true;
+$img-index:                      '../images';
+
+$wrapper-b-spacing:              0;         //內容不預留底部
+$btn-bg:                         #01738F;  //button
+$btn-radius:                     0;
+// import
+// ------------------------------------------------------------
+@import "core/function";     // (置頂)
+
+@import "_client/setting";   // 前台用變數
+@import "core/variables";
+@import "core/mixins";
+
+// 由此 output css
+@import "vendor/normalize";  // 重置樣式
+@import "vendor/print";      // 列印樣式
+
+@import "element/basic";
+@import "element/link";
+@import "element/type";
+@import "element/util";
+@import "element/btn";
+
+@import "_client/layout";
+
+@import "_client/custom"; // 建議置底
+
+// main
+// ------------------------------------------------------------
+.main {
+    @extend .mb-48;
+}
+
+
+#banner {
+    @extend .mt-8;
+    line-height: 1.2;
+    font-weight: 100;
+    width: 100%;
+    height: 600px;
+    background: url(#{$img-path}/homeImg.gif) no-repeat center 40%;
+    color: white;
+    overflow-x:hidden;
+    .bannerContain {
+        padding-top: 4.5em;
+
+        .mainTextChin {
+            letter-spacing: 4px;
+            text-shadow: 1px 1px 15px;
+        }
+
+        .mainTextEng {
+            letter-spacing: 2px;
+            transform: scale(1.1, 1);
+            font-family: initial;
+        }
+    }
+
+    @if $isIndex {
+        @extend .mb-48;
+
+        @include rem('font-size', 48);
+    }
+
+    @if $isPage {
+        @include rem('font-size', 41);
+    }
+
+    @include mq-max(480px) {
+        font-size: rem(34);
+    }
+}
+
+.homeContain {
+    overflow-x: hidden;
+
+    > h1 {
+        color: #01738F;
+        letter-spacing: 6px;
+        font-family: initial;
+    }
+
+    > p {
+        color: #888B8C;
+        letter-spacing: 1px;
+    }
+
+    .containTitle {
+        letter-spacing: 1px;
+        color: #1D243D;
+    }
+}
+
+.homeBoxArea {
+    background-color: #E5E5E5;
+    padding-top: 5em;
+    padding-bottom: 5em;
+
+    .boxContent {
+        /*margin-left: 15em;
+        margin-right: 15em;
+       
+
+        @include mq(wider,tvscreen) {
+            margin-left: 2em;
+            margin-right: 2em;
+        }*/
+        .box {
+            @extend .ml-32;
+            @extend .mr-32;
+            @include mq-add-breakpoint(tvscreen, 1700px);
+            width: 25em;
+            height: auto;
+            border-top: white;
+            border-top-style: solid;
+            background-color: #F2F2F2;
+
+            @include mq(wider,tvscreen) {
+                width: 22em;
+            }
+
+            @include mq(wide,wider) {
+                width: 20em;
+            }
+
+            @include mq(desktop,wide) {
+                width: 18em;
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+
+            > * {
+                float: left;
+                width: 100%;
+                letter-spacing: 2px;
+
+                @include mq(desktop,wider) {
+                    letter-spacing: 1px;
+                }
+            }
+
+            > h2 {
+                color: #01738F;
+                text-shadow: 0.2px 0 0;
+                @extend .mt-24;
+                @include rem('font-size', 27);
+
+                @include mq(wider,tvscreen) {
+                    @include rem('font-size', 25);
+                }
+
+                @include mq(desktop,wider) {
+                    @include rem('font-size', 23);
+                }
+            }
+
+            > p {
+                @extend .mt-12;
+                @extend .ml-4;
+                /* @include mq(wide,wider) {
+                    margin-left: 0.5em;
+                }*/
+                font-weight: bold;
+                color: #1D243D;
+                text-align: left;
+
+                > span {
+                    @extend .mr-12;
+                    @extend .ml-24;
+
+                    @include mq(desktop,wider) {
+                        margin-left: 0;
+                        margin-right: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+}

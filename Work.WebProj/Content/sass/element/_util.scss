@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+// common - @extend in core/util
+// ------------------------------------------------------------
+// 常用樣式
+.clearfix           { @include clearfix; }
+.text-hide          { @include text-hide; }
+.sr-only            { @include sr-only; }
+
+// 偶爾用到
+.pull-left          { float: left; }
+.pull-right         { float: right; }
+.block              { display: block; }
+.inline-block       { display: inline-block; }
+.inline             { display: inline; }
+.clear              { clear: both; }
+[hidden], .hidden   { display: none; }
+.circle             { border-radius: 50%; } // 圓形
+.img-center         { display: block; margin: auto; }
+.rest               { overflow: hidden; }   // 簡單 col 應用 Ref: https://www.w3schools.com/w3css/w3css_grid.asp
+.w-100              { width: 100%; }
+.full               { max-width: 100%; }
+.center {
+    margin-right: auto;
+    margin-left:  auto;
+}
+
+// spacing (ref: core/_variables.scss)
+// src: https://gist.github.com/MatthewRDodds/8f171914ee6b826db29393f33229d509
+// ex. mt-6, p-12
+@each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $value in $spacing {
+        // $length-x:   map-get($lengths, x);
+        // $length-y:   map-get($lengths, y);
+
+        .#{$abbrev}-#{$size}  { #{$prop}:        $value; } // All sides
+        .#{$abbrev}t-#{$size} { #{$prop}-top:    $value; }
+        .#{$abbrev}r-#{$size} { #{$prop}-right:  $value; }
+        .#{$abbrev}b-#{$size} { #{$prop}-bottom: $value; }
+        .#{$abbrev}l-#{$size} { #{$prop}-left:   $value; }
+
+        // Axes
+        .#{$abbrev}x-#{$size} {
+            #{$prop}-right:  $value;
+            #{$prop}-left:   $value;
+        }
+        .#{$abbrev}y-#{$size} {
+            #{$prop}-top:    $value;
+            #{$prop}-bottom: $value;
+        }
+    }
+}
+
+// vertical align
+// inline, inline-block, inline-table, and table cell elements.
+// ------------------------------------------------------------
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+
+// text
+// ------------------------------------------------------------
+.text-left     { text-align: left; }
+.text-right    { text-align: right; }
+.text-center   { text-align: center; }
+.text-nowrap   { white-space: nowrap; }
+.text-overflow { @include text-overflow(null); }
+
+@if $font-family-sp {
+    .font-sp     { font-family: $font-family-sp; }
+}
+
+
+// 情境
+// ------------------------------------------------------------
+.text-white { color: #fff; }
+.text-black { color: #000; }
+.bg-white   { background-color: #fff; }
+.bg-black   { background-color: #000; }
+
+// ref: core/variables.scss $states: true
+@if $states {
+    @each $type, $color in $colors {
+        .text-#{$type} { color: $color; }
+        .bg-#{$type}   { background-color: $color; }
+        .hover-#{$type} {
+            color: $color;
+            &:hover, &:active { color: darken($color, 15); }
+        }
+    }
+    [class*="text-"],
+    [class*="hover-"] {
+        &.disabled, &[disabled] {
+            cursor: $cursor-disabled;
+            color: $btn-bg-disabled;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+//
+// == 單行欄位樣式：label + input + btn
+// <dl class="field"><dt></dt><dd></dd>
+// -------------------------------------------------
+.field {
+    // @extend .mb-0;
+    // & ~ & { margin-top: $fields-spacer; }
+
+    margin-bottom: $fields-spacer;
+
+    @include clearfix;
+
+    // label
+    dt {
+        @extend .form-label, .text-right;
+        font-weight: normal;
+    }
+
+    sup {
+        @extend .text-danger;
+        cursor: help;
+    }
+
+    > [class*="col"] {
+        &:first-child { padding-left: 0; }
+        &:last-child  { padding-right: 0; }
+    }
+
+    > .underline {
+        border-width: 1px;
+        border-color: $input-color-border;
+        color: $input-color;
+    }
+
+    // [type='submit'],
+    .btn {
+        @extend .font-md;
+
+        padding: 0 $padding-l;
+        line-height: $input-height;
+
+        // @if $input-color      { background: $input-color; }
+        // @if $input-bg         { color: $input-bg; }
+        // @if $input-font-size  { font-size: rem($input-font-size); }
+
+        // @if $input-border {
+        //     line-height: $input-height +2;
+        //     margin-top: -1px;
+        // } @else {
+        //     line-height: $input-height;
+        // }
+
+        // @if $input-radius {
+        //     border-radius: $input-radius;
+        // } @else {
+        //     border-radius: 0;
+        // }
+
+        // &:hover, &:active {
+        //     background: lighten($input-color, 15);
+        // }
+    }
+}

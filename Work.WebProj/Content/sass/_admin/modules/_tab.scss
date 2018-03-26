@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+$tab-border-color: lighten(color('muted'), 8);
+
+.tab {
+    @include clearfix;
+}
+.tab-nav {
+    @extend .py-4, .px-12, .text-muted;
+
+    display: block;
+    float: left;
+    margin-bottom: -1px;
+    background: darken(color('light'), 1);
+    border: 1px solid $tab-border-color;
+    border-bottom: transparent;
+
+    &:hover {
+        @extend .text-success, .bg-white;
+    }
+
+    &.active {
+        @extend .bg-white, .text-primary;
+
+        border-top: 2px solid color('success');
+        box-shadow: 0 (-2px) 2px rgba(#000, .1); //#ddd
+    }
+}
+
+.tab-main {
+    @extend .p-12;
+    border: 1px solid $tab-border-color;
+}
+textarea {
+    .tab-main &, &.tab-content {
+        border: none;
+        box-shadow: none;
+    }
+}

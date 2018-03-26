@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+
+/*      table
+-----------------------------------------------------------------------*/
+table {
+    border-collapse: collapse;
+    border-spacing:0;
+    max-width: 100%;
+
+    // 上下框線
+    @if $table-color-border { border-bottom: 1px solid $table-color-border; }
+
+    // 固定欄寬度
+    &.fixed {
+        table-layout: fixed;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+}
+
+tbody + tbody {
+    @if $table-color-border { border-top: 2px solid $table-color-border; }
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: $table-pd;
+
+    // 上下框線
+    @if $table-color-border { border-top: 1px solid $table-color-border; }
+}
+
+// 四邊框線
+.table-bordered {
+    @if $table-color-border { border: 1px solid $table-color-border; }
+
+    @if $table-color-border { th, td { border: 1px solid $table-color-border; } }
+
+    thead {
+        th, td { border-bottom-width: 2px; }
+    }
+}
+
+// 斑馬紋條列式表格
+.table-striped {
+    tr:nth-child(#{$table-striped-list}) {
+        background-color: $table-bg-striped;
+    }
+}
+
+.table-striped-rowspan {
+    tbody:nth-child(#{$table-striped-list}) {
+        background-color: $table-bg-striped;
+    }
+}
+
+
+// 滑鼠移過變色
+.table-hover {
+    // tbody:hover > tr > td[rowspan],
+
+    tbody tr:hover {
+        background-color: $table-bg-hover;
+    }
+}
+
+// 響應式表格 < 768 時會出現水平卷軸
+@if $table-rwd {
+    .table-rwd {
+        overflow-x: auto;
+        min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+        // max-width: $max-width;
+
+        table { max-width: 100%; }
+
+        @include mq-max(break(desktop, -1)) {
+            width: 100%;
+            // margin-bottom: ($spacer * 0.75);
+            overflow-y: hidden;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+
+            table {
+                margin-bottom: 0;
+
+                // &.fixed {
+                //     table-layout: auto;
+                // }
+                // th { white-space: nowrap; }
+                th, td { white-space: nowrap; }
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+@mixin text-hide($ext:true) {
+    @include mixin-dryer(texthide, $ext) {
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+}
+
+@mixin sr-only {
+    @include mixin-dryer(sronly) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+    &-focusable {
+        &:active, &:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+        }
+    }
+}
+
+// == 字換圖
+@mixin text-pic($img, $width:false, $height:false, $seat: 0 0) {
+    @include text-hide;
+
+    background: url(#{$img-path}/#{$img}) $seat no-repeat;
+
+    @if $width  { width: $width; }
+    @if $height { height: $height; }
+}
+
+// == 文字溢位出現省略號,要設寬度
+@mixin text-overflow($width:100%, $ext:true) {
+    @include mixin-dryer('text-overflow', $ext) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    @if $width { width: $width; }
+}
+
+// == 文字邊框 ex. @include stroke(2,#fff);
+@function stroke($stroke, $color) {
+    $shadow: ();
+    $from: $stroke*-1;
+    @for $i from $from through $stroke {
+        @for $j from $from through $stroke {
+            $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+        }
+    }
+    @return $shadow;
+}
+@mixin stroke($stroke, $color) {
+    text-shadow: stroke($stroke, $color);
+}

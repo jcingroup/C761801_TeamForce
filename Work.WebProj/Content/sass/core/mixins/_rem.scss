@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+//
+// src https://github.com/bitmanic/rem/blob/master/stylesheets/_rem.scss
+// 使用方法
+// @include rem('padding', 0 32px);
+//
+@mixin rem($property, $values) {
+
+    // If there is only one (numeric) value, return the property/value line for it.
+    @if type-of($values) == "number" {
+        #{$property}: if(unitless($values), $values*1px, $values); // 可用無單位數字
+        #{$property}: rem($values);
+    }
+    @else {
+        // Create an empty list that we can dump values into
+        $rem-values: ();
+        $px-values: (); // 可用無單位數字
+
+        @each $value in $values {
+            // If the value is zero or not a number, return it
+            @if $value == 0 or type-of( $value ) != "number" {
+                $rem-values: append($rem-values, $value);
+                $px-values: append($px-values, $value); // 可用無單位數字
+            }
+            @else {
+                $rem-values: append($rem-values, rem($value));
+                $px-values: append($px-values, if(unitless($value), $value*1px, $value)); // 可用無單位數字
+            }
+        }
+        // Return the property and its list of converted values
+        #{$property}: $px-values; // 可用無單位數字
+        #{$property}: $rem-values;
+    }
+}

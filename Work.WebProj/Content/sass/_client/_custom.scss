@@ -1,0 +1,77 @@
+﻿@charset "UTF-8";
+
+
+// == btn-custom
+// ------------------------------------------------------------
+// .btn {
+//     // 各尺寸按鈕
+//     &.sm {
+//         @extend .font-sm, .py-0, .px-12;
+//     }
+//     &.lg {
+//         @extend .font-lg, .py-8, .px-32;
+//     }
+// }
+
+
+// == custom
+// ------------------------------------------------------------
+// src: w3.css v4
+.font-tiny   { @include rem('font-size', 13); }  // 10px y
+.font-sm     { @include rem('font-size', 15); }  // 12px y
+.font-md     { @include rem('font-size', 16); }  // 15px y
+.font-lg     { @include rem('font-size', 18); }  // 18px y
+.font-ll     { @include rem('font-size', 21); }
+.font-xl     { @include rem('font-size', 25); }  // 24px
+.font-xxl    { @include rem('font-size', 30); }  // 36px y
+.font-xxxl   { @include rem('font-size', 55); }  // 48px y
+.font-jumbo  { @include rem('font-size', 64); }  // 64px
+
+//
+// goTop
+.goTop {
+    @extend .text-white, .font-lg, .px-16, .py-8;
+
+    z-index: z(goTop);
+    // display: none;
+    opacity: 0;
+    border-radius: $border-radius border-radius 0 0;
+    background: rgba(#000, .35);
+
+    @include fixed(bottom 0 right 12px);
+    @include transition(.4s);
+    // @include circle(50px, center, rgba(#000,.35));
+
+    &:hover, &:active {
+        @extend .text-white;
+        background: rgba(#000,.7);
+    }
+    // &::before { top: 0 !important; }
+}
+
+.fade-in {
+    @include diy-animate(fadeIn, 1s 1 forwards) {
+        0% {
+            opacity: 0;
+            @include prefix(transform, translateY(20px));
+        }
+        100% {
+            opacity: 1;
+            @include prefix(transform, translateY(0));
+        }
+    }
+}
+.fade-out {
+    @include diy-animate(fadeOut, 1s 1 forwards) {
+        0% {
+            opacity: 1;
+            @include prefix(transform, translateY(0));
+        }
+        100% {
+            opacity: 0;
+            @include prefix(transform, translateY(20px));
+        }
+    }
+}
+
+//

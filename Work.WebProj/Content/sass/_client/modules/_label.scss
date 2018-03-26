@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+//
+// label
+// --------------------------------------------------
+
+[class^="label"] {
+    display: inline-block;
+    line-height: 1;
+    padding: $label-pd;
+
+    &:not(:only-child) { margin: $label-mg; }
+
+    @if $label-radius  { border-radius: $label-radius;}
+    @if $label-bg      { background: $label-bg; }
+    @if $label-color   { color: $label-color; }
+
+    // 專案樣式
+    font-size: em(12);
+}
+
+em[class*="label"] {
+    font-style: normal;
+}
+
+@if $states {
+    [class*="label-"] { @extend .text-white; }
+
+    @each $type, $color in $label-theme {
+        .label-#{$type} { background: $color; }
+        a.label-#{$type} {
+            &:hover, &:focus, &:active {
+                background: darken($color,10);
+            }
+        }
+    }
+}

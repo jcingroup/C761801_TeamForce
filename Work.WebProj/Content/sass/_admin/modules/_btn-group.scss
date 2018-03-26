@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+
+// Make the div behave like a button
+.btn-group {
+    @include clearfix;
+
+    > .btn {
+        float: left;
+
+        &:not(:first-child) { border-left: 1px solid hsla(0,0,0,0.1); }
+
+        @if $btn-radius {
+            // 中間
+            &:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+                border-radius: 0;
+            }
+            // 頭
+            &:first-child:not(:last-child):not(.dropdown-toggle) {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+
+        // Split button dropdowns
+        // Give the line between buttons some depth
+        + .dropdown-toggle {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+    }
+    @if $btn-radius {
+        // 尾
+        > .btn:last-child:not(:first-child),
+        > .dropdown-toggle:not(:first-child) {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
+
+    // On active and open, don't show outline
+    .btn,
+    .dropdown-toggle:active {
+        outline: 0;
+    }
+}
+
+
+//
+// Vertical button groups
+//
+
+.btn-group-vertical {
+    > .btn {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+
+        &:not(:first-child) { border-top: 1px solid darken($btn-bg,7); }
+
+        @if $btn-radius {
+            &:not(:first-child):not(:last-child) {
+                border-radius: 0;
+            }
+            &:first-child:not(:last-child) {
+                border-top-right-radius: $btn-radius;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            &:last-child:not(:first-child) {
+                border-bottom-left-radius: $btn-radius;
+                border-top-right-radius: 0;
+                border-top-left-radius: 0;
+            }
+        }
+    }
+
+    // Clear floats so dropdown menus can be properly placed
+    > .btn-group {
+        @include clearfix;
+
+        > .btn {
+            float: none;
+        }
+        @if $btn-radius {
+            // 中間
+            &:not(:first-child):not(:last-child) > .btn {
+                border-radius: 0;
+            }
+            // 頭
+            &::first-child:not(:last-child) {
+                > .btn:last-child,
+                > .dropdown-toggle {
+                    border-bottom-right-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+            }
+            // 尾
+            &::last-child:not(:first-child) > .btn:first-child {
+                border-top-right-radius: 0;
+                border-top-left-radius: 0;
+            }
+        }
+    }
+}
+
+
+.btn-stacked {
+    > .btn {
+        display: block;
+        width: 100%;
+        &:not(:last-of-type) {margin-bottom: $spacer*0.5;}
+    }
+}
+
+
+
+// Checkbox and radio options
+//
+// In order to support the browser's form validation feedback, powered by the
+// `required` attribute, we have to "hide" the inputs via `clip`. We cannot use
+// `display: none;` or `visibility: hidden;` as that also hides the popover.
+// Simply visually hiding the inputs via `opacity` would leave them clickable in
+// certain cases which is prevented by using `clip` and `pointer-events`.
+// This way, we ensure a DOM element is visible to position the popover from.
+//
+// See https://github.com/twbs/bootstrap/pull/12794 and
+// https://github.com/twbs/bootstrap/pull/14559 for more information.
+
+// [data-toggle="buttons"] {
+//     > .btn,
+//     > .btn-group > .btn {
+//         input[type="radio"],
+//         input[type="checkbox"] {
+//             position: absolute;
+//             clip: rect(0,0,0,0);
+//             pointer-events: none;
+//         }
+//     }
+// }

@@ -1,0 +1,86 @@
+﻿@charset "UTF-8";
+
+$img-path:                '../images';
+
+// == color
+// ----------------------------------------------------------------------
+$pale-green:              #E7FFE7 !default;
+$pale-blue:               #E7FFFF !default;
+$pale-yellow:             #fffFD7 !default;
+$pale-red:                #FFE7E7 !default;
+
+// 情境狀態 + 配色
+$colors: (
+    primary:              #f1bc2f, // 04828d
+    secondary:            #513d29,
+    muted:                #695f5f,
+    success:              #9e8467,
+    info:                 #3d332b, // 30bebc
+    warning:              #e6b637,
+    danger:               #FF2200
+);
+
+
+// == custom-element
+// ----------------------------------------------------------------------
+// basic
+$body-bg:                    #ffffff;
+$body-color:                 #695f5f;
+$font-family-sp:             false; // 'Montserrat', sans-serif
+$font-family-base:           'Montserrat', \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default;
+
+// link
+$link-color:                 color(secondary);
+$link-color-hover:           color();
+
+$border-color:               lighten(color(secondary), 66);
+
+
+// == layout
+// ----------------------------------------------------------------------
+$min-width:             1200px;     // 網頁最小尺寸 1008
+$max-width:             1400px;     // 網頁最寬尺寸: .wrap
+
+// $wrapper-bg:            url(#{$img-path}/bg.gif) center bottom no-repeat !default;
+$wrapper-bg:            false !default;
+$wrapper-b-spacing:     100px !default;
+
+// header
+$header-height:         false !default; // for page
+$header-bg:             url(#{$img-path}/header-bg.png) 330px 8px no-repeat !default;
+$header-mobile-height:  90px !default;
+
+// logo
+$logo-img:              'logo.png' !default; // 'logo.gif' or false
+$logo-size:             20px 30px !default;
+
+// footer
+$footer-height:         320px !default;
+$footer-desktop-height: 510px !default; // this project
+$footer-bg:             default;
+$footer-color:          white !default;
+
+// menu
+$sub-nav-has:           false !default;         // 子選單
+$nav-root:              if($sub-nav-has, 'li > a', 'a') !default;
+
+// 行動版
+$mobile-menu-has:       true !default;
+$mobile-menu-bk:        'desktop' !default;     // 從()螢幕寬度以下開始出現行動版選單
+$mobile-menu-bg:        rgba(#fff, .85) !default;          // rgba(#fff,.95)
+$mobile-menu-width:     100% !default;
+$mobile-transition:     'opacity .5s' !default;    // push - left .35s; overlay - opacity 1s
+
+// z-index
+$z-index: (
+    header:             3,
+    main:               1,
+    footer:             2,
+    logo:               10,
+    menu:               20,
+    figure:             1,
+    // tooltip:            88,
+    goTop:              99,
+    overlay:            999,
+    // acckey:             19
+);

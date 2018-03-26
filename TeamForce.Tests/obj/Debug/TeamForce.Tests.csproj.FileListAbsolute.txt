@@ -1,0 +1,2 @@
+C:\Users\傑興資訊\source\repos\TeamForce\TeamForce.Tests\obj\Debug\TeamForce.Tests.csprojResolveAssemblyReference.cache
+C:\Users\傑興資訊\source\repos\TeamForce\TeamForce.Tests\obj\Debug\TeamForce.Tests.csproj.CoreCompileInputs.cache

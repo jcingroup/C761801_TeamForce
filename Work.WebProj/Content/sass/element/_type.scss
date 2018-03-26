@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+//
+// Headings
+// -----------------------------------------------
+h1 { margin-top: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+    @if $headings-margin-bottom   { margin-bottom: $headings-margin-bottom; }
+    @if $headings-font-family     { font-family: $headings-font-family; }
+    @if $headings-font-weight     { font-weight: $headings-font-weight; }
+    @if $headings-line-height     { line-height: $headings-line-height; }
+    @if $headings-color           { color: $headings-color; }
+    @if $headings-letter-spacing  { letter-spacing: $headings-letter-spacing; }
+}
+
+@for $i from 1 through 6 {
+    $headings: $font-size-h1 $font-size-h2 $font-size-h3 $font-size-h4 $font-size-h5 $font-size-h6;
+
+    h#{$i} {
+        @include rem('font-size', nth($headings, $i));
+    }
+}
+
+//
+// Body text
+// -----------------------------------------------
+b, strong, .b, .strong {
+    font-weight: bold;
+}
+
+// small {
+    // font-size: 80%; in vendor\_normalize
+    // font-weight: normal;
+// }
+
+// 螢光筆註記
+mark {
+    background-color: #fffFD7;
+    padding: .2em;
+}
+
+hr {
+    margin: $hr-sapce;
+    border: 0;
+    border-top: $hr-border;
+}
+
+p {
+    margin: 0;
+
+    + p {
+        margin-top: $p-spacer;
+    }
+}
+
+abbr[title],
+// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
+abbr[data-original-title] {
+    cursor: help;
+    border-bottom: 1px dotted $abbr-color-border;
+}
+
+//
+// list
+// ------------------------------------------------------------
+ol, ul, dl {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-left: 0;
+
+    ol, ul, dl {
+        font-size: 90%;
+        margin-bottom: 0;
+    }
+}
+dt {
+    font-weight: bold;
+}
+dd {
+    margin-left: 0; // Undo browser default
+}
+
+%list-unstyled {
+    list-style: none;
+    padding-left: 0;
+}
+%list-inline {
+    @extend %list-unstyled;
+
+    > li {
+        display: inline-block;
+        &:not(:last-child) { margin-right: 5px; }
+    }
+}
+
+.list-unstyled { @extend %list-unstyled; }
+.list-inline   { @extend %list-inline; }

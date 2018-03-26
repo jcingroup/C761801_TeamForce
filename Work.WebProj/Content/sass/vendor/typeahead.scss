@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+/* typeahead */
+.typeahead-group {
+    position: relative;
+}
+
+.typeahead-panel {
+    min-width: 100%;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    position: absolute;
+    left: 0;
+    margin-top: 5px;
+    z-index: 10;
+}

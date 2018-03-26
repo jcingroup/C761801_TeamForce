@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+// prefixes
+// -----------------------------------------------------------------
+// 用法
+// @include prefix(transform, translateX(-50%), ms);
+// @include prefix(transform, translateX(-50%), moz ms);
+
+// $pre不給值時，用預設變數，有給值的話就取代原變數
+@mixin prefix($property, $value, $pre: $prefixes, $type: normal) {
+    // $value: unquite(#{$value});
+
+    @each $prefix in $pre {
+        @if $type == normal {
+            -#{$prefix}-#{$property}: #{$value};
+        }
+        @else if $type == all {
+            -#{$prefix}-#{$property}: -#{$prefix}-#{$value};
+        }
+        @else {
+            #{$property}: -#{$prefix}-#{$value};
+        }
+    }
+    #{$property}: #{$value};
+}
+
+// 追加 prefix 值
+@mixin prefix-add($property, $value, $pre) {
+    $prelist: append($prefixes, $pre);
+    @include prefix($property, $value, $prelist)
+}
+
+@mixin transition($args...) {
+    @include prefix(transition, #{$args});
+}
+
+@mixin transform($args...) {
+    @include prefix(transform, #{$args}, ms webkit);  // ms for ie9, webkit for safari
+}
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+}

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+a {
+    @if $link-color      { color: $link-color;}
+    @if $link-decoration { text-decoration: $link-decoration; }
+    @if $link-transition { @include transition($link-transition); }
+
+    &:hover, &:active {
+        color: $link-color-hover;
+        outline-width: 0;
+
+        @if $link-decoration-hover {
+            text-decoration: $link-decoration-hover;
+        }
+    }
+}

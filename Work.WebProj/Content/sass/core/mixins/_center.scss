@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+//
+// 讓目標元素垂直置中, 母元素需固定高度
+@mixin middle($target, $height) {
+
+    height: $height;
+
+    &::before {
+        @include mixin-dryer('align-middle') {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        @include mixin-dryer('middle-full') {
+            content: '';
+            height: 100%;
+        }
+    }
+
+    #{$target} {
+        @if $target != img {
+            @include mixin-dryer('align-middle') {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        @content;
+    }
+}
+
+//
+// 用法:
+// @include center(x)
+// @include center($height:y)
+// output: transform: translateX(-50%);
+//
+// @include center(500px)
+// output: margin-left: -250px
+//
+// @include center(500px, 300)
+// output: margin-left: -250px; margin-top: -150px
+//
+@mixin center($width: null, $height: null) {
+    @if not $width and not $height {
+        @include absolute(left 50% top 50%);
+        @include transform(translate(-50%,-50%));
+    }
+    // 水平+垂直
+    @else if $width and $height {
+        @include absolute(left 50% top 50%);
+
+        width: $width;
+        height: $height;
+        margin-top: -($height / 2);
+        margin-left: -($width / 2);
+    }
+    // 水平
+    @else if not $height {
+        @include absolute(left 50%);
+
+        @if type-of($width) == number {
+            width: $width;
+            margin-left: -($width / 2);
+        }
+        @else {
+            @include transform(translateX(-50%));
+        }
+    }
+    // 垂直
+    @else {
+        @include absolute(top 50%);
+
+        @if type-of($height) == number {
+            height: $height;
+            margin-top: -($height / 2);
+        }
+        @else {
+            @include transform(translateY(-50%));
+        }
+    }
+}
