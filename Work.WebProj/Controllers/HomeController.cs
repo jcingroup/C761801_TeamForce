@@ -13,6 +13,11 @@ namespace TeamForce.Controllers
             return View();
         }
 
+        public ActionResult Introduction()
+        {
+            return View();
+        }
+
         public ActionResult Service()
         {
             return View();

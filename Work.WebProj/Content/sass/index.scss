@@ -44,34 +44,75 @@ $btn-radius:                     0;
     height: 600px;
     background: url(#{$img-path}/homeImg.gif) no-repeat center 40%;
     color: white;
-    overflow-x:hidden;
+    overflow-x: hidden;
+
+    @include mq(phone,phone-plus) {
+        height: 400px;
+    }
+
+    @include mq-max(phone) {
+        height: 300px;
+    }
+
     .bannerContain {
-        padding-top: 4.5em;
+        padding-top: 13em;
+
+        @include mq(phone,phone-plus) {
+            padding-top: 8em;
+        }
+
+        @include mq-max(phone) {
+            padding-top: 7em;
+        }
 
         .mainTextChin {
             letter-spacing: 4px;
             text-shadow: 1px 1px 15px;
+
+            @include mq(phone-plus,tablet) {
+                @include rem('font-size', 50);
+            }
+
+            @include mq(phone,phone-plus) {
+                @include rem('font-size', 40);
+            }
+
+            @include mq(mobile,phone) {
+                letter-spacing: 2px;
+                @include rem('font-size', 30);
+            }
+
+            @include mq-max(mobile) {
+                letter-spacing: 1px;
+                @include rem('font-size', 26);
+            }
         }
 
         .mainTextEng {
             letter-spacing: 2px;
             transform: scale(1.1, 1);
             font-family: initial;
+
+            @include mq(phone-plus,tablet) {
+                @include rem('font-size', 25);
+                margin-top: 1em;
+            }
+
+            @include mq(phone,phone-plus) {
+                @include rem('font-size', 20);
+                margin-top: 1em;
+            }
+
+            @include mq(mobile,phone) {
+                @include rem('font-size', 15);
+                margin-top: 1em;
+            }
+
+            @include mq-max(mobile) {
+                letter-spacing: 1px;
+                @include rem('font-size', 12);
+            }
         }
-    }
-
-    @if $isIndex {
-        @extend .mb-48;
-
-        @include rem('font-size', 48);
-    }
-
-    @if $isPage {
-        @include rem('font-size', 41);
-    }
-
-    @include mq-max(480px) {
-        font-size: rem(34);
     }
 }
 
@@ -82,16 +123,42 @@ $btn-radius:                     0;
         color: #01738F;
         letter-spacing: 6px;
         font-family: initial;
+
+        @include mq(phone,phone-plus) {
+            @include rem('font-size', 55);
+        }
+
+        @include mq(mobile,phone) {
+            @include rem('font-size', 50);
+        }
+
+        @include mq-max(mobile) {
+            @include rem('font-size', 45);
+        }
     }
 
     > p {
         color: #888B8C;
         letter-spacing: 1px;
+        opacity: 0;
+
+        @include mq-max(desktop) {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+
+        @include mq-max(phone) {
+            @include rem('font-size', 15);
+        }
     }
 
     .containTitle {
         letter-spacing: 1px;
         color: #1D243D;
+
+        @include mq-max(phone) {
+            @include rem('font-size', 18);
+        }
     }
 }
 
@@ -99,6 +166,11 @@ $btn-radius:                     0;
     background-color: #E5E5E5;
     padding-top: 5em;
     padding-bottom: 5em;
+
+    @include mq-max(desktop) {
+        padding-top: 0em;
+        padding-bottom: 4em;
+    }
 
     .boxContent {
         /*margin-left: 15em;
@@ -133,6 +205,20 @@ $btn-radius:                     0;
                 margin-right: 1em;
             }
 
+            @include mq-max(desktop) {
+                margin-top: 4em;
+            }
+
+            @include mq(tablet,desktop) {
+                width: 50%;
+            }
+
+            @include mq-max(phone) {
+                width: 90%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
             > * {
                 float: left;
                 width: 100%;
@@ -153,7 +239,7 @@ $btn-radius:                     0;
                     @include rem('font-size', 25);
                 }
 
-                @include mq(desktop,wider) {
+                @include mq-max(wider) {
                     @include rem('font-size', 23);
                 }
             }
@@ -167,17 +253,64 @@ $btn-radius:                     0;
                 font-weight: bold;
                 color: #1D243D;
                 text-align: left;
+                opacity: 0;
+                @include mq-max(mobile) {
+                    letter-spacing:1px;
+                }
 
                 > span {
                     @extend .mr-12;
                     @extend .ml-24;
 
-                    @include mq(desktop,wider) {
+                    @include mq(wide,wider) {
+                        margin-left: 1em;
+                        margin-right: 0.5em;
+                    }
+
+                    @include mq(desktop,wide) {
                         margin-left: 0;
+                        margin-right: 0.5em;
+                    }
+
+                    @include mq-max(mobile) {
+                        margin-left: 0.5em;
                         margin-right: 0.5em;
                     }
                 }
             }
         }
+    }
+}
+
+
+/// 飛入特效
+.flyIn {
+    animation: FLY 1.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes FLY {
+    from {
+        margin-left: -50vw;
+    }
+
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
+
+/// 淡入特效
+.fadeIn {
+    animation: FADE 1.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes FADE {
+    from {
+    }
+
+    to {
+        opacity: 1;
     }
 }

@@ -8,12 +8,20 @@
     <link href="https://fonts.googleapis.com/css?family=Lusitana" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/css/vendor/open-iconic.css">
     <link rel="stylesheet" href="~/Content/css/grid.css">
-    <link rel="stylesheet" href="~/Content/css/index.css">
+    @if (ViewBag.BodyClass == "Index")
+    {
+        <link rel="stylesheet" href="~/Content/css/index.css">
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/Content/css/page.css">
+    }
+    @RenderSection("head", false)
 </head>
 <body>
     <div id="wrapper">
         <header id="header" class="wrap">
-            <h2 class="inline-block pull-left headLogo" tabindex="-1">
+            <h2 class="inline-block pull-left headLogo" onclick="location.href='@Url.Content("~/Home")'" tabindex="-1">
                 <img class="inline-block pull-left" src="~/Content/images/logo.png" title="回首頁" />
             </h2>
             <h2 class="inline-block pull-left ml-16 headTitle" tabindex="-1">
@@ -21,15 +29,15 @@
                 <small class="logo-en block mt-4">TeamForce Electric Engineering CO.,LTD.</small>
             </h2>
             <div class="inline-block pull-right mt-12 font-sm headNote">專業負責．機電顧問</div>
-            <button class="mobile-toggle ti-menu" title="選單">
+            <button class="mobile-toggle" title="選單">
                 <span class="oi menuIcon" data-glyph="menu"></span>
             </button>
             <nav class="navMenu pull-right">
-                <a href="~/Home/Index" class='nav-item font-lg ml-64'>公司簡介</a>
-                <a href="~/Home/Service" class='nav-item font-lg ml-64'>服務項目</a>
-                <a href="~/Home/Perform" class='nav-item font-lg ml-64'>公司實績</a>
-                <a href="~/Home/Contact" class="nav-item font-lg ml-64">連絡我們</a>
-                <a href="~/Home/Connect" class='nav-item font-lg ml-64'>相關連結</a>
+                <a href="~/Home/Introduction" id="@(ViewBag.BodyClass == "Introduction" ? "current" : "")" class='nav-item font-lg ml-48'>公司簡介</a>
+                <a href="~/Home/Service" id="@(ViewBag.BodyClass == "Service" ? "current" : "")" class='nav-item font-lg ml-48'>服務項目</a>
+                <a href="~/Home/Perform" id="@(ViewBag.BodyClass == "Perform" ? "current" : "")" class='nav-item font-lg ml-48 '>公司實績</a>
+                <a href="~/Home/Contact" id="@(ViewBag.BodyClass == "Contact" ? "current" : "")" class="nav-item font-lg ml-48">連絡我們</a>
+                <a href="~/Home/Connect" id="@(ViewBag.BodyClass == "Connect" ? "current" : "")" class='nav-item font-lg ml-48'>相關連結</a>
             </nav>
 
             <!--<div>
@@ -39,51 +47,55 @@
                     <a href="~/Home/Contact" class="nav-item font-lg ml-64">連絡我們</a>
                     <a href="~/Home/Connect" class='nav-item font-lg ml-64'>相關連結</a>
                 </div>-->
-            </header>
-            @RenderBody()
+        </header>
+        @RenderBody()
+    </div>
+
+
+    <footer id="footer">
+        <img src="~/Content/images/footImg.png" class="mb-0" />
+        <div class="foot-content">
+            <img src="~/Content/images/footLogo.png" class="inline-block mt-16 pull-left" />
+            <dl class="col-4 inline-block mt-32 ml-48">
+                <dd class="font-md mb-12"><span class="footSpan">&nbsp;T&nbsp;</span> 03-4670099 &emsp; <span class="footSpan">&nbsp;F&nbsp;</span> 03-4679008</dd>
+                <dd class="font-sm mb-2">桃園市平鎮區振平街252號</dd>
+                <dd class="font-sm">team.force@msa.hinet.net</dd>
+            </dl>
+        </div>
+        <div class="foot-bottom font-tiny">
+            &copy; 2017 TeamForce Electric Engineering
         </div>
 
+    </footer>
 
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        //// 行動版選單 ////
+        $menuActive = false;  ///設定選單狀態
+        $('.menuIcon').click(function () {
+            if (!$menuActive) {
+                // $('.menuIcon').attr('data-glyph', 'x');
+                $('.navMenu').addClass('mobile-menu');
+                $('.mobile-menu').css('top', $(window).scrollTop());
+                $('.mobile-toggle').addClass('ti-menu');
+                $('body').addClass('mobile-menu-body');
+                $('.nav-item').addClass('mobile-menu-item');
+                $menuActive = !$menuActive;
 
+            }
 
-        <footer id="footer">
-            <img src="~/Content/images/footImg.png" class="mb-0" />
-            <div class="foot-content">
-                <img src="~/Content/images/footLogo.png" class="inline-block mt-16 pull-left" />
-                <dl class="col-4 inline-block mt-32 ml-48">
-                    <dd class="font-md mb-12"><span class="footSpan">&nbsp;T&nbsp;</span> 03-4670099 &emsp; <span class="footSpan">&nbsp;F&nbsp;</span> 03-4679008</dd>
-                    <dd class="font-sm mb-2">桃園市平鎮區振平街252號</dd>
-                    <dd class="font-sm">team.force@msa.hinet.net</dd>
-                </dl>
-            </div>
-            <div class="foot-bottom font-tiny">
-                &copy; 2017 TeamForce Electric Engineering
-            </div>
+            else {
+                // $('.menuIcon').attr('data-glyph', 'menu');
+                $('.navMenu').removeClass('mobile-menu');
+                $('.mobile-toggle').removeClass('ti-menu');
+                $('body').removeClass('mobile-menu-body');
+                $('.nav-item').removeClass('mobile-menu-item');
+                $menuActive = !$menuActive;
+            }
 
-        </footer>
+        });
 
-        <script src="//code.jquery.com/jquery-latest.min.js"></script>
-        <script>
-            //// 行動版選單 ////
-            $menuActive = false;  ///設定選單狀態
-            $('.menuIcon').click(function () {
-                if (!$menuActive) {
-                    $('.menuIcon').attr('data-glyph', 'x');
-                    $('.navMenu').addClass('mobile-menu');
-                    $('body').addClass('mobile-menu-body');
-                    $menuActive = !$menuActive;
-                }
-
-                else {
-                    $('.menuIcon').attr('data-glyph', 'menu');
-                    $('.navMenu').removeClass('mobile-menu');
-                    $('body').removeClass('mobile-menu-body');
-                    $menuActive = !$menuActive;
-                }
-
-            });
-
-        </script>
-        @RenderSection("scripts", required: false)
-    </body>
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
     </html>

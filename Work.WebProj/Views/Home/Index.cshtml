@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "首頁";
+    ViewBag.BodyClass = "Index";
 }
 
 <section id="banner">
@@ -8,7 +9,7 @@
         <p class="mainTextEng font-xxl mt-16">ELECTRICAL PERSON IN CHARGE</p>
     </div>
 </section>
-<div class="homeContain mb-48">
+<div class="homeContain mb-48 mt-48">
     <h1 class="font-jumbo mb-24">WELCOME</h1>
     <p class="font-ll containTitle">本公司創立於2003年6月，以提供專業電力檢測諮詢、服務</p>
     <p class="font-md mt-16">隨著社會經濟不斷發展，電力的應用除增加生活便利性，也同時提高火災發生的危險</p>
@@ -39,3 +40,27 @@
         </div>
     </div>
 </div>
+@section scripts {
+    <script>
+        $(function () {
+            var windowHeight = $(window).height();
+            // WELCOME 內容特效
+            var noteHeight = $('.headNote').offset().top;
+            var containText = $('.homeContain p');
+             // BOX 內容特效
+            var BoxAreaHeight = $('.homeBoxArea').height() + $('.homeBoxArea').offset().top;
+            var BoxText = $('.box p');
+
+            $(window).scroll(function (e) {
+               /* var scrollTop = $(this).scrollTop() + ($(window).height());
+                console.log('scrollTop: ' + scrollTop);
+                console.log('scroll: ' + $(this).scrollTop());
+                console.log($('.headNote').offset().top);*/
+                if (($(this).scrollTop() > noteHeight) && (!containText.hasClass('flyIn')))
+                    containText.addClass('flyIn');
+                if ((($(this).scrollTop() + windowHeight) > BoxAreaHeight) && (!BoxText.hasClass('fadeIn')))
+                    BoxText.addClass('fadeIn');
+            })
+        })
+    </script>
+}
