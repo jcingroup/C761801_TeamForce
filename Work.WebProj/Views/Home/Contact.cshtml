@@ -10,7 +10,7 @@
     <div class="col-6 contactBoxArea">
         <div class="mb-32 col-6 pull-left contactBox">
             <div class="circle">
-                <img src="~/Content/images/phone.png" onclick=""/>
+                <img src="~/Content/images/phone.png" onclick="" />
             </div>
             <nobr class="mt-24 font-lg"><a href="tel:03-4670099">(03)4670099</a></nobr>
         </div>
@@ -34,21 +34,38 @@
         </div>
     </div>
     <div class="contactLine mt-64 pull-left"></div>
-    <iframe id="map" class="col-5 contactMap pull-right" src="~/Content/images/map.html"></iframe>
+    <iframe id="map" class="col-5 contactMap pull-right"></iframe>
 </div>
 @section scripts {
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 24.9569823, lng: 121.2237644 },
-                zoom: 17,
-            });
+        // 當網站loading完成後再建立此地圖
+        google.maps.event.addDomListener(window, 'load', init);
+
+        function init() {
+
+            var mapOptions = {
+                // 地圖放大比例-數字愈大愈詳細
+                zoom: 18,
+                // 不要卷軸功能
+                scrollwheel: false,
+                // 地圖中心的緯、經度，必設
+                center: new google.maps.LatLng(24.9418339, 121.2232023),
+                // 顏色樣式
+                styles: [{ "featureType": "all", "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#e8cd86" }, { "lightness": 40 }] }, { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#000000" }, { "lightness": 16 }] }, { "featureType": "all", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#e8cd86" }, { "lightness": 20 }, { "saturation": "100" }, { "visibility": "on" }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#000000" }, { "lightness": 17 }, { "weight": 1.2 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 20 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 21 }] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#e8cd86" }, { "visibility": "on" }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#000000" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 16 }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 19 }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 17 }] }]
+            };
+
+            // html tag
+            var mapElement = document.getElementById('map');
+            var map = new google.maps.Map(mapElement, mapOptions);
+
             var marker = new google.maps.Marker({
-                position: { lat: 24.957167, lng: 121.223410 },
+                position: new google.maps.LatLng(24.942084, 121.221090),
                 map: map,
                 title: '挺鋒電檢'
             });
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqungKTm3kuv-i2SPzOSxaUtqieOdRZPQ&callback=initMap"type="text/javascript"></script>
+
 }
