@@ -1,54 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TeamForce;
-using TeamForce.Controllers;
+﻿using System.Web.Mvc;
 
-namespace TeamForce.Tests.Controllers
+namespace Work.WebProj.Controllers
 {
-    [TestClass]
-    public class HomeControllerTest
+    public class HomeController : Controller
     {
-        [TestMethod]
-        public void Index()
+        public HomeController()
         {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            ViewBag.IsFirstPage = false;
         }
 
-        [TestMethod]
-        public void About()
+        public ActionResult Index()
         {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            return View();
         }
 
-        [TestMethod]
-        public void Contact()
+        // 公司簡介
+        public ActionResult AboutUs()
         {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            return View();
         }
+
+        // 服務項目
+        public ActionResult Service()
+        {
+            return View();
+        }
+
+        // 公司實績
+        public ActionResult Perform()
+        {
+            return View();
+        }
+
+        // 聯絡我們
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        // 相關連結
+        public ActionResult Connect()
+        {
+            return View();
+        }
+
+        public ActionResult Introduction()
+        {
+            return View();
+        }        
     }
 }

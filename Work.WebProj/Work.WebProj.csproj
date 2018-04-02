@@ -173,20 +173,12 @@
     <Content Include="Content\images\phone.png" />
     <Content Include="Content\js\swiper.min.js" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\css\admin.css.map" />
-    <Content Include="Content\css\grid.css.map" />
-    <Content Include="Content\css\index.css.map" />
-    <Content Include="Content\css\login.css.map" />
-    <Content Include="Content\css\page.css.map" />
-    <Content Include="Content\css\vendor\open-iconic.css.map" />
-    <Content Include="Content\css\vendor\typeahead.css.map" />
     <Content Include="Content\font\open-iconic\open-iconic.eot" />
     <Content Include="Content\font\open-iconic\open-iconic.otf" />
     <Content Include="Content\font\open-iconic\open-iconic.ttf" />
@@ -289,15 +281,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
