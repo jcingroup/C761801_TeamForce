@@ -24,7 +24,7 @@ $btn-radius:                     0;
 @import "element/type";
 @import "element/util";
 @import "element/btn";
-
+$max-width: 1400px;
 @import "_client/layout";
 
 @import "_client/custom"; // 建議置底

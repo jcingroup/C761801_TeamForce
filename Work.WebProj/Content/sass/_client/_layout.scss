@@ -1,5 +1,5 @@
 ﻿@charset "UTF-8";
-$max-width : 1400px;
+
 $mobile-menu-bk: 'wide';
 
 
@@ -67,6 +67,70 @@ $mobile-menu-bk: 'wide';
         color: #B2B5BF;
         opacity: 0.7;
         text-shadow: 0.3px 0.3px 0;
+    }
+    // 滾動時滑出Header樣式
+    .scrollHeader {
+        position: fixed;
+        background-color: rgba(255,255,255,0.9);
+        z-index: 9999;
+        display: none;
+
+        .headLogo {
+            margin-top: 0.5em;
+            margin-left: 10vw;
+            @include mq-add-breakpoint(secondScreen, 1550px);
+
+            @include mq(wider,secondScreen) {
+                margin-left: 5vw;
+            }
+
+            > img {
+                width: 70%;
+            }
+        }
+
+        .headTitle {
+            margin-top: 2rem;
+
+            .logo-sub {
+            }
+
+            .logo-en {
+                @include rem('font-size', 10);
+            }
+        }
+
+        .navMenu {
+            margin-top: 2.5em;
+            margin-right: 10vw;
+            @include mq-add-breakpoint(secondScreen, 1550px);
+
+            @include mq(wider,secondScreen) {
+                margin-right: 2vw;
+            }
+        }
+    }
+
+    .scrolling {
+        display: block;
+        animation: SCROLLING 1s;
+        animation-fill-mode: both;
+
+        @include mq-max(wide) {
+            display: none;
+        }
+    }
+
+    @keyframes SCROLLING {
+        from {
+            opacity: 0.5;
+            top: -70px;
+        }
+
+        to {
+            opacity: 1;
+            top: 0;
+        }
     }
 }
 
@@ -364,6 +428,10 @@ $mobile-menu-bk: 'wide';
 
                 @include mq-max(mobile) {
                     @include rem('font-size', 14);
+                }
+
+                > a {
+                    color: white;
                 }
             }
 

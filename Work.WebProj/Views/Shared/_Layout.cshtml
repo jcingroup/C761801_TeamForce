@@ -21,33 +21,41 @@
 <body>
     <div id="wrapper">
         <header id="header" class="wrap">
+        <h2 class="inline-block pull-left headLogo" onclick="location.href='@Url.Content("~/Home")'" tabindex="-1">
+            <img class="inline-block pull-left" src="~/Content/images/logo.png" title="回首頁" />
+        </h2>
+        <h2 class="inline-block pull-left ml-16 headTitle" onclick="location.href='@Url.Content("~/Home")'" title="回首頁" tabindex="-1">
+            <small class="logo-sub block font-xl">挺鋒電檢技術股份有限公司</small>
+            <small class="logo-en block mt-4">TeamForce Electric Engineering CO.,LTD.</small>
+        </h2>
+        <div class="inline-block pull-right mt-12 font-sm headNote">專業負責．機電顧問</div>
+        <button class="mobile-toggle" title="選單">
+            <span class="oi menuIcon" data-glyph="menu"></span>
+        </button>
+        <nav class="navMenu pull-right">
+            <a href="~/Home/Introduction" id="@(ViewBag.BodyClass == "Introduction" ? "current" : "")" class='nav-item font-lg ml-48'>公司簡介</a>
+            <a href="~/Home/Service" id="@(ViewBag.BodyClass == "Service" ? "current" : "")" class='nav-item font-lg ml-48'>服務項目</a>
+            <a href="~/Home/Perform" id="@(ViewBag.BodyClass == "Perform" ? "current" : "")" class='nav-item font-lg ml-48 '>公司實績</a>
+            <a href="~/Home/Contact" id="@(ViewBag.BodyClass == "Contact" ? "current" : "")" class="nav-item font-lg ml-48">聯絡我們</a>
+            <a href="~/Home/Connect" id="@(ViewBag.BodyClass == "Connect" ? "current" : "")" class='nav-item font-lg ml-48'>相關連結</a>
+        </nav>
+    </header>
+        <div class="col-12 scrollHeader notScroll">
             <h2 class="inline-block pull-left headLogo" onclick="location.href='@Url.Content("~/Home")'" tabindex="-1">
                 <img class="inline-block pull-left" src="~/Content/images/logo.png" title="回首頁" />
             </h2>
-            <h2 class="inline-block pull-left ml-16 headTitle" tabindex="-1">
-                <small class="logo-sub block font-xl">挺鋒電檢技術股份有限公司</small>
+            <h2 class="inline-block pull-left ml-16 headTitle" onclick="location.href='@Url.Content("~/Home")'" title="回首頁" tabindex="-1">
+                <small class="logo-sub block font-ll ">挺鋒電檢技術股份有限公司</small>
                 <small class="logo-en block mt-4">TeamForce Electric Engineering CO.,LTD.</small>
             </h2>
-            <div class="inline-block pull-right mt-12 font-sm headNote">專業負責．機電顧問</div>
-            <button class="mobile-toggle" title="選單">
-                <span class="oi menuIcon" data-glyph="menu"></span>
-            </button>
             <nav class="navMenu pull-right">
                 <a href="~/Home/Introduction" id="@(ViewBag.BodyClass == "Introduction" ? "current" : "")" class='nav-item font-lg ml-48'>公司簡介</a>
                 <a href="~/Home/Service" id="@(ViewBag.BodyClass == "Service" ? "current" : "")" class='nav-item font-lg ml-48'>服務項目</a>
                 <a href="~/Home/Perform" id="@(ViewBag.BodyClass == "Perform" ? "current" : "")" class='nav-item font-lg ml-48 '>公司實績</a>
-                <a href="~/Home/Contact" id="@(ViewBag.BodyClass == "Contact" ? "current" : "")" class="nav-item font-lg ml-48">連絡我們</a>
+                <a href="~/Home/Contact" id="@(ViewBag.BodyClass == "Contact" ? "current" : "")" class="nav-item font-lg ml-48">聯絡我們</a>
                 <a href="~/Home/Connect" id="@(ViewBag.BodyClass == "Connect" ? "current" : "")" class='nav-item font-lg ml-48'>相關連結</a>
             </nav>
-
-            <!--<div>
-                    <a href="~/Home/Index" class='nav-item font-lg ml-64'>公司簡介</a>
-                    <a href="~/Home/Service" class='nav-item font-lg ml-64'>服務項目</a>
-                    <a href="~/Home/Perform" class='nav-item font-lg ml-64'>公司實績</a>
-                    <a href="~/Home/Contact" class="nav-item font-lg ml-64">連絡我們</a>
-                    <a href="~/Home/Connect" class='nav-item font-lg ml-64'>相關連結</a>
-                </div>-->
-        </header>
+        </div>
         @RenderBody()
     </div>
 
@@ -57,9 +65,9 @@
         <div class="foot-content">
             <img src="~/Content/images/footLogo.png" class="inline-block mt-16 pull-left" />
             <dl class="col-4 inline-block mt-32 ml-48">
-                <dd class="font-md mb-12"><span class="footSpan">&nbsp;T&nbsp;</span> 03-4670099 &emsp; <span class="footSpan">&nbsp;F&nbsp;</span> 03-4679008</dd>
+                <dd class="font-md mb-12"><span class="footSpan">&nbsp;T&nbsp;</span> <a href="tel:03-4670099">03-4670099</a> &emsp; <span class="footSpan">&nbsp;F&nbsp;</span>  <a href="tel:03-4679008">03-4679008</a></dd>
                 <dd class="font-sm mb-2">桃園市平鎮區振平街252號</dd>
-                <dd class="font-sm">team.force@msa.hinet.net</dd>
+                <dd class="font-sm"><a href="mailto:team.force@msa.hinet.net">team.force@msa.hinet.net</a></dd>
             </dl>
         </div>
         <div class="foot-bottom font-tiny">
@@ -94,7 +102,16 @@
             }
 
         });
+        /// 滾動Header ////
 
+        var topHeader = $('.scrollHeader');
+        var headerOffset = $('#header').height() + $('#header').offset().top;
+        $(window).scroll(function (e) {
+            if (($(this).scrollTop() >= headerOffset) && (!topHeader.hasClass('scrolling')))
+                topHeader.addClass('scrolling');
+            else if (($(this).scrollTop() < headerOffset) && (topHeader.hasClass('scrolling')))
+                topHeader.removeClass('scrolling');
+        })
     </script>
     @RenderSection("scripts", required: false)
 </body>

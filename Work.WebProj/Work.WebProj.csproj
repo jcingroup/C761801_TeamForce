@@ -161,11 +161,16 @@
     <Content Include="Content\images\01.jpg" />
     <Content Include="Content\images\02.jpg" />
     <Content Include="Content\images\03.jpg" />
+    <Content Include="Content\images\email.png" />
+    <Content Include="Content\images\fax.png" />
     <Content Include="Content\images\footBg.png" />
     <Content Include="Content\images\footImg.png" />
     <Content Include="Content\images\footLogo.png" />
     <Content Include="Content\images\homeImg.gif" />
+    <Content Include="Content\images\location.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\map.html" />
+    <Content Include="Content\images\phone.png" />
     <Content Include="Content\js\swiper.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
