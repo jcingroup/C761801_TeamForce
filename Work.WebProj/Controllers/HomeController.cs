@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace TeamForce.Controllers
 {
@@ -13,25 +9,31 @@ namespace TeamForce.Controllers
             return View();
         }
 
-        public ActionResult Introduction()
+        // 公司簡介
+        public ActionResult AboutUs()
         {
             return View();
         }
 
+        // 服務項目
         public ActionResult Service()
         {
             return View();
         }
 
+        // 公司實績
         public ActionResult Perform()
         {
             return View();
         }
 
-        public ActionResult Contact()
+        // 聯絡我們
+        public ActionResult ContactUs()
         {
             return View();
         }
+
+        // 相關連結
         public ActionResult Connect()
         {
             return View();

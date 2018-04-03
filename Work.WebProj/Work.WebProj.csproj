@@ -149,33 +149,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\grid.css" />
     <Content Include="Content\css\index.css" />
-    <Content Include="Content\css\login.css" />
     <Content Include="Content\css\page.css" />
     <Content Include="Content\css\vendor\open-iconic.css" />
-    <Content Include="Content\css\vendor\typeahead.css" />
     <Content Include="Content\font\open-iconic\open-iconic.svg" />
-    <Content Include="Content\font\themify-icons\themify.svg" />
     <Content Include="Content\images\01.jpg" />
     <Content Include="Content\images\02.jpg" />
     <Content Include="Content\images\03.jpg" />
     <Content Include="Content\images\email.png" />
     <Content Include="Content\images\fax.png" />
+    <Content Include="Content\images\foot-logo.gif" />
     <Content Include="Content\images\footBg.png" />
+    <Content Include="Content\images\footerBg.jpg" />
     <Content Include="Content\images\footImg.png" />
     <Content Include="Content\images\footLogo.png" />
     <Content Include="Content\images\homeImg.gif" />
+    <Content Include="Content\images\index\banner.jpg" />
+    <Content Include="Content\images\index\introBg.gif" />
+    <Content Include="Content\images\index\serviceBg.gif" />
+    <Content Include="Content\images\index\serviceBg2.gif" />
     <Content Include="Content\images\location.png" />
+    <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\map.html" />
     <Content Include="Content\images\phone.png" />
     <Content Include="Content\js\swiper.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -183,9 +184,6 @@
     <Content Include="Content\font\open-iconic\open-iconic.otf" />
     <Content Include="Content\font\open-iconic\open-iconic.ttf" />
     <Content Include="Content\font\open-iconic\open-iconic.woff" />
-    <Content Include="Content\font\themify-icons\themify.eot" />
-    <Content Include="Content\font\themify-icons\themify.ttf" />
-    <Content Include="Content\font\themify-icons\themify.woff" />
     <Content Include="Content\sass\core\mixins\_animation.scss" />
     <Content Include="Content\sass\core\mixins\_center.scss" />
     <Content Include="Content\sass\core\mixins\_font.scss" />
@@ -213,27 +211,10 @@
     <Content Include="Content\sass\element\_util.scss" />
     <Content Include="Content\sass\grid.scss" />
     <Content Include="Content\sass\index.scss" />
-    <Content Include="Content\sass\login.scss" />
     <Content Include="Content\sass\page.scss" />
     <Content Include="Content\sass\vendor\open-iconic.scss" />
-    <Content Include="Content\sass\vendor\typeahead.scss" />
     <Content Include="Content\sass\vendor\_normalize.scss" />
     <Content Include="Content\sass\vendor\_print.scss" />
-    <Content Include="Content\sass\_admin\modules\_alerts.scss" />
-    <Content Include="Content\sass\_admin\modules\_btn-group.scss" />
-    <Content Include="Content\sass\_admin\modules\_field.scss" />
-    <Content Include="Content\sass\_admin\modules\_input-group.scss" />
-    <Content Include="Content\sass\_admin\modules\_input-switch.scss" />
-    <Content Include="Content\sass\_admin\modules\_label.scss" />
-    <Content Include="Content\sass\_admin\modules\_list-group.scss" />
-    <Content Include="Content\sass\_admin\modules\_loader.scss" />
-    <Content Include="Content\sass\_admin\modules\_modal.scss" />
-    <Content Include="Content\sass\_admin\modules\_nav.scss" />
-    <Content Include="Content\sass\_admin\modules\_tab.scss" />
-    <Content Include="Content\sass\_admin\modules\_tooltip.scss" />
-    <Content Include="Content\sass\_admin\_custom.scss" />
-    <Content Include="Content\sass\_admin\_layout.scss" />
-    <Content Include="Content\sass\_admin\_setting.scss" />
     <Content Include="Content\sass\_client\modules\_alerts.scss" />
     <Content Include="Content\sass\_client\modules\_btn-group.scss" />
     <Content Include="Content\sass\_client\modules\_field.scss" />
@@ -249,17 +230,6 @@
     <Content Include="Content\sass\_client\_custom.scss" />
     <Content Include="Content\sass\_client\_layout.scss" />
     <Content Include="Content\sass\_client\_setting.scss" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -271,12 +241,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Connect.cshtml" />
     <Content Include="Views\Home\Perform.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
-    <Content Include="Views\Home\Introduction.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

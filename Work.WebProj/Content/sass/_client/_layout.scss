@@ -9,8 +9,9 @@ $mobile-menu-bk: 'wide';
 .wrap {
     @extend .center;
 
-    @include clearfix;
     max-width: $max-width;
+
+    @include clearfix;
 
     @include mq(desktop, $max-width) {
         max-width: $min-width;
@@ -28,100 +29,145 @@ $mobile-menu-bk: 'wide';
 }
 
 #wrapper {
-    @if $wrapper-bg {
-        background: $wrapper-bg;
-    }
+    @if $wrapper-bg     { background: $wrapper-bg; }
+    @if not $enable-RWD { min-width: $min-width; }
 
-    @if not $enable-RWD {
-        min-width: $min-width;
-    }
-
-    @if $lte7 {
-        _height: 100%;
-    }
+    // 讓foot總是在頁腳
+    @if $lte7 { _height: 100%; }
 
     min-height: 100%;
-    padding-bottom: $footer-height + $wrapper-b-spacing;
 
-    @include mq-max(phone) {
-        padding-bottom: 270px;
-    }
-
-    .headNote {
-        @include mq(wide,wider) {
-            margin-right: 1.5em;
-        }
-
-        @include mq-max(break($mobile-menu-bk, -1)) {
-            position: fixed;
-            white-space: nowrap;
-            right: 10px;
-        }
-
-        @include mq-max(phone) {
-            @include rem('font-size', 12);
-        }
-
-        margin-right: 1vw;
-        letter-spacing: 0.3em;
-        color: #B2B5BF;
-        opacity: 0.7;
-        text-shadow: 0.3px 0.3px 0;
-    }
-    // 滾動時滑出Header樣式
-    .scrollHeader {
-        position: fixed;
-        background-color: rgba(255,255,255,0.9);
-        z-index: 9999;
-        display: none;
-
-        .headLogo {
-            margin-top: 0.5em;
-            margin-left: 10vw;
-            @include mq-add-breakpoint(secondScreen, 1550px);
-
-            @include mq(wider,secondScreen) {
-                margin-left: 5vw;
-            }
-
-            > img {
-                width: 70%;
-            }
-        }
-
-        .headTitle {
-            margin-top: 2rem;
-
-            .logo-sub {
-            }
-
-            .logo-en {
-                @include rem('font-size', 10);
-            }
-        }
-
-        .navMenu {
-            margin-top: 2.5em;
-            margin-right: 10vw;
-            @include mq-add-breakpoint(secondScreen, 1550px);
-
-            @include mq(wider,secondScreen) {
-                margin-right: 2vw;
-            }
+    @if $enable-RWD {
+        @include mq(desktop) {
+            padding-bottom: $footer-height + $wrapper-b-spacing;
         }
     }
+    @else {
+        padding-bottom: $footer-height + $wrapper-b-spacing;
+    }
+}
 
-    .scrolling {
-        display: block;
-        animation: SCROLLING 1s;
-        animation-fill-mode: both;
+// 此案header內容
+// ----------------------------------------------------------------------
+#header {
+    @if $header-bg     { background: $header-bg; }
+    @if $header-height { height: $header-height; }
+    // position: relative;
+    z-index: z(header);
 
-        @include mq-max(wide) {
+    // 本次專案
+    width: 100%;
+    box-shadow: 3px 0 0 0 rgba(#fff, .06);
+
+    @include absolute(top 0 left 0);
+}
+
+.logo {
+    cursor: pointer;
+    cursor: hand; // for ie
+
+    // 本次專案
+    @extend .text-primary, .font-xl, .mt-24, .text-left;
+
+    $font-height: 45px;
+
+    background: url(#{$img-path}/#{$logo-img}) 0 0 no-repeat;
+    padding-left: nth($logo-size, 1) + 16;
+    padding-top: (nth($logo-size, 2) - $font-height)/2;
+    min-height: nth($logo-size, 2);
+
+    @include mq(phone-plus) {
+        letter-spacing: .05em;
+    }
+    @include mq(break(mobile, +1), phone) {
+        @include rem('font-size', 18);
+    }
+
+    @include mq-max(mobile) {
+        margin-top: 4rem;
+        @include rem('font-size', 16);
+    }
+
+    small {
+        @extend .text-secondary, .font-sm;
+
+        letter-spacing: .07em;
+
+        // @include mq(mobile,phone) {
+        //     @include rem('font-size', 10);
+        //     letter-spacing: 0.02em;
+        // }
+
+        @include mq-max(mobile) {
             display: none;
         }
     }
+}
 
-    @keyframes SCROLLING {
+// top 介紹
+.head-info {
+    margin: 13px 24px 0 0;
+    letter-spacing: em(4.5px);
+    color: darken(color(muted), 5);
+
+    @include mq-max(phone) {
+        @include rem('font-size', 12);
+    }
+}
+
+// 滾動時滑出Header樣式
+.scrollHeader {
+    position: fixed;
+    background-color: rgba(255,255,255,0.9);
+    z-index: 9999;
+    display: none;
+
+    .logo {
+        margin-top: 0.5em;
+        margin-left: 10vw;
+        @include mq-add-breakpoint(secondScreen, 1550px);
+
+        @include mq(wider,secondScreen) {
+            margin-left: 5vw;
+        }
+
+        > img {
+            width: 70%;
+        }
+    }
+
+    .headTitle {
+        margin-top: 2rem;
+
+        .logo-sub {
+        }
+
+        .logo-en {
+            @include rem('font-size', 10);
+        }
+    }
+
+    .navMenu {
+        margin-top: 2.5em;
+        margin-right: 10vw;
+        @include mq-add-breakpoint(secondScreen, 1550px);
+
+        @include mq(wider,secondScreen) {
+            margin-right: 2vw;
+        }
+    }
+}
+
+.scrolling {
+    display: block;
+    // animation: SCROLLING 1s;
+    // animation-fill-mode: both;
+
+    @include mq-max(wide) {
+        display: none;
+    }
+
+    @include diy-animate(scrolling, 1s both) {
         from {
             opacity: 0.5;
             top: -70px;
@@ -134,362 +180,95 @@ $mobile-menu-bk: 'wide';
     }
 }
 
-// 此案header內容
+
+// footer 頁腳
 // ----------------------------------------------------------------------
-.headLogo {
-    @include mq(wide,wider) {
-        margin-left: 1.5em;
-    }
-
-    > img {
-        @include mq(mobile,phone) {
-            width: 80%;
-        }
-
-        @include mq-max(mobile) {
-            width: 70%;
-        }
-    }
-}
-
-.navMenu {
-
-
-    @include mq-max(break($mobile-menu-bk, -1)) {
-        display: none;
-    }
-
-    margin-top: 2.5em;
-
-    .nav-item {
-        color: #49598d;
-        font-weight: 100;
-        text-shadow: 0.5px 0 0;
-        display: inline-block;
-        width: 7vw;
-        @include mq-add-breakpoint(secondScreen, 1550px);
-
-        @include mq(wide,secondScreen) {
-            width: 9vw;
-        }
-
-        @include mq(wide,wider) {
-            white-space: nowrap;
-            margin-left: 0;
-        }
-
-
-        &:hover {
-            color: #FFC107;
-        }
-    }
-    // mobile 選單內容
-    .mobile-menu-item {
-        display: block;
-        margin-left: 0;
-        font-size: 50px;
-        width: 40%;
-        margin-left: 30%;
-        font-size: 50px;
-        border-style: ridge;
-        font-family: inherit;
-        background-color: gainsboro;
-        color: #888B8C;
-        text-shadow: 0 0 2px #fff;
-        border-color: white;
-        animation: MUIT 0.8s;
-        animation-fill-mode: both;
-
-        @include mq(phone,tablet) {
-            width: 50%;
-            margin-left: 25%;
-            font-size: 45px;
-        }
-
-        @include mq(mobile,phone) {
-            width: 60%;
-            margin-left: 20%;
-            font-size: 45px;
-        }
-
-        @include mq-max(mobile) {
-            width: 80%;
-            margin-left: 10%;
-            font-size: 40px;
-        }
-    }
-    // mobile 選單特效
-    @keyframes MUIT {
-        from {
-            opacity: 0;
-            margin-top: 0vh;
-        }
-
-        to {
-            opacity: 1;
-            margin-top: 7vh;
-        }
-    }
-    ////  mobile 目前頁面選單樣式
-    #current {
-
-        @include mq-max(break(wide,-1)) {
-            &:after {
-                display: none;
-            }
-
-            color: #f1efed;
-            background-color: #01738F;
-            text-shadow: 1px 1px 5px #020101;
-        }
-    }
-}
-
-.headTitle {
-    line-height: 0.9;
-    color: #2D385E;
-    letter-spacing: .05em;
-    text-shadow: 0.5px 0px 0px;
-    margin-top: 3.5rem;
-
-    @include mq(mobile,phone) {
-        margin-left: -0.2em;
-    }
-
-    @include mq-max(mobile) {
-        margin-top: 0;
-        margin-left: -0.5em;
-    }
-
-    .logo-sub {
-        opacity: 0.9;
-
-        @include mq(mobile,phone) {
-            @include rem('font-size', 18);
-            letter-spacing: .01em;
-        }
-
-        @include mq-max(mobile) {
-            @include rem('font-size', 16);
-            margin-top: 4rem;
-            letter-spacing: 0;
-        }
-    }
-
-    .logo-en {
-        @include rem('font-size', 14);
-        letter-spacing: .14em;
-        color: #f4b238b5;
-        font-family: initial;
-
-        @include mq(mobile,phone) {
-            @include rem('font-size', 10);
-            letter-spacing: 0.02em;
-        }
-
-        @include mq-max(mobile) {
-            display: none;
-        }
-    }
-}
-
-
-
-    .logo {
-        background: url(#{$img-index}/#{$logo-img}) center 0 no-repeat;
-    }
-    // RWD button 選單
-.mobile-toggle {
-    display: none;
-    background: none;
-    cursor: pointer;
-    z-index: z(overlay) + 1;
-    color: #073964;
-    @include transition(.3s);
-
-    @include mq-max(break($mobile-menu-bk,-1)) {
-        display: block;
-    }
-
-    &:focus {
-        box-shadow: none;
-    }
-    // 本次專案
-    @extend .font-xl;
-    text-shadow: 1px 1px 0 rgba(#fff, .6);
-
-    @include fixed(right 10px top 50px);
-}
-.ti-menu {
-    z-index: 9999;
-    -ms-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(-90deg);
-}
-///  mobile 選單框架
-.mobile-menu {
-    position: absolute;
-    display: block;
-    width: 100%;
-    margin-top: 0;
-    margin-left: -1rem;
-    z-index: 9998;
-    padding-top:10vh;
-    animation: SHW 0.5s;
-    animation-fill-mode: both;
-}
-@keyframes SHW {
-    from {}
-
-    to {
-        height: 100%;
-        background: hsla(240, 0%, 50%, 0.6);
-    }
-}
-
-
-.mobile-menu-body {
-    overflow-y: hidden;
-}
-
-    // footer 頁腳
-    // ----------------------------------------------------------------------
 #footer {
-    @if $footer-bg {
-        background: $footer-bg;
-    }
+    @if $footer-bg    { background: $footer-bg; }
+    @if $footer-color { color: $footer-color; }
 
-    @if $footer-color {
-        color: $footer-color;
-    }
-
-    min-height: $footer-height;
-    margin-top: -($footer-height);
-    position: relative;
-    z-index: z(footer);
-
-    @include mq-max(phone) {
-        min-height: 270px;
-        margin-top: -270px;
-    }
-
-    > img {
-        position: absolute;
-        bottom: 0;
-        right: 15em;
-
-        @include mq(phone,wide) {
-            right: 5em;
-        }
-
-        @include mq-max(phone) {
-            display: none;
+    @if $enable-RWD {
+        @include mq(desktop) {
+            // min-height: $footer-height;
+            margin-top: -($footer-height);
+            position: relative;
+            z-index: z(footer);
         }
     }
 
-    .foot-content {
-        min-height: 280px;
-        background: url(#{$img-path}/footBg.png) no-repeat top center;
-        padding-top: 4em;
-        padding-left: 20em;
-        overflow-x: hidden;
-
-        > img {
-            @include mq-max(phone) {
-                width: 3em;
-            }
-        }
-
-        .col-4 {
-            text-align: left;
-            letter-spacing: 2px;
-
-            > dd:first-child {
-                white-space: nowrap;
-            }
-
-            .footSpan {
-                letter-spacing: 1px;
-                background-color: #01738F;
-                text-align: center;
-                border-radius: 10px;
-            }
-
-            .font-sm {
-                opacity: 0.9;
-            }
-
-            > dd {
-                white-space: nowrap;
-
-                @include mq(mobile,phone) {
-                    @include rem('font-size', 15);
-                }
-
-                @include mq-max(mobile) {
-                    @include rem('font-size', 14);
-                }
-
-                > a {
-                    color: white;
-                }
-            }
-
-            @include mq-max(phone) {
-                margin-top: 5em;
-                margin-left: -2rem;
-            }
-        }
-
-        @include mq-add-breakpoint(tvscreen, 1700px);
-
-        @include mq(wide,tvscreen) {
-            padding-left: 15em;
-        }
-
-        @include mq(phone-plus,wide) {
-            padding-left: 6em;
-        }
-
-        @include mq(phone,phone-plus) {
-            padding-left: 2em;
-        }
-
-        @include mq(mobile,phone) {
-            padding-top: 1rem;
-            padding-left: 2em;
-            min-height: 230px;
-        }
-
-        @include mq-max(mobile) {
-            padding-top: 1rem;
-            padding-left: .5em;
-            min-height: 230px;
+    // 本次專案
+    .wrap {
+        @include mq(desktop) {
+            min-height: $footer-height - 40;
         }
     }
 
-    .foot-bottom {
-        min-height: 40px;
-        background: #000;
-        line-height: 40px;
+    a {
+        @extend .text-white;
+
+        position: relative;
+
+        @include el(after) {
+            border-bottom: 1px solid #fff;
+            width: 0;
+
+            @include transition(.35s);
+            @include absolute(left 50% bottom 0);
+        }
+
+        &:hover, &:active {
+            &::after {
+                width: 100%;
+                left: 0;
+            }
+        }
     }
 }
 
-   /*.copyright {
-        position: absolute;
+.foot {
+    $foot-content-mt: 92px;
 
-        @include mq(desktop) {
-            right: 16px;
-            top: 72px;
+    // 頁腳logo
+    &-logo {
+        @include text-pic('foot-logo.gif', false, 82px, center 0);
+        margin-top: $foot-content-mt;
+    }
+
+    // 頁腳聯絡資訊
+    &-contact {
+        @extend %list-unstyled;
+
+        text-align: left;
+        margin-top: $foot-content-mt + 4;
+
+        .tel, .fax {
+            @extend .mb-8;
+
+            display: inline-block;
+
+            @include mq(phone-plus) {
+                letter-spacing: 2px;
+                margin-right: 16px;
+            }
+
+            @include rem('font-size', 17);
         }
 
-        @include mq(wide) {
-            right: 0;
-        }
+        // 圓icon
+        span {
+            @extend .mr-4;
 
-        @include mq-max(break(desktop, -1)) {
-            left: 120px;
-            top: 50px;
-            text-align: left;
+            display: inline-block;
+            letter-spacing: 0;
+
+            @include circle(20px, center, color(secondary));
         }
-    }*/
+    }
+}
+
+.copyright {
+    @extend .font-tiny, .bg-black, .font-en;
+
+    line-height: 40px;
+    letter-spacing: 1px;
+}

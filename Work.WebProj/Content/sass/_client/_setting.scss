@@ -11,12 +11,12 @@ $pale-red:                #FFE7E7 !default;
 
 // 情境狀態 + 配色
 $colors: (
-    primary:              #f1bc2f, // 04828d
-    secondary:            #513d29,
-    muted:                #695f5f,
+    primary:              #2D385E, // 04828d
+    secondary:            #017E9C,
+    muted:                #E5E5E5,
     success:              #9e8467,
-    info:                 #3d332b, // 30bebc
-    warning:              #e6b637,
+    info:                 #1D243D, // 30bebc
+    warning:              #FCB037,
     danger:               #FF2200
 );
 
@@ -24,10 +24,10 @@ $colors: (
 // == custom-element
 // ----------------------------------------------------------------------
 // basic
-$body-bg:                    #ffffff;
+$body-bg:                    #fff;
 $body-color:                 #695f5f;
 $font-family-sp:             false; // 'Montserrat', sans-serif
-$font-family-base:           'Montserrat', \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default;
+$font-family-base:           \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default;
 
 // link
 $link-color:                 color(secondary);
@@ -41,24 +41,22 @@ $border-color:               lighten(color(secondary), 66);
 $min-width:             1200px;     // 網頁最小尺寸 1008
 $max-width:             1400px;     // 網頁最寬尺寸: .wrap
 
-// $wrapper-bg:            url(#{$img-path}/bg.gif) center bottom no-repeat !default;
 $wrapper-bg:            false !default;
 $wrapper-b-spacing:     100px !default;
 
 // header
-$header-height:         false !default; // for page
-$header-bg:             url(#{$img-path}/header-bg.png) 330px 8px no-repeat !default;
-$header-mobile-height:  90px !default;
+$header-height:         130px !default; // for page
+$header-bg:             rgba(#fff, .95) !default;
+$header-mobile-height:  false !default;
 
 // logo
-$logo-img:              'logo.png' !default; // 'logo.gif' or false
-$logo-size:             20px 30px !default;
+$logo-img:              'logo.gif' !default; // 'logo.gif' or false
+$logo-size:             72px 81px !default;
 
 // footer
 $footer-height:         320px !default;
-$footer-desktop-height: 510px !default; // this project
-$footer-bg:             default;
-$footer-color:          white !default;
+$footer-bg:             #000 url(#{$img-path}/footerBg.jpg) center 180% no-repeat fixed !default;
+$footer-color:          #fff !default;
 
 // menu
 $sub-nav-has:           false !default;         // 子選單

@@ -2,11 +2,15 @@
 
 // 本頁專用變數(把下面的setting,variables蓋掉)
 $isIndex:                        true;
-$img-index:                      '../images';
+$img-index:                      '../images/index';
 
 $wrapper-b-spacing:              0;         //內容不預留底部
 $btn-bg:                         #01738F;  //button
 $btn-radius:                     0;
+$btn-font-size:                  16px;
+$btn-pd:                         8px 0;
+
+
 // import
 // ------------------------------------------------------------
 @import "core/function";     // (置頂)
@@ -24,27 +28,20 @@ $btn-radius:                     0;
 @import "element/type";
 @import "element/util";
 @import "element/btn";
-$max-width: 1400px;
+
+// $max-width: 1400px;
+
 @import "_client/layout";
+@import "_client/modules/nav";
 
 @import "_client/custom"; // 建議置底
 
 // main
 // ------------------------------------------------------------
-.main {
-    @extend .mb-48;
-}
 
-
-#banner {
-    @extend .mt-8;
-    line-height: 1.2;
-    font-weight: 100;
-    width: 100%;
-    height: 600px;
-    background: url(#{$img-path}/homeImg.gif) no-repeat center 40%;
-    color: white;
-    overflow-x: hidden;
+// == 輪播banner
+#banner, .swiper-slide {
+    height: 730px;
 
     @include mq(phone,phone-plus) {
         height: 400px;
@@ -53,264 +50,306 @@ $max-width: 1400px;
     @include mq-max(phone) {
         height: 300px;
     }
+}
 
-    .bannerContain {
-        padding-top: 13em;
+#banner {
+    @extend .bg-black;
 
-        @include mq(phone,phone-plus) {
-            padding-top: 8em;
-        }
+    position: relative;
+    width: 100%;
+}
 
-        @include mq-max(phone) {
-            padding-top: 7em;
-        }
+.swiper-wrapper {
+    @include el(after) {
+        background: rgba(color(), .6);
 
-        .mainTextChin {
-            letter-spacing: 4px;
-            text-shadow: 1px 1px 15px;
+        @include absolute(left 0 top 0);
+        @include size(100%);
+    }
+}
 
-            @include mq(phone-plus,tablet) {
-                @include rem('font-size', 50);
-            }
+// banner輪播圖
+.swiper-slide {
+    background-position: center;
+    background-attachment: fixed;
+}
 
-            @include mq(phone,phone-plus) {
-                @include rem('font-size', 40);
-            }
+// banner文宣
+.slogan {
+    @extend .text-white;
 
-            @include mq(mobile,phone) {
-                letter-spacing: 2px;
-                @include rem('font-size', 30);
-            }
+    line-height: 1.2;
+    font-weight: 100;
+    letter-spacing: 5.4px;
+    text-shadow: 1px 1px 15px;
+    width: 100%;
 
-            @include mq-max(mobile) {
-                letter-spacing: 1px;
-                @include rem('font-size', 26);
-            }
-        }
+    @include center($height: true);
 
-        .mainTextEng {
-            letter-spacing: 2px;
-            transform: scale(1.1, 1);
-            font-family: initial;
+    @include mq(desktop) {
+        @include rem('font-size', 54);
+    }
 
-            @include mq(phone-plus,tablet) {
-                @include rem('font-size', 25);
-                margin-top: 1em;
-            }
+    // @include mq(mobile,phone) {
+    //     letter-spacing: 2px;
+    //     @include rem('font-size', 30);
+    // }
 
-            @include mq(phone,phone-plus) {
-                @include rem('font-size', 20);
-                margin-top: 1em;
-            }
+    // @include mq-max(mobile) {
+    //     letter-spacing: 1px;
+    //     @include rem('font-size', 26);
+    // }
 
-            @include mq(mobile,phone) {
-                @include rem('font-size', 15);
-                margin-top: 1em;
-            }
+    small {
+        letter-spacing: 2px;
+        transform: scale(1.1, 1);
+        text-shadow: none;
 
-            @include mq-max(mobile) {
-                letter-spacing: 1px;
-                @include rem('font-size', 12);
-            }
+        @include rem('font-size', 31);
+
+        @include mq-max(mobile) {
+            letter-spacing: 1px;
+            @include rem('font-size', 12);
         }
     }
 }
 
-.homeContain {
-    overflow-x: hidden;
+// == welcom
+.intro {
+    background: url(#{$img-index}/introBg.gif) 70% 10px no-repeat;
+    padding-top: 53px;
+    padding-bottom: 73px;
 
-    > h1 {
-        color: #01738F;
+    h1 {
         letter-spacing: 6px;
-        font-family: initial;
+        // margin-bottom: 18px;
 
-        @include mq(phone,phone-plus) {
-            @include rem('font-size', 55);
-        }
+        // @include mq(break(mobile, +1), phone-plus) {
+        //     @include rem('font-size', 50);
+        // }
 
-        @include mq(mobile,phone) {
-            @include rem('font-size', 50);
-        }
-
-        @include mq-max(mobile) {
+        @include mq-max(phone-plus) {
             @include rem('font-size', 45);
         }
     }
 
-    > p {
-        color: #888B8C;
+    h4 {
+        letter-spacing: 1px;
+
+        // @include mq-max(phone) {
+        //     @include rem('font-size', 18);
+        // }
+    }
+
+    p {
+        color: darken(color(muted), 35);
         letter-spacing: 1px;
         opacity: 0;
 
-        @include mq-max(desktop) {
-            padding-left: 1em;
-            padding-right: 1em;
-        }
+        // @include mq-max(desktop) {
+        //     padding-left: 1em;
+        //     padding-right: 1em;
+        // }
 
-        @include mq-max(phone) {
-            @include rem('font-size', 15);
-        }
-    }
-
-    .containTitle {
-        letter-spacing: 1px;
-        color: #1D243D;
-
-        @include mq-max(phone) {
-            @include rem('font-size', 18);
-        }
+        // @include mq-max(phone) {
+        //     @include rem('font-size', 15);
+        // }
     }
 }
 
-.homeBoxArea {
-    background-color: #E5E5E5;
-    padding-top: 5em;
-    padding-bottom: 5em;
 
-    @include mq-max(desktop) {
-        padding-top: 0em;
-        padding-bottom: 4em;
+// == 服務
+.service {
+    padding-top: 95px;
+    padding-bottom: 132px;
+    background: url(#{$img-index}/serviceBg.gif) right 0 no-repeat, color(muted) url(#{$img-index}/serviceBg2.gif) 0 bottom no-repeat;
+
+    // padding-top: 5em;
+    // padding-bottom: 5em;
+
+    // @include mq-max(desktop) {
+    //     padding-top: 0em;
+    //     padding-bottom: 4em;
+    // }
+}
+
+.box {
+    @extend .mb-32;
+
+    border-top: 2px solid #fff;
+    background-color: lighten(color(muted), 5);
+    letter-spacing: 2px;
+
+    @include mq(desktop) {
+        display: inline-block;
+        vertical-align: top;
+        width: 28%;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    @include mq(wide) {
+        width: 26.5%;
+        margin-left: 32px;
+        margin-right: 32px;
     }
 
-    .boxContent {
-        /*margin-left: 15em;
-        margin-right: 15em;
-       
+    @include mq-add-breakpoint(tvscreen, 1700px);
 
-        @include mq(wider,tvscreen) {
-            margin-left: 2em;
-            margin-right: 2em;
-        }*/
-        .box {
-            @extend .ml-32;
-            @extend .mr-32;
-            @include mq-add-breakpoint(tvscreen, 1700px);
-            width: 25em;
-            height: auto;
-            border-top: white;
-            border-top-style: solid;
-            background-color: #F2F2F2;
+    // @include mq(wider,tvscreen) {
+    //     width: 22em;
+    // }
 
-            @include mq(wider,tvscreen) {
-                width: 22em;
-            }
+    // @include mq(wide,wider) {
+    //     width: 20em;
+    // }
 
-            @include mq(wide,wider) {
-                width: 20em;
-            }
+    // @include mq(desktop,wide) {
+    //     width: 18em;
+    //     margin-left: 1em;
+    //     margin-right: 1em;
+    // }
 
-            @include mq(desktop,wide) {
-                width: 18em;
-                margin-left: 1em;
-                margin-right: 1em;
-            }
+    // @include mq-max(desktop) {
+    //     margin-top: 4em;
+    // }
 
-            @include mq-max(desktop) {
-                margin-top: 4em;
-            }
+    // @include mq(tablet,desktop) {
+    //     width: 50%;
+    // }
 
-            @include mq(tablet,desktop) {
-                width: 50%;
-            }
+    // @include mq-max(phone) {
+    //     width: 90%;
+    //     margin-left: 0;
+    //     margin-right: 0;
+    // }
 
-            @include mq-max(phone) {
-                width: 90%;
-                margin-left: 0;
-                margin-right: 0;
-            }
+    // > * {
+    //     float: left;
+    //     width: 100%;
+    //     letter-spacing: 2px;
 
-            > * {
-                float: left;
-                width: 100%;
-                letter-spacing: 2px;
+    //     @include mq(desktop,wider) {
+    //         letter-spacing: 1px;
+    //     }
+    // }
 
-                @include mq(desktop,wider) {
-                    letter-spacing: 1px;
-                }
-            }
+    h2 {
+        @extend .mt-32, .mb-24;
 
-            > h2 {
-                color: #01738F;
-                text-shadow: 0.2px 0 0;
-                @extend .mt-24;
-                @include rem('font-size', 27);
+        text-shadow: 0.2px 0 0;
 
-                @include mq(wider,tvscreen) {
-                    @include rem('font-size', 25);
-                }
+        @include rem('font-size', 27);
 
-                @include mq-max(wider) {
-                    @include rem('font-size', 23);
-                }
-            }
+        // @include mq(wider,tvscreen) {
+        //     @include rem('font-size', 25);
+        // }
 
-            > p {
-                @extend .mt-12;
-                @extend .ml-4;
-                /* @include mq(wide,wider) {
-                    margin-left: 0.5em;
-                }*/
-                font-weight: bold;
-                color: #1D243D;
-                text-align: left;
-                opacity: 0;
-                @include mq-max(mobile) {
-                    letter-spacing:1px;
-                }
+        // @include mq-max(wider) {
+        //     @include rem('font-size', 23);
+        // }
+    }
 
-                > span {
-                    @extend .mr-12;
-                    @extend .ml-24;
+    ul {
+        @extend .mx-32, .mb-48;
 
-                    @include mq(wide,wider) {
-                        margin-left: 1em;
-                        margin-right: 0.5em;
-                    }
-
-                    @include mq(desktop,wide) {
-                        margin-left: 0;
-                        margin-right: 0.5em;
-                    }
-
-                    @include mq-max(mobile) {
-                        margin-left: 0.5em;
-                        margin-right: 0.5em;
-                    }
-                }
-            }
+        @include mq(desktop) {
+            margin-bottom: 60px;
         }
+    }
+    li {
+        @extend .mt-12, .mb-4, .ml-24;
+
+        line-height: 1.2;
+        opacity: 0;
+
+        &::before {
+            // @extend .text-muted;
+            color: darken(color(muted), 8);
+            text-indent: -24px;
+            margin-right: 0 !important;
+        }
+
+        @include mq-max(mobile) {
+            letter-spacing:1px;
+        }
+
+        // @include mq(wide,wider) {
+        //     margin-left: 0.5em;
+        // }
+        // font-weight: bold;
+        // color: #1D243D;
+        // text-align: left;
+
+
+        // > span {
+        //     @extend .mr-12;
+        //     @extend .ml-24;
+
+        //     @include mq(wide,wider) {
+        //         margin-left: 1em;
+        //         margin-right: 0.5em;
+        //     }
+
+        //     @include mq(desktop,wide) {
+        //         margin-left: 0;
+        //         margin-right: 0.5em;
+        //     }
+
+        //     @include mq-max(mobile) {
+        //         margin-left: 0.5em;
+        //         margin-right: 0.5em;
+        //     }
+        // }
     }
 }
 
 
 /// 飛入特效
 .flyIn {
-    animation: FLY 1.5s;
-    animation-fill-mode: both;
+    // animation: FLY 1.5s;
+    // animation-fill-mode: both;
+    @include diy-animate(fly, 1.5s both) {
+        from {
+            margin-left: -50px;
+        }
+
+        to {
+            opacity: 1;
+            margin-left: 0;
+        }
+    }
 }
 
-@keyframes FLY {
-    from {
-        margin-left: -50vw;
-    }
+// @keyframes FLY {
+//     from {
+//         margin-left: -50vw;
+//     }
 
-    to {
-        opacity: 1;
-        margin-left: 0;
-    }
-}
+//     to {
+//         opacity: 1;
+//         margin-left: 0;
+//     }
+// }
 
 /// 淡入特效
 .fadeIn {
     animation: FADE 1.5s;
     animation-fill-mode: both;
+    @include diy-animate(fade, 1.5s both) {
+        from {
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
 }
 
-@keyframes FADE {
-    from {
-    }
+// @keyframes FADE {
+//     from {
+//     }
 
-    to {
-        opacity: 1;
-    }
-}
+//     to {
+//         opacity: 1;
+//     }
+// }

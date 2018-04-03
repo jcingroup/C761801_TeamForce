@@ -24,7 +24,7 @@
 .font-ll     { @include rem('font-size', 21); }
 .font-xl     { @include rem('font-size', 25); }  // 24px
 .font-xxl    { @include rem('font-size', 30); }  // 36px y
-.font-xxxl   { @include rem('font-size', 55); }  // 48px y
+.font-xxxl   { @include rem('font-size', 54); }  // 48px y
 .font-jumbo  { @include rem('font-size', 64); }  // 64px
 
 //
@@ -74,4 +74,18 @@
     }
 }
 
-//
+// 明體
+.font-ming {
+    font-family: 'cwTeXMing', serif;
+    font-weight: 300;
+    src: url('//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.eot');
+    src: url('//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.eot?#iefix') format('embedded-opentype'),
+         url('//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.woff2') format('woff2'),
+         url('//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.woff') format('woff'),
+         url('//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.ttf') format('truetype');
+}
+
+// 純英文
+.font-en {
+    font-family: 'Lusitana', serif;
+}

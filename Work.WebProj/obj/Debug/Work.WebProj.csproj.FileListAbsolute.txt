@@ -193,3 +193,4 @@ D:\VSTF2\C761801_TeamForce\Work.WebProj\obj\Debug\Work.WebProj.csproj.CoreCompil
 D:\VSTF2\C761801_TeamForce\Work.WebProj\obj\Debug\Work.WebProj.csproj.CopyComplete
 D:\VSTF2\C761801_TeamForce\Work.WebProj\obj\Debug\TeamForce.dll
 D:\VSTF2\C761801_TeamForce\Work.WebProj\obj\Debug\TeamForce.pdb
+D:\VSTF2\C761801_TeamForce\Work.WebProj\obj\Debug\Work.WebProj.csprojResolveAssemblyReference.cache
