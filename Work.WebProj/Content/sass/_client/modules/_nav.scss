@@ -12,7 +12,11 @@ $mobile-nav-height: 48px;
     @include mq($mobile-menu-bk) {
         float: right;
         clear: right; // 清除top-info的浮動
-        margin-top: 32px;
+        margin-top: 67px;
+
+        .scrolling & {
+            margin-top: 0;
+        }
     }
 
     // #{$nav-root} {
@@ -45,7 +49,7 @@ $mobile-nav-height: 48px;
                 left: -$mobile-menu-width;
                 text-align: left;
 
-                .js-mobile-body & {
+                #{$mobile-body-class} & {
                     left: 0;
                 }
                 .scrolled & {
@@ -136,33 +140,35 @@ $mobile-nav-height: 48px;
     // 行動版面
     @if $mobile-menu-has {
         @include mq-max(break($mobile-menu-bk, -1)) {
-            z-index: z(overlay);
             @if $mobile-menu-bg    { background: $mobile-menu-bg; }
             @if $mobile-transition { @include transition($mobile-transition); }
 
-            overflow-y: auto;
             width: $mobile-menu-width;
-            visibility: hidden;
+            overflow-y: auto;
             opacity: 0;
+            visibility: hidden;
+            z-index: z(overlay);
 
             @include fixed(top 0 left 0);
 
             // 本次專案
             height: 100%;
-            padding: 42px 16px 16px 16px;
+            // padding: 42px 16px 16px 16px;
+            padding: ($header-scrolling+30) 16px 16px;
 
-            .js-mobile-body & {
+            .scrolling & {
+                padding-top: ($header-scrolling+4);
+            }
+
+            #{$mobile-body-class} & {
                 opacity: 1;
                 visibility: visible;
             }
         }
-        @include mq(phone-plus, break($mobile-menu-bk, -1)) {
-            padding-top: 180px;
-        }
     }
 }
 
-.nav-item {
+#{$nav-root} {
     display: inline-block;
     letter-spacing: 1px;
 
@@ -173,6 +179,12 @@ $mobile-nav-height: 48px;
         padding: 0 24px 36px;
 
         @include rem('font-size', 18px);
+
+        .scrolling & {
+            line-height: 1;
+            padding-top: ($header-scrolling - 18)/2;
+            padding-bottom: ($header-scrolling - 18)/2;
+        }
 
         // 當前選單樣式
         &:hover, &:active {
@@ -185,35 +197,37 @@ $mobile-nav-height: 48px;
 
     // 行動版樣式
     @include mq-max(break($mobile-menu-bk, -1)) {
-        width: 40%;
-        margin-left: 30%;
+        display: table;
+        width: 50%;
+        min-width: 300px;
+        padding: 8px 0;
+        margin: auto;
 
-        background: color(muted);
-        border: 1px solid color();
-        font-size: rem(50);
+        font-size: rem(42);
+        background: #fff;
+        box-shadow: 0 3px 0 rgba(#000, .06);
+
+        @include diy-animate(muit, .8s forwards) {
+            from {
+                opacity: 0;
+                margin-top: 0;
+            }
+
+            to {
+                opacity: 1;
+                margin-top: 12px;
+            }
+        }
 
         &:hover, &:active, &.current {
-            color: #f1efed;
-            background-color: #01738F;
-            text-shadow: 1px 1px 5px #020101;
+            color: #fff;
+            background-color: color(secondary);
+            box-shadow: 0 3px 0 color(warning);
         }
     }
-    @include mq(phone,tablet) {
-        width: 50%;
-        margin-left: 25%;
-        font-size: 45px;
-    }
-
-    @include mq(mobile,phone) {
-        width: 60%;
-        margin-left: 20%;
-        font-size: 45px;
-    }
-
-    @include mq-max(mobile) {
-        width: 80%;
-        margin-left: 10%;
-        font-size: 40px;
+    @include mq-max(phone-plus) {
+        width: 100%;
+        font-size: rem(34);
     }
 }
 
@@ -221,7 +235,7 @@ $mobile-nav-height: 48px;
 // == mobile-toggle
 @if $mobile-menu-has {
     // body
-    .js-mobile-body {
+    #{$mobile-body-class} {
         overflow-y: hidden;
     }
 
@@ -233,6 +247,7 @@ $mobile-nav-height: 48px;
         z-index: z(overlay) + 1;
 
         @include transition(.3s);
+
         @include mq-max(break($mobile-menu-bk,-1)) {
             display: block;
         }
@@ -245,157 +260,167 @@ $mobile-nav-height: 48px;
         @extend .font-xl, .text-primary;
 
         text-shadow: 1px 1px 0 rgba(#fff, .6);
+        float: right;
+        clear: right; // 清除top-info的浮動
+        margin-top: 45px;
+        position: relative;
 
-        @include fixed(right 10px top 10px);
+        @include mq-max(break(phone, -1)) {
+            margin-top: 24px;
+        }
+
+        .scrolling & {
+            margin-top: 0;
+        }
     }
 }
 
 
 // == by 小天
-.navMenu {
+// .navMenu {
 
-    @include mq-max(break($mobile-menu-bk, -1)) {
-        display: none;
-    }
+//     @include mq-max(break($mobile-menu-bk, -1)) {
+//         display: none;
+//     }
 
-    margin-top: 2.5em;
+//     margin-top: 2.5em;
 
-    .nav-item {
-        color: #49598d;
-        font-weight: 100;
-        text-shadow: 0.5px 0 0;
-        display: inline-block;
-        width: 7vw;
-        @include mq-add-breakpoint(secondScreen, 1550px);
+//     .nav-item {
+//         color: #49598d;
+//         font-weight: 100;
+//         text-shadow: 0.5px 0 0;
+//         display: inline-block;
+//         width: 7vw;
+//         @include mq-add-breakpoint(secondScreen, 1550px);
 
-        @include mq(wide,secondScreen) {
-            width: 9vw;
-        }
+//         @include mq(wide,secondScreen) {
+//             width: 9vw;
+//         }
 
-        @include mq(wide,wider) {
-            white-space: nowrap;
-            margin-left: 0;
-        }
-
-
-        &:hover {
-            color: #FFC107;
-        }
-    }
-    // mobile 選單內容
-    .mobile-menu-item {
-        display: block;
-        margin-left: 0;
-        font-size: 50px;
-        width: 40%;
-        margin-left: 30%;
-        font-size: 50px;
-        border-style: ridge;
-        font-family: inherit;
-        background-color: gainsboro;
-        color: #888B8C;
-        text-shadow: 0 0 2px #fff;
-        border-color: white;
-        animation: MUIT 0.8s;
-        animation-fill-mode: both;
-
-        @include mq(phone,tablet) {
-            width: 50%;
-            margin-left: 25%;
-            font-size: 45px;
-        }
-
-        @include mq(mobile,phone) {
-            width: 60%;
-            margin-left: 20%;
-            font-size: 45px;
-        }
-
-        @include mq-max(mobile) {
-            width: 80%;
-            margin-left: 10%;
-            font-size: 40px;
-        }
-    }
-    // mobile 選單特效
-    @keyframes MUIT {
-        from {
-            opacity: 0;
-            margin-top: 0vh;
-        }
-
-        to {
-            opacity: 1;
-            margin-top: 7vh;
-        }
-    }
-    ////  mobile 目前頁面選單樣式
-    #current {
-
-        @include mq-max(break(wide,-1)) {
-            &:after {
-                display: none;
-            }
-
-            color: #f1efed;
-            background-color: #01738F;
-            text-shadow: 1px 1px 5px #020101;
-        }
-    }
-}
+//         @include mq(wide,wider) {
+//             white-space: nowrap;
+//             margin-left: 0;
+//         }
 
 
+//         &:hover {
+//             color: #FFC107;
+//         }
+//     }
+//     // mobile 選單內容
+//     .mobile-menu-item {
+//         display: block;
+//         margin-left: 0;
+//         font-size: 50px;
+//         width: 40%;
+//         margin-left: 30%;
+//         font-size: 50px;
+//         border-style: ridge;
+//         font-family: inherit;
+//         background-color: gainsboro;
+//         color: #888B8C;
+//         text-shadow: 0 0 2px #fff;
+//         border-color: white;
+//         animation: MUIT 0.8s;
+//         animation-fill-mode: both;
 
-// RWD button 選單
-.mobile-toggle {
-    display: none;
-    background: none;
-    cursor: pointer;
-    z-index: z(overlay) + 1;
-    color: #073964;
-    @include transition(.3s);
+//         @include mq(phone,tablet) {
+//             width: 50%;
+//             margin-left: 25%;
+//             font-size: 45px;
+//         }
 
-    @include mq-max(break($mobile-menu-bk,-1)) {
-        display: block;
-    }
+//         @include mq(mobile,phone) {
+//             width: 60%;
+//             margin-left: 20%;
+//             font-size: 45px;
+//         }
 
-    &:focus {
-        box-shadow: none;
-    }
-    // 本次專案
-    @extend .font-xl;
-    text-shadow: 1px 1px 0 rgba(#fff, .6);
+//         @include mq-max(mobile) {
+//             width: 80%;
+//             margin-left: 10%;
+//             font-size: 40px;
+//         }
+//     }
+//     // mobile 選單特效
+//     @keyframes MUIT {
+//         from {
+//             opacity: 0;
+//             margin-top: 0vh;
+//         }
 
-    @include fixed(right 10px top 50px);
-}
-.ti-menu {
-    z-index: 9999;
-    -ms-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(-90deg);
-}
-///  mobile 選單框架
-.mobile-menu {
-    position: absolute;
-    display: block;
-    width: 100%;
-    margin-top: 0;
-    margin-left: -1rem;
-    z-index: 9998;
-    padding-top:10vh;
-    animation: SHW 0.5s;
-    animation-fill-mode: both;
-}
-@keyframes SHW {
-    from {}
+//         to {
+//             opacity: 1;
+//             margin-top: 7vh;
+//         }
+//     }
+//     ////  mobile 目前頁面選單樣式
+//     #current {
 
-    to {
-        height: 100%;
-        background: hsla(240, 0%, 50%, 0.6);
-    }
-}
+//         @include mq-max(break(wide,-1)) {
+//             &:after {
+//                 display: none;
+//             }
+
+//             color: #f1efed;
+//             background-color: #01738F;
+//             text-shadow: 1px 1px 5px #020101;
+//         }
+//     }
+// }
 
 
-.mobile-menu-body {
-    overflow-y: hidden;
-}
+
+// // RWD button 選單
+// .mobile-toggle {
+//     display: none;
+//     background: none;
+//     cursor: pointer;
+//     z-index: z(overlay) + 1;
+//     color: #073964;
+//     @include transition(.3s);
+
+//     @include mq-max(break($mobile-menu-bk,-1)) {
+//         display: block;
+//     }
+
+//     &:focus {
+//         box-shadow: none;
+//     }
+//     // 本次專案
+//     @extend .font-xl;
+//     text-shadow: 1px 1px 0 rgba(#fff, .6);
+
+//     @include fixed(right 10px top 50px);
+// }
+// .ti-menu {
+//     z-index: 9999;
+//     -ms-transform: rotate(90deg);
+//     -webkit-transform: rotate(90deg);
+//     transform: rotate(-90deg);
+// }
+// ///  mobile 選單框架
+// .mobile-menu {
+//     position: absolute;
+//     display: block;
+//     width: 100%;
+//     margin-top: 0;
+//     margin-left: -1rem;
+//     z-index: 9998;
+//     padding-top:10vh;
+//     animation: SHW 0.5s;
+//     animation-fill-mode: both;
+// }
+// @keyframes SHW {
+//     from {}
+
+//     to {
+//         height: 100%;
+//         background: hsla(240, 0%, 50%, 0.6);
+//     }
+// }
+
+
+// .mobile-menu-body {
+//     overflow-y: hidden;
+// }

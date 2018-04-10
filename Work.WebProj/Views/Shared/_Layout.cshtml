@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <title>@ViewBag.Title - 挺鋒電檢技術股份有限公司 TeamForce Electric Engineering CO.,LTD.</title>
     <link href="https://fonts.googleapis.com/css?family=Lusitana" rel="stylesheet">
-    <link rel="stylesheet" href="~/Content/css/vendor/open-iconic.css">
+    <link rel="stylesheet" href="~/Content/css/vendor/themify-icons.css">
     <link rel="stylesheet" href="~/Content/css/grid.css">
     @if (ViewBag.BodyClass == "Index")
     {
@@ -25,13 +25,14 @@
         <header id="header">
             <div class="wrap">
                 <h1 class="logo pull-left" onclick="location.href='@Url.Content("~/Home")'" title="回首頁" tabindex="-1">
-                    <span class="font-ming">挺鋒電檢技術股份有限公司</span>
-                    <small class="font-en block mt-2">TeamForce Electric Engineering CO.,LTD.</small>
+                    <span class="font-ming mobile-show">挺鋒電檢</span>
+                    <span class="font-ming mobile-hide">挺鋒電檢技術股份有限公司</span>
+                    <small class="font-en mt-2 block mobile-hide">TeamForce Electric Engineering CO.,LTD.</small>
                 </h1>
 
-                <div class="head-info pull-right font-sm">專業負責．機電顧問</div>
+                <div class="head-info font-sm">專業負責．機電顧問</div>
 
-                <button class="mobile-toggle oi menuIcon" data-glyph="menu" title="選單"></button>
+                <button class="mobile-toggle ti-menu" title="選單"></button>
                 <nav id="menu" class="pull-right">
                     <a href="~/Home/AboutUs" class="nav-item @(ViewBag.BodyClass == "AboutUs" ? "current" : "")">公司簡介</a>
                     <a href="~/Home/Service" class="nav-item @(ViewBag.BodyClass == "Service" ? "current" : "")">服務項目</a>
@@ -65,8 +66,8 @@
 
     <footer id="footer">
         <div class="wrap">
-            <h1 class="foot-logo col-1 col-sm-2">TeamForce 挺鋒電檢</h1>
-            <ul class="foot-contact col-11 col-sm-9">
+            <h1 class="foot-logo col-2">TeamForce 挺鋒電檢</h1>
+            <ul class="foot-contact col-10 col-sm-9">
                 <li class="tel"><span class="circle font-tiny">T</span> <a href="tel:03-4670099">03-4670099</a></li>
                 <li class="fax"><span class="circle font-tiny">F</span> 03-4679008</li>
                 <li class="font-sm">桃園市平鎮區振平街252號</li>
@@ -78,38 +79,63 @@
 
     <script src="//code.jquery.com/jquery-latest.min.js"></script>
     <script>
-        //// 行動版選單 ////
-        $menuActive = false;  ///設定選單狀態
-        $('.menuIcon').click(function () {
-            if (!$menuActive) {
-                // $('.menuIcon').attr('data-glyph', 'x');
-                $('.navMenu').addClass('mobile-menu');
-                $('.mobile-menu').css('top', $(window).scrollTop());
-                $('.mobile-toggle').addClass('ti-menu');
-                $('body').addClass('mobile-menu-body');
-                $('.nav-item').addClass('mobile-menu-item');
-                $menuActive = !$menuActive;
+        // 行動版選單
+        $trigger = $('.mobile-toggle');
+        $trigger.click(function () {
+            $(this).toggleClass('active');
+            $('body').toggleClass('mobile-menu-body');
+
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('ti-menu').addClass('ti-close');
             }
             else {
-                // $('.menuIcon').attr('data-glyph', 'menu');
-                $('.navMenu').removeClass('mobile-menu');
-                $('.mobile-toggle').removeClass('ti-menu');
-                $('body').removeClass('mobile-menu-body');
-                $('.nav-item').removeClass('mobile-menu-item');
-                $menuActive = !$menuActive;
+                $(this).removeClass('ti-close').addClass('ti-menu');
             }
+        });
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $('#menu').click(function(e){
+                $('body').removeClass('mobile-menu-body');
+                $trigger.removeClass('active');
+                e.preventDefault();
+            });
+            $(".nav-item").click(function(e){
+                e.stopPropagation();
+            });
+        }
 
+        /// 卷軸滾動效果 (Header goTop) ////
+        var topHeader = $('#header');
+        var headerOffset = topHeader.height() + topHeader.offset().top;
+        $(window).scroll(function (e) {
+            e.preventDefault();
+            if (($(this).scrollTop() >= headerOffset) && (!topHeader.hasClass('scrolling'))) {
+                topHeader.addClass('scrolling');
+            }
+            else if (($(this).scrollTop() < headerOffset) && (topHeader.hasClass('scrolling'))) {
+                topHeader.removeClass('scrolling');
+            }
+            if ($(this).scrollTop() > 100) {
+                $('.goTop').addClass('fade-in').removeClass('fade-out');
+            } else {
+                $('.goTop').removeClass('fade-in').addClass('fade-out');
+            }
         });
 
-        /// 滾動Header ////
-        var topHeader = $('.scrollHeader');
-        var headerOffset = $('#header').height() + $('#header').offset().top;
-        $(window).scroll(function (e) {
-            if (($(this).scrollTop() >= headerOffset) && (!topHeader.hasClass('scrolling')))
-                topHeader.addClass('scrolling');
-            else if (($(this).scrollTop() < headerOffset) && (topHeader.hasClass('scrolling')))
-                topHeader.removeClass('scrolling');
-        })
+        // 點選後跳到 href 指向的位置 - 可連其他頁的錨點版本
+        $('.scroll').click(function () {
+            var offset = 47;
+            var target = this.hash;
+            if ($(this).data('offset') != undefined) offset = $(this).data('offset');
+            $('html, body').stop().animate({
+                'scrollTop': $(target).offset().top - offset
+            }, 800, 'swing', function() {
+                window.location.hash = target;
+            });
+        });
+        $('.goTop').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 800);
+            return false;
+        });
     </script>
     @RenderSection("scripts", required: false)
 </body>

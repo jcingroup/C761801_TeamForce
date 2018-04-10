@@ -3,8 +3,8 @@
 // 本頁專用變數(覆蓋)
 // ------------------------------------------------------------
 $isPage:                 true;
-$font-size-h2: 45px;
-$img-index: '../images';
+$font-size-h2:           45px;
+
 
 // import
 // ------------------------------------------------------------
@@ -25,55 +25,58 @@ $img-index: '../images';
 @import "element/btn";
 
 @import "_client/layout";
+@import "_client/modules/nav";
 
 
 @import "_client/custom";   // 本專案自定樣式
 
 
+// main
+// ------------------------------------------------------------
 /// 分頁 Header ///
-#wrapper {
-    .wrap {
-        .headLogo {
-            @include mq(wide,wider) {
-                margin-left: 1em;
-            }
-        }
+// #wrapper {
+//     .wrap {
+//         .headLogo {
+//             @include mq(wide,wider) {
+//                 margin-left: 1em;
+//             }
+//         }
 
-        .navMenu {
-            #current {
-                @include mq($min: wide) {
-                    border-bottom-style: solid;
-                    height: 4em;
-                    border-bottom-width: 4px;
-                    border-bottom-color: #FFC107;
-                    color: darkblue;
+//         .navMenu {
+//             #current {
+//                 @include mq($min: wide) {
+//                     border-bottom-style: solid;
+//                     height: 4em;
+//                     border-bottom-width: 4px;
+//                     border-bottom-color: #FFC107;
+//                     color: darkblue;
 
-                    &:hover {
-                        color: darkblue;
-                    }
+//                     &:hover {
+//                         color: darkblue;
+//                     }
 
-                    &::after {
-                        content: '';
-                        border-left: 8px solid transparent;
-                        border-right: 8px solid transparent;
-                        border-bottom: 8px solid #FFC107;
-                        margin-top: 2em;
-                        float: left;
-                        margin-left: 3.1vw;
-                        @include mq-add-breakpoint(secondScreen, 1550px);
+//                     &::after {
+//                         content: '';
+//                         border-left: 8px solid transparent;
+//                         border-right: 8px solid transparent;
+//                         border-bottom: 8px solid #FFC107;
+//                         margin-top: 2em;
+//                         float: left;
+//                         margin-left: 3.1vw;
+//                         @include mq-add-breakpoint(secondScreen, 1550px);
 
-                        @include mq(wide,secondScreen) {
-                            margin-left: 4vw;
-                        }
+//                         @include mq(wide,secondScreen) {
+//                             margin-left: 4vw;
+//                         }
 
-                        @include mq(wide,wider) {
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//                         @include mq(wide,wider) {
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
 .headLine {
@@ -179,7 +182,7 @@ $img-index: '../images';
         @include mq-max(mobile) {
             margin-top: 3em;
             width: 100%;
-           
+
             height: 15em;
             margin-bottom: 3em;
         }

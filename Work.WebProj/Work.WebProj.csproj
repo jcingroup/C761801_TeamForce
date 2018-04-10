@@ -152,8 +152,9 @@
     <Content Include="Content\css\grid.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\page.css" />
-    <Content Include="Content\css\vendor\open-iconic.css" />
-    <Content Include="Content\font\open-iconic\open-iconic.svg" />
+    <Content Include="Content\css\vendor\swiper.min.css" />
+    <Content Include="Content\css\vendor\themify-icons.css" />
+    <Content Include="Content\font\themify-icons\themify.svg" />
     <Content Include="Content\images\01.jpg" />
     <Content Include="Content\images\02.jpg" />
     <Content Include="Content\images\03.jpg" />
@@ -163,16 +164,12 @@
     <Content Include="Content\images\footBg.png" />
     <Content Include="Content\images\footerBg.jpg" />
     <Content Include="Content\images\footImg.png" />
-    <Content Include="Content\images\footLogo.png" />
-    <Content Include="Content\images\homeImg.gif" />
     <Content Include="Content\images\index\banner.jpg" />
     <Content Include="Content\images\index\introBg.gif" />
     <Content Include="Content\images\index\serviceBg.gif" />
     <Content Include="Content\images\index\serviceBg2.gif" />
     <Content Include="Content\images\location.png" />
     <Content Include="Content\images\logo.gif" />
-    <Content Include="Content\images\logo.png" />
-    <Content Include="Content\images\map.html" />
     <Content Include="Content\images\phone.png" />
     <Content Include="Content\js\swiper.min.js" />
     <Content Include="favicon.ico" />
@@ -180,10 +177,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\font\open-iconic\open-iconic.eot" />
-    <Content Include="Content\font\open-iconic\open-iconic.otf" />
-    <Content Include="Content\font\open-iconic\open-iconic.ttf" />
-    <Content Include="Content\font\open-iconic\open-iconic.woff" />
     <Content Include="Content\sass\core\mixins\_animation.scss" />
     <Content Include="Content\sass\core\mixins\_center.scss" />
     <Content Include="Content\sass\core\mixins\_font.scss" />
@@ -253,6 +246,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\font\themify-icons\themify.eot" />
+    <Content Include="Content\font\themify-icons\themify.ttf" />
+    <Content Include="Content\font\themify-icons\themify.woff" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>

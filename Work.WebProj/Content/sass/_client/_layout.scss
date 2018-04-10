@@ -13,12 +13,12 @@ $mobile-menu-bk: 'wide';
 
     @include clearfix;
 
-    @include mq(desktop, $max-width) {
-        max-width: $min-width;
-    }
+    // @include mq(desktop, $max-width) {
+    //     max-width: $min-width;
+    // }
 
     @if $enable-RWD {
-        @include mq-max(break($min-width, -1)) {
+        @include mq-max(break($max-width, -1)) {
             @include rem('padding-left', 16px);
             @include rem('padding-right', 16px);
         }
@@ -57,120 +57,34 @@ $mobile-menu-bk: 'wide';
 
     // 本次專案
     width: 100%;
-    box-shadow: 3px 0 0 0 rgba(#fff, .06);
+    box-shadow: 0 3px 0 rgba(#000, .06);
 
     @include absolute(top 0 left 0);
-}
+    @include transition(.5s);
 
-.logo {
-    cursor: pointer;
-    cursor: hand; // for ie
-
-    // 本次專案
-    @extend .text-primary, .font-xl, .mt-24, .text-left;
-
-    $font-height: 45px;
-
-    background: url(#{$img-path}/#{$logo-img}) 0 0 no-repeat;
-    padding-left: nth($logo-size, 1) + 16;
-    padding-top: (nth($logo-size, 2) - $font-height)/2;
-    min-height: nth($logo-size, 2);
-
-    @include mq(phone-plus) {
-        letter-spacing: .05em;
-    }
-    @include mq(break(mobile, +1), phone) {
-        @include rem('font-size', 18);
+    @include mq-max(break(phone, -1)) {
+        height: $header-mobile-hg;
     }
 
-    @include mq-max(mobile) {
-        margin-top: 4rem;
-        @include rem('font-size', 16);
+    .wrap {
+        position: relative;
     }
 
-    small {
-        @extend .text-secondary, .font-sm;
-
-        letter-spacing: .07em;
-
-        // @include mq(mobile,phone) {
-        //     @include rem('font-size', 10);
-        //     letter-spacing: 0.02em;
-        // }
-
-        @include mq-max(mobile) {
-            display: none;
-        }
-    }
-}
-
-// top 介紹
-.head-info {
-    margin: 13px 24px 0 0;
-    letter-spacing: em(4.5px);
-    color: darken(color(muted), 5);
-
-    @include mq-max(phone) {
-        @include rem('font-size', 12);
-    }
-}
-
-// 滾動時滑出Header樣式
-.scrollHeader {
-    position: fixed;
-    background-color: rgba(255,255,255,0.9);
-    z-index: 9999;
-    display: none;
-
-    .logo {
-        margin-top: 0.5em;
-        margin-left: 10vw;
-        @include mq-add-breakpoint(secondScreen, 1550px);
-
-        @include mq(wider,secondScreen) {
-            margin-left: 5vw;
-        }
-
-        > img {
-            width: 70%;
-        }
+    &.scrolling {
+        position: fixed;
+        height: $header-scrolling;
     }
 
-    .headTitle {
-        margin-top: 2rem;
-
-        .logo-sub {
-        }
-
-        .logo-en {
-            @include rem('font-size', 10);
-        }
-    }
-
-    .navMenu {
-        margin-top: 2.5em;
-        margin-right: 10vw;
-        @include mq-add-breakpoint(secondScreen, 1550px);
-
-        @include mq(wider,secondScreen) {
-            margin-right: 2vw;
-        }
+    &:hover {
+        background: #fff;
     }
 }
 
 .scrolling {
-    display: block;
-    // animation: SCROLLING 1s;
-    // animation-fill-mode: both;
-
-    @include mq-max(wide) {
-        display: none;
-    }
-
-    @include diy-animate(scrolling, 1s both) {
+    @include diy-animate(scrolling, 1s alternate both) {
         from {
             opacity: 0.5;
-            top: -70px;
+            top: -$header-height;
         }
 
         to {
@@ -180,26 +94,126 @@ $mobile-menu-bk: 'wide';
     }
 }
 
+.logo {
+    cursor: pointer;
+    cursor: hand; // for ie
+
+    // 本次專案
+    @extend .mt-24, .text-left, .mb-0;
+
+    $font-height: 45px;
+
+    background: url(#{$img-path}/#{$logo-img}) 0 0 no-repeat;
+    background-size: contain;
+
+    height: nth($logo-size, 2);
+    min-width: nth($logo-size, 1);
+    padding-left: nth($logo-size, 1) + 16;
+
+    @include mq-max(break(phone, -1)) {
+        margin-top: 6px;
+        height: $header-mobile-hg - 12;
+        padding-left: 72px;
+    }
+
+    .scrolling & {
+        height: $header-scrolling - 4;
+        margin-top: 2px;
+    }
+
+    .mobile-show,
+    .mobile-hide {
+        .scrolling & {
+            display: none;
+        }
+    }
+
+    .mobile-show {
+        @include mq(phone) {
+            display: none;
+        }
+    }
+
+    .mobile-hide {
+        @include mq-max(break(phone, -1)) {
+            display: none;
+        }
+    }
+
+    span {
+        @extend .text-primary, .font-xl, .pt-0;
+        letter-spacing: .05em;
+    }
+
+    small {
+        @extend .text-secondary, .font-sm;
+        letter-spacing: .07em;
+    }
+}
+
+// top 介紹
+.head-info {
+    letter-spacing: em(4.5px);
+    color: darken(color(muted), 5);
+
+    @include absolute(top 13px right 0);
+
+    @include mq($mobile-menu-bk) {
+        right: 24px;
+    }
+    @include mq-max(break($mobile-menu-bk, -1)) {
+        right: 16px;
+    }
+    @include mq-max(break(phone, -1)) {
+        top: 6px;
+    }
+
+    .scrolling & {
+        display: none;
+    }
+}
+
 
 // footer 頁腳
 // ----------------------------------------------------------------------
 #footer {
     @if $footer-bg    { background: $footer-bg; }
     @if $footer-color { color: $footer-color; }
+    position: relative;
 
     @if $enable-RWD {
         @include mq(desktop) {
-            // min-height: $footer-height;
-            margin-top: -($footer-height);
-            position: relative;
+            // min-height: $footer-height; > 挪到下方的 .wrap
+            margin-top: -($footer-height - 4);  // after的absolute會多出4px
             z-index: z(footer);
         }
     }
 
     // 本次專案
+    @include el(after, $ext: false) {
+        @include mq(phone) {
+            width: 93px;
+            height: 95px;
+            background: url(#{$img-path}/footImg.png) 0 0 no-repeat;
+
+            @include absolute(bottom 0);
+        }
+
+        @include mq(wider) {
+            left: 50%;
+            margin-left: $max-width/2 - 93;
+        }
+        @include mq-max(break(wider, -1)) {
+            right: 8px;
+        }
+    }
+
     .wrap {
         @include mq(desktop) {
             min-height: $footer-height - 40;
+        }
+        @include mq-max(break(desktop, -1)) {
+            padding-bottom: 24px;
         }
     }
 
@@ -226,12 +240,20 @@ $mobile-menu-bk: 'wide';
 }
 
 .foot {
-    $foot-content-mt: 92px;
+    $foot-content-mt: ($footer-height/3 - 20);
 
     // 頁腳logo
     &-logo {
         @include text-pic('foot-logo.gif', false, 82px, center 0);
+
         margin-top: $foot-content-mt;
+
+        @include mq-max(break(desktop, -1)) {
+            margin-top: $foot-content-mt/3;
+        }
+        @include mq-max(break(phone-plus, -1)) {
+            background-size: contain;
+        }
     }
 
     // 頁腳聯絡資訊
@@ -240,6 +262,13 @@ $mobile-menu-bk: 'wide';
 
         text-align: left;
         margin-top: $foot-content-mt + 4;
+
+        @include mq-max(break(desktop, -1)) {
+            margin-top: ($foot-content-mt/3 + 4);
+        }
+        @include mq-max(break(tablet, -1)) {
+            padding-left: 16px;
+        }
 
         .tel, .fax {
             @extend .mb-8;

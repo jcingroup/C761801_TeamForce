@@ -11,11 +11,11 @@ $pale-red:                #FFE7E7 !default;
 
 // 情境狀態 + 配色
 $colors: (
-    primary:              #2D385E, // 04828d
+    primary:              #2D385E,
     secondary:            #017E9C,
     muted:                #E5E5E5,
     success:              #9e8467,
-    info:                 #1D243D, // 30bebc
+    info:                 #1D243D,
     warning:              #FCB037,
     danger:               #FF2200
 );
@@ -41,33 +41,35 @@ $border-color:               lighten(color(secondary), 66);
 $min-width:             1200px;     // 網頁最小尺寸 1008
 $max-width:             1400px;     // 網頁最寬尺寸: .wrap
 
-$wrapper-bg:            false !default;
-$wrapper-b-spacing:     100px !default;
+$wrapper-bg:            false !default;  // 外套背景
+$wrapper-b-spacing:     100px !default;  // 與頁腳的間距
 
 // header
-$header-height:         130px !default; // for page
-$header-bg:             rgba(#fff, .95) !default;
-$header-mobile-height:  false !default;
+$header-height:         130px !default;            // 頁頭高度
+$header-bg:             rgba(#fff, .95) !default;  // 頁頭背景
+$header-scrolling:      48px;                      // 本次專案使用 - 滾動時的頁頭高度
+$header-mobile-hg:      80px;                      // 本次專案使用 - 行動版的高度
 
 // logo
-$logo-img:              'logo.gif' !default; // 'logo.gif' or false
-$logo-size:             72px 81px !default;
+$logo-img:              'logo.gif' !default;       // logo 圖檔名: 可用 false
+$logo-size:             72px 81px !default;        // logo 圖尺寸
 
 // footer
-$footer-height:         320px !default;
-$footer-bg:             #000 url(#{$img-path}/footerBg.jpg) center 180% no-repeat fixed !default;
-$footer-color:          #fff !default;
+$footer-height:         310px !default;                                                              // 頁腳最小高度
+$footer-bg:             #000 url(#{$img-path}/footerBg.jpg) center bottom no-repeat fixed !default;  // 頁腳背景
+$footer-color:          #fff !default;                                                               // 頁腳文字顏色
 
 // menu
-$sub-nav-has:           false !default;         // 子選單
-$nav-root:              if($sub-nav-has, 'li > a', 'a') !default;
+$sub-nav-has:           false !default;                                    // 是否有子選單: true / false
+$nav-root:              if($sub-nav-has, 'li > a', '.nav-item') !default;  // 根選單名稱
 
-// 行動版
-$mobile-menu-has:       true !default;
-$mobile-menu-bk:        'desktop' !default;     // 從()螢幕寬度以下開始出現行動版選單
-$mobile-menu-bg:        rgba(#fff, .85) !default;          // rgba(#fff,.95)
-$mobile-menu-width:     100% !default;
-$mobile-transition:     'opacity .5s' !default;    // push - left .35s; overlay - opacity 1s
+// 行動版選單
+$mobile-menu-has:       true !default;                     // 是否要行動版選單: true/ false
+$mobile-menu-bk:        'desktop' !default;                // 從()螢幕寬度以下開始出現行動版選單
+$mobile-menu-bg:        rgba(lighten(color(muted), 2), .8) !default;   // 行動版選單背景
+$mobile-menu-width:     100% !default;                     // 行動版選單寬度
+$mobile-transition:     'opacity .5s' !default;            // 出現時的動畫特效: push - left .35s; overlay - opacity 1s
+$mobile-body-class:     '.mobile-menu-body' !default;      // 出現時 body 的 class name 或 id name
 
 // z-index
 $z-index: (

@@ -380,7 +380,7 @@ dd {
 .mr-0 {
   margin-right: 0; }
 
-.mb-0 {
+.mb-0, .logo {
   margin-bottom: 0; }
 
 .ml-0 {
@@ -604,7 +604,7 @@ dd {
 .p-0 {
   padding: 0; }
 
-.pt-0 {
+.pt-0, .logo span {
   padding-top: 0; }
 
 .pr-0 {
@@ -869,7 +869,7 @@ dd {
 .bg-black, .copyright {
   background-color: #000; }
 
-.text-primary, .btn.white, .logo {
+.text-primary, .btn.white, .logo span, .mobile-toggle {
   color: #2D385E; }
 
 .bg-primary {
@@ -997,10 +997,7 @@ dd {
 -----------------------------------------------------------------------*/
 .wrap {
   max-width: 1400px; }
-  @media (min-width: 64em) and (max-width: 87.5em) {
-    .wrap {
-      max-width: 1200px; } }
-  @media (max-width: 74.9375em) {
+  @media (max-width: 87.4375em) {
     .wrap {
       padding-left: 16px;
       padding-left: 1rem;
@@ -1011,109 +1008,126 @@ dd {
   min-height: 100%; }
   @media (min-width: 64em) {
     #wrapper {
-      padding-bottom: 420px; } }
+      padding-bottom: 410px; } }
 
 #header {
   background: rgba(255, 255, 255, 0.95);
   height: 130px;
   z-index: 3;
   width: 100%;
-  box-shadow: 3px 0 0 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.06);
   position: absolute;
   top: 0;
-  left: 0; }
-
-.logo {
-  cursor: pointer;
-  cursor: hand;
-  background: url(../images/logo.gif) 0 0 no-repeat;
-  padding-left: 88px;
-  padding-top: 18px;
-  min-height: 81px; }
-  @media (min-width: 41.6875em) {
-    .logo {
-      letter-spacing: .05em; } }
-  @media (min-width: 23.5em) and (max-width: 35.5em) {
-    .logo {
-      font-size: 18px;
-      font-size: 1.125rem; } }
-  @media (max-width: 23.4375em) {
-    .logo {
-      margin-top: 4rem;
-      font-size: 16px;
-      font-size: 1rem; } }
-  .logo small {
-    letter-spacing: .07em; }
-    @media (max-width: 23.4375em) {
-      .logo small {
-        display: none; } }
-
-.head-info {
-  margin: 13px 24px 0 0;
-  letter-spacing: 0.28125em;
-  color: #d8d8d8; }
-  @media (max-width: 35.5em) {
-    .head-info {
-      font-size: 12px;
-      font-size: 0.75rem; } }
-
-.scrollHeader {
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 9999;
-  display: none; }
-  .scrollHeader .logo {
-    margin-top: 0.5em;
-    margin-left: 10vw; }
-    @media (min-width: 87.5em) and (max-width: 96.875em) {
-      .scrollHeader .logo {
-        margin-left: 5vw; } }
-    .scrollHeader .logo > img {
-      width: 70%; }
-  .scrollHeader .headTitle {
-    margin-top: 2rem; }
-    .scrollHeader .headTitle .logo-en {
-      font-size: 10px;
-      font-size: 0.625rem; }
-  .scrollHeader .navMenu {
-    margin-top: 2.5em;
-    margin-right: 10vw; }
-    @media (min-width: 87.5em) and (max-width: 96.875em) {
-      .scrollHeader .navMenu {
-        margin-right: 2vw; } }
+  left: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+  @media (max-width: 35.4375em) {
+    #header {
+      height: 80px; } }
+  #header .wrap {
+    position: relative; }
+  #header.scrolling {
+    position: fixed;
+    height: 48px; }
+  #header:hover {
+    background: #fff; }
 
 .scrolling {
-  display: block;
-  -webkit-animation: scrolling 1s both;
-  animation: scrolling 1s both; }
-  @media (max-width: 75em) {
-    .scrolling {
-      display: none; } }
+  -webkit-animation: scrolling 1s alternate both;
+  animation: scrolling 1s alternate both; }
 @-webkit-keyframes scrolling {
   from {
     opacity: 0.5;
-    top: -70px; }
+    top: -130px; }
   to {
     opacity: 1;
     top: 0; } }
 @keyframes scrolling {
   from {
     opacity: 0.5;
-    top: -70px; }
+    top: -130px; }
   to {
     opacity: 1;
     top: 0; } }
+.logo {
+  cursor: pointer;
+  cursor: hand;
+  background: url(../images/logo.gif) 0 0 no-repeat;
+  background-size: contain;
+  height: 81px;
+  min-width: 72px;
+  padding-left: 88px; }
+  @media (max-width: 35.4375em) {
+    .logo {
+      margin-top: 6px;
+      height: 68px;
+      padding-left: 72px; } }
+  .scrolling .logo {
+    height: 44px;
+    margin-top: 2px; }
+  .scrolling .logo .mobile-show,
+  .scrolling .logo .mobile-hide {
+    display: none; }
+  @media (min-width: 35.5em) {
+    .logo .mobile-show {
+      display: none; } }
+  @media (max-width: 35.4375em) {
+    .logo .mobile-hide {
+      display: none; } }
+  .logo span {
+    letter-spacing: .05em; }
+  .logo small {
+    letter-spacing: .07em; }
+
+.head-info {
+  letter-spacing: 0.28125em;
+  color: #d8d8d8;
+  position: absolute;
+  top: 13px;
+  right: 0; }
+  @media (min-width: 75em) {
+    .head-info {
+      right: 24px; } }
+  @media (max-width: 74.9375em) {
+    .head-info {
+      right: 16px; } }
+  @media (max-width: 35.4375em) {
+    .head-info {
+      top: 6px; } }
+  .scrolling .head-info {
+    display: none; }
+
 #footer {
-  background: #000 url(../images/footerBg.jpg) center 180% no-repeat fixed;
-  color: #fff; }
+  background: #000 url(../images/footerBg.jpg) center bottom no-repeat fixed;
+  color: #fff;
+  position: relative; }
   @media (min-width: 64em) {
     #footer {
-      margin-top: -320px;
-      position: relative;
+      margin-top: -306px;
       z-index: 2; } }
+  #footer::after {
+    content: '';
+    display: block; }
+    @media (min-width: 35.5em) {
+      #footer::after {
+        width: 93px;
+        height: 95px;
+        background: url(../images/footImg.png) 0 0 no-repeat;
+        position: absolute;
+        bottom: 0; } }
+    @media (min-width: 87.5em) {
+      #footer::after {
+        left: 50%;
+        margin-left: 607px; } }
+    @media (max-width: 87.4375em) {
+      #footer::after {
+        right: 8px; } }
   @media (min-width: 64em) {
     #footer .wrap {
-      min-height: 280px; } }
+      min-height: 270px; } }
+  @media (max-width: 63.9375em) {
+    #footer .wrap {
+      padding-bottom: 24px; } }
   #footer a {
     position: relative; }
     #footer a::after {
@@ -1134,10 +1148,22 @@ dd {
 .foot-logo {
   background: url(../images/foot-logo.gif) center 0 no-repeat;
   height: 82px;
-  margin-top: 92px; }
+  margin-top: 83.3333333333px; }
+  @media (max-width: 63.9375em) {
+    .foot-logo {
+      margin-top: 27.7777777778px; } }
+  @media (max-width: 41.625em) {
+    .foot-logo {
+      background-size: contain; } }
 .foot-contact {
   text-align: left;
-  margin-top: 96px; }
+  margin-top: 87.3333333333px; }
+  @media (max-width: 63.9375em) {
+    .foot-contact {
+      margin-top: 31.7777777778px; } }
+  @media (max-width: 47.9375em) {
+    .foot-contact {
+      padding-left: 16px; } }
   .foot-contact .tel, .foot-contact .fax {
     display: inline-block;
     font-size: 17px;
@@ -1160,6 +1186,116 @@ dd {
   line-height: 40px;
   letter-spacing: 1px; }
 
+#menu {
+  z-index: 20; }
+  @media (min-width: 75em) {
+    #menu {
+      float: right;
+      clear: right;
+      margin-top: 67px; }
+      .scrolling #menu {
+        margin-top: 0; } }
+  @media (max-width: 74.9375em) {
+    #menu {
+      background: rgba(234, 234, 234, 0.8);
+      -webkit-transition: opacity .5s;
+      transition: opacity .5s;
+      width: 100%;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      padding: 78px 16px 16px; }
+      .scrolling #menu {
+        padding-top: 52px; }
+      .mobile-menu-body #menu {
+        opacity: 1;
+        visibility: visible; } }
+
+.nav-item {
+  display: inline-block;
+  letter-spacing: 1px;
+  -webkit-transition: 0.35s;
+  transition: 0.35s; }
+  @media (min-width: 75em) {
+    .nav-item {
+      color: #2D385E;
+      padding: 0 24px 36px;
+      font-size: 18px;
+      font-size: 1.125rem; }
+      .scrolling .nav-item {
+        line-height: 1;
+        padding-top: 15px;
+        padding-bottom: 15px; }
+      .nav-item:hover, .nav-item:active {
+        color: #d48303; }
+      .nav-item:hover, .nav-item:active, .nav-item.current {
+        border-bottom: 3px solid #FCB037; } }
+  @media (max-width: 74.9375em) {
+    .nav-item {
+      display: table;
+      width: 50%;
+      min-width: 300px;
+      padding: 8px 0;
+      margin: auto;
+      font-size: 2.625rem;
+      background: #fff;
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.06);
+      -webkit-animation: muit 0.8s forwards;
+      animation: muit 0.8s forwards; }
+    @-webkit-keyframes muit {
+      from {
+        opacity: 0;
+        margin-top: 0; }
+      to {
+        opacity: 1;
+        margin-top: 12px; } }
+    @keyframes muit {
+      from {
+        opacity: 0;
+        margin-top: 0; }
+      to {
+        opacity: 1;
+        margin-top: 12px; } }
+      .nav-item:hover, .nav-item:active, .nav-item.current {
+        color: #fff;
+        background-color: #017E9C;
+        box-shadow: 0 3px 0 #FCB037; } }
+  @media (max-width: 41.6875em) {
+    .nav-item {
+      width: 100%;
+      font-size: 2.125rem; } }
+
+.mobile-menu-body {
+  overflow-y: hidden; }
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  cursor: pointer;
+  z-index: 1000;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+  float: right;
+  clear: right;
+  margin-top: 45px;
+  position: relative; }
+  @media (max-width: 74.9375em) {
+    .mobile-toggle {
+      display: block; } }
+  .mobile-toggle:focus {
+    box-shadow: none; }
+  @media (max-width: 35.4375em) {
+    .mobile-toggle {
+      margin-top: 24px; } }
+  .scrolling .mobile-toggle {
+    margin-top: 0; }
+
 .font-tiny, .copyright {
   font-size: 13px;
   font-size: 0.8125rem; }
@@ -1180,7 +1316,7 @@ dd {
   font-size: 21px;
   font-size: 1.3125rem; }
 
-.font-xl, .logo {
+.font-xl, .logo span, .mobile-toggle {
   font-size: 25px;
   font-size: 1.5625rem; }
 
@@ -1253,36 +1389,12 @@ dd {
     transform: translateY(20px); } }
 .font-ming {
   font-family: 'cwTeXMing', serif;
-  font-weight: 300;
+  font-weight: 400;
   src: url("//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.eot");
   src: url("//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.eot?#iefix") format("embedded-opentype"), url("//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.woff2") format("woff2"), url("//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.woff") format("woff"), url("//fonts.gstatic.com/ea/cwtexming/v3/cwTeXMing-zhonly.ttf") format("truetype"); }
 
 .font-en, .copyright {
   font-family: 'Lusitana', serif; }
-
-@media (min-width: 75em) and (max-width: 87.5em) {
-  #wrapper .wrap .headLogo {
-    margin-left: 1em; } }
-@media (min-width: 75em) {
-  #wrapper .wrap .navMenu #current {
-    border-bottom-style: solid;
-    height: 4em;
-    border-bottom-width: 4px;
-    border-bottom-color: #FFC107;
-    color: darkblue; }
-    #wrapper .wrap .navMenu #current:hover {
-      color: darkblue; }
-    #wrapper .wrap .navMenu #current::after {
-      content: '';
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid #FFC107;
-      margin-top: 2em;
-      float: left;
-      margin-left: 3.1vw; } }
-    @media (min-width: 75em) and (min-width: 75em) and (max-width: 96.875em) {
-      #wrapper .wrap .navMenu #current::after {
-        margin-left: 4vw; } }
 
 .headLine {
   border-top: solid;
