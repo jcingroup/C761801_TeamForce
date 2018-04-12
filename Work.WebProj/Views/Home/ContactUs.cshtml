@@ -1,12 +1,10 @@
 ﻿@{
     ViewBag.Title = "聯絡我們";
-    ViewBag.BodyClass = "Contact";
+    ViewBag.BodyClass = "ContactUs";
 }
 
-<div class="headLine"></div>
-<div class="wrap @(ViewBag.BodyClass)">
-    <h2 class="mt-64">聯絡我們</h2>
-    <h3>CONTACT US</h3>
+<section class="wrap pb-48">
+    <h2 class="title font-en text-left">CONTACT US</h2>
     <div class="col-6 contactBoxArea">
         <div class="mb-32 col-6 pull-left contactBox">
             <div class="circle">
@@ -35,7 +33,7 @@
     </div>
     <div class="contactLine mt-64 pull-left"></div>
     <iframe id="map" class="col-5 contactMap pull-right" src="~/Content/images/map.html"></iframe>
-</div>
+</section>
 @section scripts {
     <script>
         function initMap() {

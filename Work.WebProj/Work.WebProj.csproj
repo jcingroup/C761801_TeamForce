@@ -155,9 +155,13 @@
     <Content Include="Content\css\vendor\swiper.min.css" />
     <Content Include="Content\css\vendor\themify-icons.css" />
     <Content Include="Content\font\themify-icons\themify.svg" />
-    <Content Include="Content\images\01.jpg" />
-    <Content Include="Content\images\02.jpg" />
-    <Content Include="Content\images\03.jpg" />
+    <Content Include="Content\images\about-pic.jpg" />
+    <Content Include="Content\images\about-pic2.jpg" />
+    <Content Include="Content\images\perform-pic.jpg" />
+    <Content Include="Content\images\perform-pic2.jpg" />
+    <Content Include="Content\images\service-pic1.jpg" />
+    <Content Include="Content\images\service-pic2.jpg" />
+    <Content Include="Content\images\service-pic3.jpg" />
     <Content Include="Content\images\email.png" />
     <Content Include="Content\images\fax.png" />
     <Content Include="Content\images\foot-logo.gif" />
@@ -205,7 +209,6 @@
     <Content Include="Content\sass\grid.scss" />
     <Content Include="Content\sass\index.scss" />
     <Content Include="Content\sass\page.scss" />
-    <Content Include="Content\sass\vendor\open-iconic.scss" />
     <Content Include="Content\sass\vendor\_normalize.scss" />
     <Content Include="Content\sass\vendor\_print.scss" />
     <Content Include="Content\sass\_client\modules\_alerts.scss" />

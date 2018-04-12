@@ -17,11 +17,10 @@
 // == custom
 // ------------------------------------------------------------
 // src: w3.css v4
-.font-tiny   { @include rem('font-size', 13); }  // 10px y
-.font-sm     { @include rem('font-size', 15); }  // 12px y
-.font-md     { @include rem('font-size', 16); }  // 15px y
+.font-tiny   { @include rem('font-size', 12); }  // 10px y
+.font-sm     { @include rem('font-size', 14); }  // 12px y
+.font-md     { @include rem('font-size', 15); }  // 15px y
 .font-lg     { @include rem('font-size', 18); }  // 18px y
-.font-ll     { @include rem('font-size', 21); }
 .font-xl     { @include rem('font-size', 25); }  // 24px
 .font-xxl    { @include rem('font-size', 30); }  // 36px y
 .font-xxxl   { @include rem('font-size', 54); }  // 48px y
@@ -88,4 +87,46 @@
 // 純英文
 .font-en {
     font-family: 'Lusitana', serif;
+}
+
+// 標題
+.title {
+    @extend .text-secondary;
+
+    @include rem('font-size', 48);
+
+    @include mq(phone-plus) {
+        letter-spacing: 6px;
+    }
+    @include mq-max(phone-plus) {
+        font-size: rem(36);
+    }
+    @include mq-max(mobile) {
+        font-size: rem(30);
+    }
+}
+
+// 底線
+.underline {
+    border-bottom: 1px solid $border-color;
+}
+
+// 連結底線特效
+.hover-underline {
+    position: relative;
+
+    @include el(after) {
+        border-bottom: 1px solid;
+        width: 0;
+
+        @include transition(.35s);
+        @include absolute(left 50% bottom 0);
+    }
+
+    &:hover, &:active {
+        &::after {
+            width: 100%;
+            left: 0;
+        }
+    }
 }

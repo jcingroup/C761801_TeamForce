@@ -14,23 +14,19 @@ $isAdmin:                 false !default;     // 後台系統用
 
 $font-path:               '../font' !default;
 
+//
+// RWD-break in mixins/mq.scss
+// mobile:        375px
+// phone:         568px
+// phone-plus:    667px
+// tablet:        768px
+// desktop:       1024px
+// wide:          1200px
+// wider:         1400px
 
-// == RWD-break in mixins/mq.scss
-// ------------------------------------------------------------
-$mq-breakpoints: (
-    mobile:               375px,
-    phone:                568px,
-    phone-plus:           667px,
-    tablet:               768px,
-    desktop:              1024px,
-    wide:                 1200px,
-    wider:                1400px
-) !default;
-
-
-// == spacing
-// ------------------------------------------------------------
-$spacer:                  1rem !default;                    // for $Spacing
+//
+// spacing: 1rem = $font-size-base 的值(16px)
+$spacer:                  1rem !default;  // 間距(基準) for $Spacing
 $spacing: (
     0:                    0,
     2:                    $spacer/8,
@@ -44,29 +40,32 @@ $spacing: (
     64:                   $spacer*4
 ) !default;
 
+//
+// var inherit
+$border-color:            color(muted) !default;                 // 邊框顏色
+$border-radius:           spacing(4) !default;                   // 邊框角度: for $btn-radius
+$prefixes:                webkit !default;                       // 相容性前綴: all: webkit moz o ms
 
-// == element
+$padding-s:               spacing(4) !default;                   // 內距尺寸(小)
+$padding-m:               spacing(8) !default;                   // 內距尺寸(中)
+$padding-l:               spacing(16) !default;                  // 內距尺寸(大)
+
+
+// == element folder
 // ------------------------------------------------------------
 //
 // basic
-$body-bg:                        #fff !default;
-$body-color:                     #333 !default;
+$body-bg:                        #fff !default;  // <body>背景色
+$body-color:                     #333 !default;  // <body>文字色(會繼承下去)
 
-$font-family-base:               \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default;
+$font-family-base:               \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default; // 主要字型
 
-$font-size-base:                 16px !default;                         // 1rem
-$line-height:                    1.5 !default;
+$font-size-base:                 16px !default;                         // 文字大小(基準): 也可用1rem
+$line-height:                    1.5 !default;                          // 文字行距
 
-$border-color:                   color(muted) !default;
-$border-radius:                  spacing(4) !default;
-$prefixes:                       webkit !default;                       // all: webkit moz o ms
-
-$padding-s:                      spacing(4) !default;
-$padding-m:                      spacing(8) !default;
-$padding-l:                      spacing(16) !default;
 
 //
-// link
+// link for: <a>
 $link-color:                     color() !default;                      // 連結文字色 color("primary")
 $link-color-hover:               color(secondary) !default;             // 移過後顏色
 $link-decoration:                none !default;                         // 連結底線樣式
@@ -75,12 +74,12 @@ $link-transition:                color .35s, background .3s !default;   // 滑�
 
 //
 // type
-$font-size-h1:                   $font-size-base * 3 !default;       // 48px old-2.5
-$font-size-h2:                   $font-size-base * 2 !default;       // 32px old-2
-$font-size-h3:                   $font-size-base * 1.6875 !default;  // 27px old-1.75
-$font-size-h4:                   $font-size-base * 1.5 !default;     // 24px old-1.5
-$font-size-h5:                   $font-size-base * 1.125 !default;   // 18px old-1.25
-$font-size-h6:                   $font-size-base * 1.0625 !default;  // 17px old-1
+$font-size-h1:                   $font-size-base * 3 !default;          // <h1> 48px old-2.5
+$font-size-h2:                   $font-size-base * 2 !default;          // <h2> 32px old-2
+$font-size-h3:                   $font-size-base * 1.6875 !default;     // <h3> 27px old-1.75
+$font-size-h4:                   $font-size-base * 1.5 !default;        // <h4> 24px old-1.5
+$font-size-h5:                   $font-size-base * 1.125 !default;      // <h5> 18px old-1.25
+$font-size-h6:                   $font-size-base * 1.0625 !default;     // <h6> 17px old-1
 
 $headings-color:                 false !default;
 $headings-font-family:           false !default;
@@ -108,8 +107,7 @@ $table-bg-striped:               #f8f9fa !default; // #f9f9f9
 $table-bg-active:                false !default;
 $table-striped-list:             'even' !default;   // even, odd
 
-// RWD時，表格出現卷軸
-$table-rwd:                      true !default;
+$table-rwd:                      true !default;  // RWD時，表格出現卷軸
 
 //
 // form

@@ -4,11 +4,7 @@
 $isIndex:                        true;
 $img-index:                      '../images/index';
 
-$wrapper-b-spacing:              0;         //內容不預留底部
-$btn-bg:                         #01738F;  //button
-$btn-radius:                     0;
-$btn-font-size:                  16px;
-$btn-pd:                         8px 0;
+$wrapper-b-spacing:              0;         // 內容不預留底部
 
 
 // import
@@ -26,10 +22,8 @@ $btn-pd:                         8px 0;
 @import "element/basic";
 @import "element/link";
 @import "element/type";
-@import "element/util";
 @import "element/btn";
-
-// $max-width: 1400px;
+@import "element/util";
 
 @import "_client/layout";
 @import "_client/modules/nav";
@@ -119,15 +113,6 @@ $btn-pd:                         8px 0;
     padding-top: 53px;
     padding-bottom: 73px;
 
-    h1 {
-        @include mq(mobile) {
-            letter-spacing: 6px;
-        }
-        @include mq-max(phone-plus) {
-            @include rem('font-size', 45);
-        }
-    }
-
     h4 {
         letter-spacing: 1px;
         line-height: 1.3;
@@ -159,7 +144,7 @@ $btn-pd:                         8px 0;
 }
 
 .box {
-    @extend .mb-32;
+    @extend .mb-32, .center;
 
     border-top: 2px solid #fff;
     background-color: lighten(color(muted), 5);
@@ -179,8 +164,6 @@ $btn-pd:                         8px 0;
     }
     @include mq(phone, break(desktop, -1)) {
         max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     h2 {

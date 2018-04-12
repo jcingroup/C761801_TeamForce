@@ -21,28 +21,36 @@ $colors: (
 );
 
 
-// == custom-element
+// == custom-variables
 // ----------------------------------------------------------------------
+
 // basic
 $body-bg:                    #fff;
-$body-color:                 #695f5f;
+$body-color:                 darken(color(), 5);
 $font-family-sp:             false; // 'Montserrat', sans-serif
-$font-family-base:           \5FAE\8EDF\6B63\9ED1\9AD4,"微軟正黑體","Microsoft JhengHei",'Helvetica Neue',Helvetica,Arial,sans-serif !default;
 
 // link
 $link-color:                 color(secondary);
 $link-color-hover:           color();
 
-$border-color:               lighten(color(secondary), 66);
+$border-color:               lighten(color(muted), 4);
+
+$p-spacer:                   16px;
+
+// btn
+$btn-bg:                     color(secondary);   // button
+$btn-radius:                 false;
+$btn-font-size:              16px;
+$btn-pd:                     8px 0;
 
 
 // == layout
 // ----------------------------------------------------------------------
-$min-width:             1200px;     // 網頁最小尺寸 1008
-$max-width:             1400px;     // 網頁最寬尺寸: .wrap
+$min-width:             1200px;                    // 網頁最小尺寸
+$max-width:             1400px;                    // 網頁最寬尺寸
 
-$wrapper-bg:            false !default;  // 外套背景
-$wrapper-b-spacing:     100px !default;  // 與頁腳的間距
+$wrapper-bg:            false !default;            // 外套背景
+$wrapper-b-spacing:     0 !default;                // 與頁腳的間距
 
 // header
 $header-height:         130px !default;            // 頁頭高度
@@ -64,12 +72,12 @@ $sub-nav-has:           false !default;                                    // �
 $nav-root:              if($sub-nav-has, 'li > a', '.nav-item') !default;  // 根選單名稱
 
 // 行動版選單
-$mobile-menu-has:       true !default;                     // 是否要行動版選單: true/ false
-$mobile-menu-bk:        'desktop' !default;                // 從()螢幕寬度以下開始出現行動版選單
+$mobile-menu-has:       true !default;                                 // 是否要行動版選單: true/ false
+$mobile-menu-bk:        'desktop' !default;                            // 從()螢幕寬度以下開始出現行動版選單
 $mobile-menu-bg:        rgba(lighten(color(muted), 2), .8) !default;   // 行動版選單背景
-$mobile-menu-width:     100% !default;                     // 行動版選單寬度
-$mobile-transition:     'opacity .5s' !default;            // 出現時的動畫特效: push - left .35s; overlay - opacity 1s
-$mobile-body-class:     '.mobile-menu-body' !default;      // 出現時 body 的 class name 或 id name
+$mobile-menu-width:     100% !default;                                 // 行動版選單寬度
+$mobile-transition:     'opacity .5s' !default;                        // 出現時的動畫特效: push - left .35s; overlay - opacity 1s
+$mobile-body-class:     '.mobile-menu-body' !default;                  // 出現時 body 的 class name 或 id name
 
 // z-index
 $z-index: (

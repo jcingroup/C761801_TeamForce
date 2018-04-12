@@ -3,7 +3,9 @@
 // 本頁專用變數(覆蓋)
 // ------------------------------------------------------------
 $isPage:                 true;
-$font-size-h2:           45px;
+
+// $font-size-h2:           45px;
+$headings-color:         #017E9C;
 
 
 // import
@@ -21,8 +23,8 @@ $font-size-h2:           45px;
 @import "element/basic";
 @import "element/link";
 @import "element/type";
-@import "element/util";
 @import "element/btn";
+@import "element/util";
 
 @import "_client/layout";
 @import "_client/modules/nav";
@@ -33,61 +35,166 @@ $font-size-h2:           45px;
 
 // main
 // ------------------------------------------------------------
-/// 分頁 Header ///
-// #wrapper {
-//     .wrap {
-//         .headLogo {
-//             @include mq(wide,wider) {
-//                 margin-left: 1em;
-//             }
-//         }
 
-//         .navMenu {
-//             #current {
-//                 @include mq($min: wide) {
-//                     border-bottom-style: solid;
-//                     height: 4em;
-//                     border-bottom-width: 4px;
-//                     border-bottom-color: #FFC107;
-//                     color: darkblue;
+// == AboutsUs
+.AboutUs {
+    article {
+        @include mq(tablet) {
+            padding-right: 32px;
+        }
 
-//                     &:hover {
-//                         color: darkblue;
-//                     }
+        li {
+            @extend .mb-12;
 
-//                     &::after {
-//                         content: '';
-//                         border-left: 8px solid transparent;
-//                         border-right: 8px solid transparent;
-//                         border-bottom: 8px solid #FFC107;
-//                         margin-top: 2em;
-//                         float: left;
-//                         margin-left: 3.1vw;
-//                         @include mq-add-breakpoint(secondScreen, 1550px);
+            &::before {
+                color: darken(color(muted), 12);
+            }
+        }
+    }
+}
+.about-slogan {
+    @extend .text-white, .font-xl;
 
-//                         @include mq(wide,secondScreen) {
-//                             margin-left: 4vw;
-//                         }
+    background: lighten(color(), 5);
+    border-top: 3px solid color(muted);
+    border-bottom: 3px solid lighten(color(), 8);
 
-//                         @include mq(wide,wider) {
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+    @include mq-max(phone) {
+        text-align: left;
+    }
 
+    span {
+        @extend .my-12;
+        line-height: 1.2;
+        letter-spacing: .1em;
+    }
+}
 
-.headLine {
-    border-top: solid;
-    border-color: whitesmoke;
-    border-width: 4px;
-    margin-top:-4px;
+// == Service
+.service {
+
+    // main content
+    &-content {
+        position: relative;
+
+        @include el(before, $ext: false) {
+            @include mq(desktop) {
+                background: color(muted);
+                width: 33.8%;
+                height: 100%;
+
+                @include absolute(right 0 top 0);
+            }
+        }
+
+        aside {
+            @include mq-max(break(desktop, -1)) {
+                margin-left: -16px;
+                margin-right: -16px;
+            }
+
+            img {
+                width: 100%;
+                margin: auto auto 24px;
+
+                @include mq(desktop) {
+                    display: block;
+                }
+
+                @include mq(phone, break(desktop, -1)) {
+                    width: auto;
+                    max-width: 30%;
+                    height: 150px;
+                    margin: 0 1%;
+                }
+            }
+        }
+    }
+
+    // 項目列表
+    &-item {
+        @extend .mb-32;
+
+        @include mq(tablet) {
+            padding-right: 36px;
+        }
+
+        dt {
+            @extend .font-xl, .text-secondary, .pb-8, .mb-8;
+
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        dd {
+            @extend .mb-12, .ml-24;
+
+            line-height: 1.2;
+
+            &::before {
+                color: darken(color(muted), 8);
+                text-indent: -24px;
+                margin-right: 0 !important;
+            }
+
+            &:hover {
+                color: darken(color(secondary), 5);
+
+                &::before {
+                    color: color(warning);
+                }
+            }
+        }
+    }
 }
 
 
-/// Contact html ///
+// == 公司實績
+.perform-list {
+    @extend %list-unstyled;
+
+    @include mq(phone) {
+        margin-left: -4px;
+        margin-right: -4px;
+    }
+    @include mq(desktop) {
+        margin-left: -12px;
+    }
+
+    li {
+        @extend .py-8, .px-16, .mb-16;
+
+        // border: 1px solid darken(color(muted), 5);
+        // box-shadow: 0 0 8px color(muted);
+        border-top: 2px solid lighten(color(muted), 3);
+        background-color: lighten(color(muted), 5);
+        letter-spacing: 2px;
+
+        @include transition(.3s);
+
+        &:hover {
+            @extend .bg-secondary, .text-white;
+
+            border-color: color(warning);
+        }
+
+        @include mq(phone) {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 4px;
+            margin-right: 4px;
+            width: calc(50% - 12px);
+        }
+        @include mq(desktop) {
+            margin-left: 12px;
+            margin-right: 12px;
+            width: 29%;
+        }
+    }
+}
+
+//== Contact html
 
 .Contact {
     > h2, > h3 {
@@ -185,6 +292,32 @@ $font-size-h2:           45px;
 
             height: 15em;
             margin-bottom: 3em;
+        }
+    }
+}
+
+// == connect
+.links {
+    li {
+        @extend .my-8;
+
+        display: inline-block;
+        margin-right: -8px;
+
+        @include grid-gap(1,2, 1.6%);
+
+        &:nth-child(odd) {
+            margin-right: 1.6%;
+        }
+    }
+
+    a {
+        @extend .font-lg, .hover-underline;
+
+        letter-spacing: 1px;
+
+        &::after {
+            border-color: color(warning);
         }
     }
 }

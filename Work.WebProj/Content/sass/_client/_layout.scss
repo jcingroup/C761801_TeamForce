@@ -18,7 +18,7 @@ $mobile-menu-bk: 'wide';
     // }
 
     @if $enable-RWD {
-        @include mq-max(break($max-width, -1)) {
+        @include mq-max(break($max-width, +1)) {
             @include rem('padding-left', 16px);
             @include rem('padding-right', 16px);
         }
@@ -45,6 +45,15 @@ $mobile-menu-bk: 'wide';
     @else {
         padding-bottom: $footer-height + $wrapper-b-spacing;
     }
+
+    // 本次專案
+    @if $isPage {
+        padding-top: $header-height;
+
+        @include mq-max(break(phone, -1)) {
+            padding-top: $header-mobile-hg;
+        }
+    }
 }
 
 // 此案header內容
@@ -56,8 +65,8 @@ $mobile-menu-bk: 'wide';
     z-index: z(header);
 
     // 本次專案
-    width: 100%;
     box-shadow: 0 3px 0 rgba(#000, .06);
+    width: 100%;
 
     @include absolute(top 0 left 0);
     @include transition(.5s);
@@ -99,15 +108,17 @@ $mobile-menu-bk: 'wide';
     cursor: hand; // for ie
 
     // 本次專案
-    @extend .mt-24, .text-left, .mb-0;
+    @extend .text-primary, .font-xl, .text-left, .mt-24, .mb-0;
 
     $font-height: 45px;
 
     background: url(#{$img-path}/#{$logo-img}) 0 0 no-repeat;
     background-size: contain;
 
+    letter-spacing: .02em;
     height: nth($logo-size, 2);
     min-width: nth($logo-size, 1);
+    padding-top: (nth($logo-size, 2) - $font-height)/2;
     padding-left: nth($logo-size, 1) + 16;
 
     @include mq-max(break(phone, -1)) {
@@ -140,14 +151,9 @@ $mobile-menu-bk: 'wide';
         }
     }
 
-    span {
-        @extend .text-primary, .font-xl, .pt-0;
-        letter-spacing: .05em;
-    }
-
     small {
         @extend .text-secondary, .font-sm;
-        letter-spacing: .07em;
+        letter-spacing: .1em;
     }
 }
 
@@ -156,13 +162,10 @@ $mobile-menu-bk: 'wide';
     letter-spacing: em(4.5px);
     color: darken(color(muted), 5);
 
-    @include absolute(top 13px right 0);
+    @include absolute(top 13px right 16px);
 
     @include mq($mobile-menu-bk) {
         right: 24px;
-    }
-    @include mq-max(break($mobile-menu-bk, -1)) {
-        right: 16px;
     }
     @include mq-max(break(phone, -1)) {
         top: 6px;
@@ -184,7 +187,7 @@ $mobile-menu-bk: 'wide';
     @if $enable-RWD {
         @include mq(desktop) {
             // min-height: $footer-height; > 挪到下方的 .wrap
-            margin-top: -($footer-height - 4);  // after的absolute會多出4px
+            margin-top: -($footer-height);
             z-index: z(footer);
         }
     }
@@ -218,24 +221,7 @@ $mobile-menu-bk: 'wide';
     }
 
     a {
-        @extend .text-white;
-
-        position: relative;
-
-        @include el(after) {
-            border-bottom: 1px solid #fff;
-            width: 0;
-
-            @include transition(.35s);
-            @include absolute(left 50% bottom 0);
-        }
-
-        &:hover, &:active {
-            &::after {
-                width: 100%;
-                left: 0;
-            }
-        }
+        @extend .text-white, .hover-underline;
     }
 }
 
