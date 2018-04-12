@@ -396,7 +396,7 @@ dd {
   display: block;
   margin: auto; }
 
-.center, .wrap {
+.center, .wrap, .contacts i {
   margin-right: auto;
   margin-left: auto; }
 
@@ -513,7 +513,7 @@ dd {
 .mr-12 {
   margin-right: 0.75rem; }
 
-.mb-12, .AboutUs article li, .service-item dd {
+.mb-12, .AboutUs article li, .service-item dd, .contacts i {
   margin-bottom: 0.75rem; }
 
 .ml-12 {
@@ -887,7 +887,7 @@ dd {
 .text-right {
   text-align: right; }
 
-.text-center {
+.text-center, .contacts {
   text-align: center; }
 
 .text-nowrap {
@@ -910,7 +910,7 @@ dd {
 .bg-black, .copyright {
   background-color: #000; }
 
-.text-primary, .btn.white, .logo, .mobile-toggle {
+.text-primary, .btn.white, .logo, .mobile-toggle, .contacts i {
   color: #2D385E; }
 
 .bg-primary {
@@ -921,7 +921,7 @@ dd {
   .hover-primary:hover, .hover-primary:active {
     color: #14192a; }
 
-.text-secondary, .logo small, .title, .service-item dt {
+.text-secondary, .logo small, .title, .service-item dt, .contacts {
   color: #017E9C; }
 
 .bg-secondary, .perform-list li:hover {
@@ -1301,7 +1301,7 @@ dd {
   font-size: 25px;
   font-size: 1.5625rem; }
 
-.font-xxl {
+.font-xxl, .contacts i {
   font-size: 30px;
   font-size: 1.875rem; }
 
@@ -1393,9 +1393,9 @@ dd {
 .underline {
   border-bottom: 1px solid #efefef; }
 
-.hover-underline, #footer a, .links a {
+.hover-underline, #footer a, .contacts a, .links a {
   position: relative; }
-  .hover-underline::after, #footer a::after, .links a::after {
+  .hover-underline::after, #footer a::after, .contacts a::after, .links a::after {
     border-bottom: 1px solid;
     width: 0;
     -webkit-transition: 0.35s;
@@ -1403,10 +1403,10 @@ dd {
     position: absolute;
     bottom: 0;
     left: 50%; }
-    .hover-underline::after, #footer a::after, .links a::after {
+    .hover-underline::after, #footer a::after, .contacts a::after, .links a::after {
       content: '';
       display: block; }
-  .hover-underline:hover::after, #footer a:hover::after, .links a:hover::after, .hover-underline:active::after, #footer a:active::after, .links a:active::after {
+  .hover-underline:hover::after, #footer a:hover::after, .contacts a:hover::after, .links a:hover::after, .hover-underline:active::after, #footer a:active::after, .contacts a:active::after, .links a:active::after {
     width: 100%;
     left: 0; }
 
@@ -1502,78 +1502,50 @@ dd {
       margin-right: 12px;
       width: 29%; } }
 
-.Contact > h2, .Contact > h3 {
-  color: #01738F; }
-@media (max-width: 64em) {
-  .Contact .contactBoxArea {
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%; } }
-.Contact .contactBoxArea .contactBox {
-  display: inline-block;
-  margin-top: 5em; }
-  @media (max-width: 48em) {
-    .Contact .contactBoxArea .contactBox {
-      width: 100%; } }
-  .Contact .contactBoxArea .contactBox .circle {
-    background-color: lightgray;
-    padding: 20px;
-    width: 140px;
-    display: inline-block; }
-    @media (min-width: 23.4375em) and (max-width: 48em) {
-      .Contact .contactBoxArea .contactBox .circle {
-        width: 170px; } }
-    @media (min-width: 23.4375em) and (max-width: 48em) {
-      .Contact .contactBoxArea .contactBox .circle > img {
-        width: 130px; } }
-  .Contact .contactBoxArea .contactBox > nobr {
-    display: block;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: #01738F; }
-    @media (min-width: 64em) and (max-width: 75em) {
-      .Contact .contactBoxArea .contactBox > nobr {
-        font-size: 16px;
-        font-size: 1rem; } }
-    @media (min-width: 23.4375em) and (max-width: 48em) {
-      .Contact .contactBoxArea .contactBox > nobr {
-        font-size: 21px;
-        font-size: 1.3125rem; } }
-.Contact .contactLine {
-  width: 10px;
-  height: 35em;
-  display: grid;
-  background-color: #7682a7;
-  border-radius: 10px; }
-  @media (max-width: 64em) {
-    .Contact .contactLine {
-      display: none; } }
-.Contact .contactMap {
-  height: 32em;
-  margin-top: 5em;
-  border-style: ridge; }
-  @media (min-width: 48em) and (max-width: 64em) {
-    .Contact .contactMap {
-      width: 70%;
-      margin-right: 15%; } }
-  @media (min-width: 35.5em) and (max-width: 48em) {
-    .Contact .contactMap {
-      width: 80%;
-      margin-right: 10%;
-      height: 25em; } }
-  @media (min-width: 23.4375em) and (max-width: 35.5em) {
-    .Contact .contactMap {
-      margin-top: 3em;
-      width: 90%;
-      margin-right: 5%;
-      height: 23em;
-      margin-bottom: 10vh; } }
-  @media (max-width: 23.4375em) {
-    .Contact .contactMap {
-      margin-top: 3em;
-      width: 100%;
-      height: 15em;
-      margin-bottom: 3em; } }
+#map {
+  height: 460px; }
+  @media (min-width: 64em) {
+    #map {
+      margin-bottom: 48px; } }
+  @media (max-width: 63.9375em) {
+    #map {
+      margin-left: -16px;
+      margin-right: -16px; } }
+
+@media (min-width: 35.5em) {
+  .contacts {
+    font-size: 18px;
+    font-size: 1.125rem; } }
+@media (max-width: 35.4375em) {
+  .contacts {
+    text-align: left; } }
+@media (min-width: 35.5em) {
+  .contacts li {
+    display: inline-block;
+    margin: 16px -2px;
+    width: 50%; } }
+.contacts i {
+  display: block;
+  background: #efefef;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  line-height: 90px; }
+  .contacts i::before {
+    text-shadow: 0 0 5px rgba(45, 56, 94, 0.2); }
+  @media (max-width: 35.4375em) {
+    .contacts i {
+      display: inline-block;
+      margin-right: 12px;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 1.25rem;
+      position: relative;
+      z-index: 1; } }
+.contacts a::after {
+  border-color: #FCB037; }
 
 .links li {
   display: inline-block;

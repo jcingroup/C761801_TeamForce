@@ -195,105 +195,163 @@ $headings-color:         #017E9C;
 }
 
 //== Contact html
+#map {
+    height: 460px;
 
-.Contact {
-    > h2, > h3 {
-        color: #01738F;
+    @include mq(desktop) {
+        margin-bottom: 48px;
     }
 
-    .contactBoxArea {
-        @include mq-max(desktop) {
-            width: 100%;
-            padding-left: 10%;
-            padding-right: 10%;
-        }
+    @include mq-max(break(desktop, -1)) {
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+}
 
-        .contactBox {
+.contacts {
+    @extend .text-center, .text-secondary;
+
+    @include mq(phone) {
+        @include rem('font-size', 18);
+    }
+
+    @include mq-max(break(phone, -1)) {
+        text-align: left;
+    }
+
+    li {
+        @include mq(phone) {
             display: inline-block;
-            margin-top: 5em;
-
-            @include mq-max(tablet) {
-                width: 100%
-            }
-
-            .circle {
-                background-color: lightgray;
-                padding: 20px;
-                width: 140px;
-                display: inline-block;
-
-                @include mq(mobile,tablet) {
-                    width: 170px;
-                }
-
-                > img {
-                    @include mq(mobile,tablet) {
-                        width: 130px;
-                    }
-                }
-            }
-
-            > nobr {
-                display: block;
-                letter-spacing: 1px;
-                font-weight: 600;
-                color: #01738F;
-
-                @include mq(desktop,wide) {
-                    @include rem('font-size', 16);
-                }
-
-                @include mq(mobile,tablet) {
-                    @include rem('font-size', 21);
-                }
-            }
+            margin: 16px -2px;
+            width: 50%;
         }
     }
 
-    .contactLine {
-        width: 10px;
-        height: 35em;
-        display: grid;
-        background-color: #7682a7;
-        border-radius: 10px;
+    i {
+        @extend .font-xxl, .center, .text-primary, .mb-12;
 
-        @include mq-max(desktop) {
-            display: none;
+        display: block;
+        background: lighten(color(muted), 4);
+
+        @include circle(90px, center);
+
+        &::before {
+            text-shadow: 0 0 5px rgba(color(), .2);
+        }
+
+        @include mq-max(break(phone, -1)) {
+            display: inline-block;
+            margin-right: 12px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: rem(20);
+            position: relative;
+            z-index: 1;
         }
     }
 
-    .contactMap {
-        height: 32em;
-        margin-top: 5em;
-        border-style: ridge;
+    a {
+        @extend .hover-underline;
 
-        @include mq(tablet,desktop) {
-            width: 70%;
-            margin-right: 15%;
-        }
-
-        @include mq(phone,tablet) {
-            width: 80%;
-            margin-right: 10%;
-            height: 25em;
-        }
-
-        @include mq(mobile,phone) {
-            margin-top: 3em;
-            width: 90%;
-            margin-right: 5%;
-            height: 23em;
-            margin-bottom: 10vh;
-        }
-
-        @include mq-max(mobile) {
-            margin-top: 3em;
-            width: 100%;
-
-            height: 15em;
-            margin-bottom: 3em;
+        &::after {
+            border-color: color(warning);
         }
     }
+
+    // .contactBoxArea {
+    //     @include mq-max(desktop) {
+    //         width: 100%;
+    //         padding-left: 10%;
+    //         padding-right: 10%;
+    //     }
+
+    //     .contactBox {
+    //         display: inline-block;
+    //         margin-top: 5em;
+
+    //         @include mq-max(tablet) {
+    //             width: 100%
+    //         }
+
+    //         .circle {
+    //             background-color: lightgray;
+    //             padding: 20px;
+    //             width: 140px;
+    //             display: inline-block;
+
+    //             @include mq(mobile,tablet) {
+    //                 width: 170px;
+    //             }
+
+    //             > img {
+    //                 @include mq(mobile,tablet) {
+    //                     width: 130px;
+    //                 }
+    //             }
+    //         }
+
+    //         > nobr {
+    //             display: block;
+    //             letter-spacing: 1px;
+    //             font-weight: 600;
+    //             color: #01738F;
+
+    //             @include mq(desktop,wide) {
+    //                 @include rem('font-size', 16);
+    //             }
+
+    //             @include mq(mobile,tablet) {
+    //                 @include rem('font-size', 21);
+    //             }
+    //         }
+    //     }
+    // }
+
+    // .contactLine {
+    //     width: 10px;
+    //     height: 35em;
+    //     display: grid;
+    //     background-color: #7682a7;
+    //     border-radius: 10px;
+
+    //     @include mq-max(desktop) {
+    //         display: none;
+    //     }
+    // }
+
+    // .contactMap {
+    //     height: 32em;
+    //     margin-top: 5em;
+    //     border-style: ridge;
+
+    //     @include mq(tablet,desktop) {
+    //         width: 70%;
+    //         margin-right: 15%;
+    //     }
+
+    //     @include mq(phone,tablet) {
+    //         width: 80%;
+    //         margin-right: 10%;
+    //         height: 25em;
+    //     }
+
+    //     @include mq(mobile,phone) {
+    //         margin-top: 3em;
+    //         width: 90%;
+    //         margin-right: 5%;
+    //         height: 23em;
+    //         margin-bottom: 10vh;
+    //     }
+
+    //     @include mq-max(mobile) {
+    //         margin-top: 3em;
+    //         width: 100%;
+
+    //         height: 15em;
+    //         margin-bottom: 3em;
+    //     }
+    // }
 }
 
 // == connect

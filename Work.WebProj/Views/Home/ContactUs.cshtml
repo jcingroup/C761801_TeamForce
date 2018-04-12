@@ -3,9 +3,63 @@
     ViewBag.BodyClass = "ContactUs";
 }
 
-<section class="wrap pb-48">
-    <h2 class="title font-en text-left">CONTACT US</h2>
-    <div class="col-6 contactBoxArea">
+@section scripts {
+    <script>
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                // 地圖放大比例-數字愈大愈詳細
+                zoom: 17,
+
+                // 地圖中心的緯、經度，必設
+                center: new google.maps.LatLng(24.942198, 121.221560),
+
+                // 顏色樣式
+                styles: [{"featureType": "water", "stylers": [{"visibility": "on"}, {"color": "#b5cbe4"} ] }, {"featureType": "landscape", "stylers": [{"color": "#efefef"} ] }, {"featureType": "road.highway", "elementType": "geometry", "stylers": [{"color": "#83a5b0"} ] }, {"featureType": "road.arterial", "elementType": "geometry", "stylers": [{"color": "#bdcdd3"} ] }, {"featureType": "road.local", "elementType": "geometry", "stylers": [{"color": "#ffffff"} ] }, {"featureType": "poi.park", "elementType": "geometry", "stylers": [{"color": "#e3eed3"} ] }, {"featureType": "administrative", "stylers": [{"visibility": "on"}, {"lightness": 33 } ] }, {"featureType": "road"}, {"featureType": "poi.park", "elementType": "labels", "stylers": [{"visibility": "on"}, {"lightness": 20 } ] }, {}, {"featureType": "road", "stylers": [{"lightness": 20 } ] } ]
+            });
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(24.942198, 121.221560),
+                map: map,
+                title: '挺鋒電檢'
+            });
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt8xXTW2b3C6MNuO0A8C32B36ELiuyACc&callback=initMap"></script>
+}
+
+<section class="wrap">
+    <h2 class="title font-en text-left mb-32">CONTACT US</h2>
+
+    <ul class="list-unstyled contacts col-md-6 mb-32">
+        <li title="電話">
+            <a href="tel:03-4670099">
+                <i class="circle ti-headphone-alt"></i>
+                (03) 467-0099
+            </a>
+        </li>
+        <li title="傳真">
+            <i class="circle ti-printer"></i>
+            (03) 467-0098
+        </li>
+        <li title="E-mail">
+            <a href="mailto:team.force@msa.hinet.net">
+                <i class="circle ti-email"></i>
+                team.force@msa.hinet.net
+            </a>
+        </li>
+        <li title="地址">
+            <a href="https://www.google.com.tw/maps/place/桃園市平鎮區振平街252號" target="_blank">
+                <i class="circle ti-location-pin"></i>
+                桃園市平鎮區振平街252號
+            </a>
+        </li>
+    </ul>
+
+    <aside id="map" class="col-md-6"></aside>
+
+    @* <div class="col-md-6 contactBoxArea">
         <div class="mb-32 col-6 pull-left contactBox">
             <div class="circle">
                 <img src="~/Content/images/phone.png" onclick=""/>
@@ -30,23 +84,6 @@
             </div>
             <nobr class="mt-24 font-lg"><a href="https://www.google.com.tw/maps/place/桃園市平鎮區振平街252號" target="_blank">桃園市平鎮區振平街252號</a></nobr>
         </div>
-    </div>
-    <div class="contactLine mt-64 pull-left"></div>
-    <iframe id="map" class="col-5 contactMap pull-right" src="~/Content/images/map.html"></iframe>
+    </div> *@
 </section>
-@section scripts {
-    <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 24.9569823, lng: 121.2237644 },
-                zoom: 17,
-            });
-            var marker = new google.maps.Marker({
-                position: { lat: 24.957167, lng: 121.223410 },
-                map: map,
-                title: '挺鋒電檢'
-            });
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqungKTm3kuv-i2SPzOSxaUtqieOdRZPQ&callback=initMap"type="text/javascript"></script>
-}
+
