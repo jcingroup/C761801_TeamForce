@@ -15,9 +15,9 @@
 }
 
 // icon arrow
-@mixin icon-arrow($direction, $size, $color, $pos: false, $elem: 'before') {
+@mixin icon-arrow($direction, $wd, $hg, $color, $pos: false, $elem: 'before') {
     @include el($elem) {
-        @include arrow($direction, $size, $color: $color);
+        @include arrow($direction, $wd, $hg, $color: $color);
         @if $pos {
             @include absolute($pos);
         }

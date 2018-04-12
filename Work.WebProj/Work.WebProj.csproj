@@ -157,6 +157,8 @@
     <Content Include="Content\font\themify-icons\themify.svg" />
     <Content Include="Content\images\about-pic.jpg" />
     <Content Include="Content\images\about-pic2.jpg" />
+    <Content Include="Content\images\index\banner2.jpg" />
+    <Content Include="Content\images\index\banner3.jpg" />
     <Content Include="Content\images\perform-pic.jpg" />
     <Content Include="Content\images\perform-pic2.jpg" />
     <Content Include="Content\images\service-pic1.jpg" />

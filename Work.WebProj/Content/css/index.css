@@ -1124,22 +1124,6 @@ dd {
   @media (max-width: 63.9375em) {
     #footer .wrap {
       padding-bottom: 24px; } }
-  #footer a {
-    position: relative; }
-    #footer a::after {
-      border-bottom: 1px solid #fff;
-      width: 0;
-      -webkit-transition: 0.35s;
-      transition: 0.35s;
-      position: absolute;
-      bottom: 0;
-      left: 50%; }
-      #footer a::after, .hover-underline::after, .swiper-wrapper::after {
-        content: '';
-        display: block; }
-    #footer a:hover::after, #footer a:active::after {
-      width: 100%;
-      left: 0; }
 
 .foot-logo {
   background: url(../images/foot-logo.gif) center 0 no-repeat;
@@ -1221,6 +1205,7 @@ dd {
     .nav-item {
       color: #2D385E;
       padding: 0 24px 36px;
+      position: relative;
       font-size: 18px;
       font-size: 1.125rem; }
       .scrolling .nav-item {
@@ -1230,7 +1215,22 @@ dd {
       .nav-item:hover, .nav-item:active {
         color: #d48303; }
       .nav-item:hover, .nav-item:active, .nav-item.current {
-        border-bottom: 3px solid #FCB037; } }
+        border-bottom: 3px solid #FCB037; }
+      .nav-item.current::before {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 4px 6px 4px;
+        border-color: transparent transparent #FCB037 transparent;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%); }
+        .nav-item.current::before, .hover-underline::after, #footer a::after, .swiper-wrapper::after {
+          content: '';
+          display: block; } }
   @media (max-width: 74.9375em) {
     .nav-item {
       display: table;
@@ -1404,9 +1404,9 @@ dd {
 .underline {
   border-bottom: 1px solid #efefef; }
 
-.hover-underline {
+.hover-underline, #footer a {
   position: relative; }
-  .hover-underline::after {
+  .hover-underline::after, #footer a::after {
     border-bottom: 1px solid;
     width: 0;
     -webkit-transition: 0.35s;
@@ -1414,7 +1414,7 @@ dd {
     position: absolute;
     bottom: 0;
     left: 50%; }
-  .hover-underline:hover::after, .hover-underline:active::after {
+  .hover-underline:hover::after, #footer a:hover::after, .hover-underline:active::after, #footer a:active::after {
     width: 100%;
     left: 0; }
 
@@ -1441,8 +1441,7 @@ dd {
 
 .swiper-slide {
   background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; }
+  background-repeat: no-repeat; }
   @media (max-width: 48em) {
     .swiper-slide {
       background-size: cover; } }

@@ -177,6 +177,7 @@ $mobile-nav-height: 48px;
     @include mq($mobile-menu-bk) {
         color: color();
         padding: 0 24px 36px;
+        position: relative;
 
         @include rem('font-size', 18px);
 
@@ -192,6 +193,12 @@ $mobile-nav-height: 48px;
         }
         &:hover, &:active, &.current {
             border-bottom: 3px solid color(warning);
+        }
+
+        &.current {
+            @include icon-arrow(up, 4px, 6px, color(warning), left 50% bottom 0) {
+                @include transform(translateX(-50%));
+            }
         }
     }
 
