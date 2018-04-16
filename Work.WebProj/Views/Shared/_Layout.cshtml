@@ -124,7 +124,7 @@
 
         // 點選後跳到 href 指向的位置 - 可連其他頁的錨點版本
         $('.scroll').click(function () {
-            var offset = 47;
+            var offset = topHeader.height();
             var target = this.hash;
             if ($(this).data('offset') != undefined) offset = $(this).data('offset');
             $('html, body').stop().animate({

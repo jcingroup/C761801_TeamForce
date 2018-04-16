@@ -1045,7 +1045,7 @@ dd {
 
 .head-info {
   letter-spacing: 0.28125em;
-  color: #d8d8d8;
+  color: #b7b7b7;
   position: absolute;
   top: 13px;
   right: 16px; }
@@ -1429,6 +1429,9 @@ dd {
         max-width: 30%;
         height: 150px;
         margin: 0 1%; } }
+.service-item:target {
+  padding-top: 58px;
+  margin-top: -58px; }
 @media (min-width: 48em) {
   .service-item {
     padding-right: 36px; } }

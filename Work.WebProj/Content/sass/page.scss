@@ -115,6 +115,11 @@ $headings-color:         #017E9C;
     &-item {
         @extend .mb-32;
 
+        &:target {
+            padding-top: $header-scrolling + 10;
+            margin-top: -($header-scrolling + 10);
+        }
+
         @include mq(tablet) {
             padding-right: 36px;
         }

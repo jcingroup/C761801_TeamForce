@@ -160,7 +160,7 @@ $mobile-menu-bk: 'wide';
 // top 介紹
 .head-info {
     letter-spacing: em(4.5px);
-    color: darken(color(muted), 5);
+    color: darken(color(muted), 18);
 
     @include absolute(top 13px right 16px);
 
