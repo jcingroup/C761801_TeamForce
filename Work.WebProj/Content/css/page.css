@@ -957,7 +957,7 @@ dd {
 -----------------------------------------------------------------------*/
 .wrap {
   max-width: 1400px; }
-  @media (max-width: 87.5625em) {
+  @media (max-width: 87.4375em) {
     .wrap {
       padding-left: 16px;
       padding-left: 1rem;
@@ -1049,7 +1049,7 @@ dd {
   position: absolute;
   top: 13px;
   right: 16px; }
-  @media (min-width: 75em) {
+  @media (min-width: 64em) {
     .head-info {
       right: 24px; } }
   @media (max-width: 35.4375em) {
@@ -1133,14 +1133,14 @@ dd {
 
 #menu {
   z-index: 20; }
-  @media (min-width: 75em) {
+  @media (min-width: 64em) {
     #menu {
       float: right;
       clear: right;
       margin-top: 67px; }
       .scrolling #menu {
         margin-top: 0; } }
-  @media (max-width: 74.9375em) {
+  @media (max-width: 63.9375em) {
     #menu {
       background: rgba(234, 234, 234, 0.8);
       -webkit-transition: opacity .5s;
@@ -1166,7 +1166,7 @@ dd {
   letter-spacing: 1px;
   -webkit-transition: 0.35s;
   transition: 0.35s; }
-  @media (min-width: 75em) {
+  @media (min-width: 64em) {
     .nav-item {
       color: #2D385E;
       padding: 0 24px 36px;
@@ -1196,7 +1196,7 @@ dd {
         .nav-item.current::before, .hover-underline::after, #footer a::after, .contacts a::after, .links a::after {
           content: '';
           display: block; } }
-  @media (max-width: 74.9375em) {
+  @media (max-width: 63.9375em) {
     .nav-item {
       display: table;
       width: 50%;
@@ -1246,7 +1246,7 @@ dd {
   clear: right;
   margin-top: 45px;
   position: relative; }
-  @media (max-width: 74.9375em) {
+  @media (max-width: 63.9375em) {
     .mobile-toggle {
       display: block; } }
   .mobile-toggle:focus {

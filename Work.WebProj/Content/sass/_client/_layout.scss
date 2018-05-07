@@ -1,8 +1,5 @@
 ﻿@charset "UTF-8";
 
-$mobile-menu-bk: 'wide';
-
-
 /*      layout
 -----------------------------------------------------------------------*/
 // 置中(有最大寬度限制,非滿版才需要)
@@ -13,24 +10,25 @@ $mobile-menu-bk: 'wide';
 
     @include clearfix;
 
-    // @include mq(desktop, $max-width) {
-    //     max-width: $min-width;
-    // }
-
-    @if $enable-RWD {
-        @include mq-max(break($max-width, +1)) {
-            @include rem('padding-left', 16px);
-            @include rem('padding-right', 16px);
-        }
+    @include mq-max(break($max-width, -1)) {
+        @include rem('padding-left', 16px);
+        @include rem('padding-right', 16px);
     }
-    @else {
-        min-width: $min-width;
+
+    @if not $enable-RWD {
+        @media only screen and (min-device-width: 1024px) {
+            min-width: $min-width;
+        }
     }
 }
 
 #wrapper {
     @if $wrapper-bg     { background: $wrapper-bg; }
-    @if not $enable-RWD { min-width: $min-width; }
+    @if not $enable-RWD {
+        @media only screen and (min-device-width: 1024px) {
+            min-width: $min-width;
+        }
+    }
 
     // 讓foot總是在頁腳
     @if $lte7 { _height: 100%; }
